@@ -1,0 +1,90 @@
+--- 
+title: "Analysis Using R"
+subtitle: "Canadian Bioinformatics Workshop"
+author: "Instructors: Shraddha Pai, Chaitra Sarathy"
+date: "last modified `r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib]
+biblio-style: nature
+csl: nature.csl
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+favicon: images/favicon.ico
+description: "Principles of exploratory data analysis, RNAseq differential expression, and generalized linear models"
+---
+
+# Welcome 
+Welcome to [Analysis Using R](https://bioinformatics.ca/workshops-all/2023-analysis-using-r/) 2023.
+
+# Meet your Faculty {-}
+
+## Shraddha Pai {-}
+Investigator I,<br>
+Ontario Institute for Cancer Research
+
+** add SP photo here **
+
+** add SP text here **
+
+## Chaitra Sarathy {-}
+Scientific Associate,
+
+Princess Margaret Cancer Centre,
+
+University Health Network
+
+<img src="images/Chaitra_Sarathy.jpeg">
+
+Chaitra is a computational biologist with experience in software development. During her PhD, she applied mathematical modelling, network analysis and multi-omics integration to study complex diseases. She has contributed to open-source toolboxes (openCOBRA) and developed softwares (EFMviz & ComMet) to analyse genome-scale metabolic models. She currently works in the Bader lab’s MODiL team (Multi Omics Data Integration and Analysis) and with groups at PMCC, where she develops pipelines to analyse various omics data types and discover new drug targets in cancer.
+
+## Ian Cheong {-}
+
+## Nia Hughes {-}
+
+Program Manager, Bioinformatics.ca
+
+Toronto, ON, CA
+
+<a href="mailto:nia.hughes@oicr.on.ca">nia.hughes@oicr.on.ca</a>
+
+<img src="images/nia_hughes.jpeg">
+
+Nia is the Program Manager for Bioinformatics.ca, where she coordinates the Canadian Bioinformatics Workshop Series. Prior to starting at the OICR, she completed her M.Sc in Bioinformatics from the University of Guelph in 2020 before working there as a bioinformatician studying epigenetic and transcriptomic patterns across maize varieties.
+
+## Pre-workshop Materials and Laptop Setup Instructions
+
+### Laptop Setup Instructions
+
+A checklist to setup your laptop can be found here. 
+
+Install these tools on your laptop before coming to the workshop:
+
+1. R (4.0+)
+<i>Note:</i> MacBook users with an Apple silicon chip (e.g., M1 or M2) should install the "arm64" version of R, while MacBook users with an Intel chip should install the regular (64-bit) version of R. You can check your laptop's hardware specifications by clicking the Apple icon (top left corner) > About This Mac and verifying whether the chip is Apple or Intel.
+2. Rstudio
+3.  Make sure you have a robust internet browser such as Firefox, Safari or Chrome (not Internet Explorer).
+4.  1. Make sure you have a PDF viewer (e.g. Adobe Acrobat, Preview or similar) or that you can read PDF files in your Web browser.
+
+### R packages
+
+```{r}
+pkgList <- c("tidyverse", "clValid","rgl","RColorBrewer","corrplot","ClusterR","Rtsne","umap","BiocManager")
+for (cur in pkgList){
+  message(sprintf("\tChecking for %s ...", cur))
+  if (!requireNamespace(cur, quietly = TRUE)) install.packages(cur)
+}
+if (!requireNamespace("edgeR", quietly = TRUE)) BiocManager::install("edgeR")
+```
+
+
+# Lecture slides 
+
+**Links TBA** :
+
+* Module 1: Exploratory Data Analysis and Clustering
+* Module 2: Dimensionality reduction for visualization and analysis
+* Module 3: Differential expression analysis using RNAseq
+* Module 4: Multiple hypothesis testing using generalized linear models
+
