@@ -71,6 +71,11 @@ rgl.spheres(
 
 ### Exploring missingness
 
+### The importance of bookkeeping
+
+Introduce `browser()` for debugging. Introduce `message()`, keeping logs using `sink()` format.
+Show example of a log file with a given date using `format(Sys.Date(),"%y%m%d"))`
+
 
 ### Correlations, distances, and clustering
 
