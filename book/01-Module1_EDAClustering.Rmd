@@ -2,25 +2,25 @@
 
 ## Example data
 
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 suppressMessages(library(clValid))
 data(mouse)
 ```
 
 Learn more about the mouse data:
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 ?mouse
 ```
 
 And explore what's in the mouse data:
 
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 str(mouse)
 ```
 
 Let's use `pairs()` to look at pairwise scatterplots. This is a useful way to explore data points. Let's first subset to three samples each from the mesenchymal and neural crest groups:
 
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 mouse_exp = mouse[,c("M1","M2","M3","NC1","NC2","NC3")]
 pairs(mouse_exp)
 ```
@@ -45,14 +45,14 @@ rgl.spheres(
 
 Let's colour by functional group.
 Use `RColorBrewer` to pick a colour palette. Assign colours to each category in `FC` (what is this?).
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 levels(mouse$FC)
 library(RColorBrewer)
 
 cols <- brewer.pal("Set1",n=9)[mouse$FC]
 ```
 Use `table()` to examine the mapping between colours and levels of `mouse$FC`:
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 print(table(cols,mouse$FC))
 ```
 
@@ -81,7 +81,7 @@ Show example of a log file with a given date using `format(Sys.Date(),"%y%m%d"))
 
 Let's look at sample correlation:
 
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 library(corrplot)
 mouse_cor <- cor(mouse_exp)
 dim(mouse_cor)
@@ -97,14 +97,14 @@ d <- dist(mouse_exp)
 ```
 
 Now in matrix format:
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 d <- as.matrix(dist(mouse_exp))
 ```
 
 #### Hierarchical clustering
 
 Let's create a hierarchical clustering diagram using the mouse samples:
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 d <- dist(log(mouse_exp))
 h <- hclust(d,method="complete")
 plot(h)
@@ -112,19 +112,19 @@ plot(h)
 
 Now let's expand this idea to show the hierarchical clustering and a heatmap representation of the clustered data. 
 
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 d <- dist(log(mouse_exp))
 h <- hclust(d,method="ward.D2")
 ```
 Get cluster assignments by "cutting" the dendrogram for two clusters (something we expect from our experimental design).
 Then assign colours based on cluster assignment
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 h2 <- cutree(h, k = 2)
 h2cols <- c("orangered","blue")[h2]
 ```
 
 Now define a hierarchical clustering function. This is needed as input for the `heatmap()` function which will draw the final clustering heatmap:
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 
 hclust_fun <- function(x){
     f <- hclust(x, method = "ward.D2");
@@ -146,7 +146,7 @@ heatmap(
 Note that the two colours are completely divided (i.e., there is no interspersed red and blue). This is a good sign that the clustering function used the identical clustering method, here, `ward.D2`, to cluster the samples.
 Compare this result to what happens if we try the same function call without clustering:
 
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 heatmap(
     as.matrix(mouse_exp),
     col = brewer.pal("Blues",n=8),
@@ -161,7 +161,7 @@ heatmap(
 
 #### K-means clustering
 
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 kclust <- kmeans(
     log(mouse_exp), 
     centers = 2
@@ -172,7 +172,7 @@ kclust <- kmeans(
 
 This code finds two clusters using Euclidean distance
 
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 library(ClusterR) # needed for GMM function
 
 gclust <- GMM(
@@ -191,7 +191,7 @@ Use the `clValid()` function to validate clusters using the:
 * silhouette scores, and
 * connectivity
 
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 validation_data <- clValid(
     mouse_exp,
     2:6, # num. clusters to evaluate
@@ -201,7 +201,7 @@ validation_data <- clValid(
 ```
 
 Let's look at the results:
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 summary(validation_data)
 ```
 
@@ -209,7 +209,7 @@ All measures of clustering consistently indicate that two clusters best fit the 
 
 Now let's cluster:
 
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 d <- dist(log(mouse_exp))
 h <- hclust(d,method="ward.D2")
 cluster_ids <- cutree(h, k = 2)
@@ -217,7 +217,7 @@ clust_colors <- c("dodgerblue","orangered")[cluster_ids]
 ```
 
 Let's now look at the pairs plot, using the new cluster assignment:
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 pairs(
     mouse_exp,
     col = clust_colors

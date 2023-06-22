@@ -47,6 +47,7 @@ plotMissMat(dat3) # structured missing data
 # with [cheatsheets](https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf)
 
 # create a scatterplot from two continuous variables
+require(ggplot2)
 head(state.x77)
 dim(state.x77)
 dat <- as.data.frame(state.x77)
