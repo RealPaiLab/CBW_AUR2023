@@ -1,136 +1,126 @@
-# Module 1: Exploratory Data Analysis and Clustering
+# Module 1: Exploratory Data Analysis and Clustering {-}
 
-## Example data
+The goal of this lab is to examine correlation structure in a sample transcriptomic dataset using clustering.
 
-```{r, class.source="codeblock",eval=FALSE}
+Specifically, we will:
+
+* Load and briefly explore transcriptomic measures from two mouse tissues
+* Explore the correlation strucutre in the data using `pairs()`
+* See the effect of running k-means and hierarchical clustering on the data
+* Use `clValid` to find out what cluster number best separates groups
+
+We will explore missing data in detail in Module 3.
+
+## Load `mouse` data {-}
+
+For this exercise we are going to load a dataset built into the `clValid` package.
+This dataset measures 147 genes and expressed sequence tags in two developing mouse lineages: the neural crest cells and mesoderm-derived cells.
+There are three samples per group.
+
+Let's load the data.
+
+```{r, class.source="codeblock",eval=TRUE}
 suppressMessages(library(clValid))
 data(mouse)
 ```
 
-Learn more about the mouse data:
-```{r, class.source="codeblock",eval=FALSE}
-?mouse
-```
+Use `str()` to see what types of data the columns have:
 
-And explore what's in the mouse data:
-
-```{r, class.source="codeblock",eval=FALSE}
+```{r, class.source="codeblock",eval=TRUE}
 str(mouse)
 ```
 
-Let's use `pairs()` to look at pairwise scatterplots. This is a useful way to explore data points. Let's first subset to three samples each from the mesenchymal and neural crest groups:
+Another command is `head()`:
+```{r, class.source="codeblock",eval=TRUE}
+head(mouse)
+```
 
-```{r, class.source="codeblock",eval=FALSE}
+Summary provides useful information about the distribution of variables. Note that `FC` has categorical variables:
+
+```{r, class.source="codeblock",eval=TRUE}
+summary(mouse)
+```
+
+What are the values in `FC`?
+
+
+```{r, class.source="codeblock",eval=TRUE}
+table(mouse$FC)
+```
+
+Let's use `pairs()`  to look at pairwise scatterplots of the expression data in a single plot. We need to subset the columns with the expression data first:
+
+```{r, class.source="codeblock",eval=TRUE}
 mouse_exp = mouse[,c("M1","M2","M3","NC1","NC2","NC3")]
 pairs(mouse_exp)
 ```
 
-Visualize mouse data using rgl
-```{r, class.source="codeblock",eval=FALSE}
-library(rgl)
-open3d()
-bg3d(color="white")
-points3d(x=mouse_exp$M1, y=mouse_exp$NC2, z=mouse_exp$NC3, col="black")
-```
-Make points into spheres
-```{r, class.source="codeblock",eval=FALSE}
-rgl.spheres(
-    x = mouse_exp$M1,
-    y = mouse_exp$NC2,
-    z = mouse_exp$NC3,
-    radius=0.2,
-    col="darkgreen"
-)
-```
+## `RColorBrewer` for colour palettes {-}
 
-Let's colour by functional group.
-Use `RColorBrewer` to pick a colour palette. Assign colours to each category in `FC` (what is this?).
-```{r, class.source="codeblock",eval=FALSE}
-levels(mouse$FC)
+Visualization often requires assigning colours to categories of interest (e.g., two different tissue types, eight levels of doses).
+`RColorBrewer` is a good package to pick a colour scheme for your project, as palettes are derived using colour science:
+Let's look at all the palettes available.
+
+```{r, class.source="codeblock",eval=TRUE}
 library(RColorBrewer)
-
-cols <- brewer.pal("Set1",n=9)[mouse$FC]
-```
-Use `table()` to examine the mapping between colours and levels of `mouse$FC`:
-```{r, class.source="codeblock",eval=FALSE}
-print(table(cols,mouse$FC))
+display.brewer.all()
 ```
 
-Now plot the data points colour-coded:
+We're going to use `RColorBrewer` to assign colours to our heatmap below.
 
-```{r, class.source="codeblock",eval=FALSE}
-rgl.spheres(
-    x = mouse_exp$M1,
-    y = mouse_exp$NC2,
-    z = mouse_exp$NC3,
-    radius=0.2,
-    col=cols)
-```
+## Correlations, distances, and clustering {-}
 
-** Put in images for rgl **
-
-### Exploring missingness
-
-### The importance of bookkeeping
-
-Introduce `browser()` for debugging. Introduce `message()`, keeping logs using `sink()` format.
-Show example of a log file with a given date using `format(Sys.Date(),"%y%m%d"))`
+Let's look at sample correlation matrix. This should be a square matrix, equal to the number of samples.
+We have six samples, so the correlation matrix should be `6x6`.
 
 
-### Correlations, distances, and clustering
 
-Let's look at sample correlation:
-
-```{r, class.source="codeblock",eval=FALSE}
+```{r, class.source="codeblock",eval=TRUE}
 library(corrplot)
 mouse_cor <- cor(mouse_exp)
 dim(mouse_cor)
 round(mouse_cor,2)
 corrplot(mouse_cor, method="color")
 ```
+* Which samples appear to be best correlated with each other?
+* Which samples don't appear to be as well correlated with each other?
 
-Let's calculate distances between samples.
+## Hierarchical clustering {-}
 
-Returns an upper triangle distance matrix. Stored as a vector that can be used for many clustering algorithms.
-```{r, class.source="codeblock",eval=FALSE}
-d <- dist(mouse_exp) 
-```
+Hierarchical clustering requires distances between samples. Let's use `dist()` to compute these distances, and `hclust()` to generate the hierarchical clustering object. 
 
-Now in matrix format:
-```{r, class.source="codeblock",eval=FALSE}
-d <- as.matrix(dist(mouse_exp))
-```
+Different values for `method` can produce different results. In our experience `complete` or `ward.D2` produce stable results.
 
-#### Hierarchical clustering
-
-Let's create a hierarchical clustering diagram using the mouse samples:
-```{r, class.source="codeblock",eval=FALSE}
-d <- dist(log(mouse_exp))
-h <- hclust(d,method="complete")
-plot(h)
-```
-
-Now let's expand this idea to show the hierarchical clustering and a heatmap representation of the clustered data. 
-
-```{r, class.source="codeblock",eval=FALSE}
+```{r, class.source="codeblock",eval=TRUE}
 d <- dist(log(mouse_exp))
 h <- hclust(d,method="ward.D2")
+plot(h)
 ```
-Get cluster assignments by "cutting" the dendrogram for two clusters (something we expect from our experimental design).
-Then assign colours based on cluster assignment
-```{r, class.source="codeblock",eval=FALSE}
+Can you guess how many clusters could best fit the data?
+
+Now let's add a heatmap to this dendrogram, so we can see the values of genes in each cluster. For this we will use the `heatmap()` function, which requires assigned cluster labels to each sample, and a dendrogram-generating function. 
+
+So let's create these.
+
+First we get cluster assignments by "cutting" the dendrogram for two clusters (something we expect from our experimental design). We use `cutree()` for this.  Then assign colours based on cluster assignment.
+```{r, class.source="codeblock",eval=TRUE}
 h2 <- cutree(h, k = 2)
 h2cols <- c("orangered","blue")[h2]
 ```
 
-Now define a hierarchical clustering function. This is needed as input for the `heatmap()` function which will draw the final clustering heatmap:
-```{r, class.source="codeblock",eval=FALSE}
+Now define a hierarchical clustering function:
+```{r, class.source="codeblock",eval=TRUE}
 
 hclust_fun <- function(x){
     f <- hclust(x, method = "ward.D2");
     return(f)
 }
+```
 
+
+
+And finally supply the two to the `heatmap()` function:
+```{r, class.source="codeblock",eval=TRUE}
 heatmap(
     as.matrix(mouse_exp),
     col = brewer.pal("Blues",n=8),
@@ -144,13 +134,13 @@ heatmap(
 ```
 
 Note that the two colours are completely divided (i.e., there is no interspersed red and blue). This is a good sign that the clustering function used the identical clustering method, here, `ward.D2`, to cluster the samples.
+
 Compare this result to what happens if we try the same function call without clustering:
 
-```{r, class.source="codeblock",eval=FALSE}
+```{r, class.source="codeblock",eval=TRUE}
 heatmap(
     as.matrix(mouse_exp),
     col = brewer.pal("Blues",n=8),
-    hclustfun = hclust_fun,
     RowSideColors = h2cols, # use colours from cutree call above
     ColSideColors = c(
         rep("darkgreen",3),
@@ -159,39 +149,26 @@ heatmap(
 )
 ```
 
-#### K-means clustering
+## K-means clustering {-}
 
-```{r, class.source="codeblock",eval=FALSE}
+Let's try using k-means clustering, asking for three clusters:
+
+```{r, class.source="codeblock",eval=TRUE}
 kclust <- kmeans(
     log(mouse_exp), 
-    centers = 2
+    centers = 3
 )
+kclust
 ```
 
-### Gaussian mixtures clustering
-
-This code finds two clusters using Euclidean distance
-
-```{r, class.source="codeblock",eval=FALSE}
-library(ClusterR) # needed for GMM function
-
-gclust <- GMM(
-    mouse_exp, 
-    gaussian_comps = 2, 
-    dist_mode = 'eucl_dist'
-)
-
-gclust$Log_likelihood
-```
-
-### Using `clValid` to determine number of clusters
+## Using `clValid` to determine number of clusters {-}
 
 Use the `clValid()` function to validate clusters using the:
 * Dunn index
 * silhouette scores, and
 * connectivity
 
-```{r, class.source="codeblock",eval=FALSE}
+```{r, class.source="codeblock",eval=TRUE}
 validation_data <- clValid(
     mouse_exp,
     2:6, # num. clusters to evaluate
@@ -201,50 +178,43 @@ validation_data <- clValid(
 ```
 
 Let's look at the results:
-```{r, class.source="codeblock",eval=FALSE}
+```{r, class.source="codeblock",eval=TRUE}
 summary(validation_data)
 ```
 
-All measures of clustering consistently indicate that two clusters best fit the data.
+All measures of clustering consistently indicate that **two** clusters best fit the data.
 
 Now let's cluster:
 
-```{r, class.source="codeblock",eval=FALSE}
+```{r, class.source="codeblock",eval=TRUE}
 d <- dist(log(mouse_exp))
 h <- hclust(d,method="ward.D2")
 cluster_ids <- cutree(h, k = 2)
 clust_colors <- c("dodgerblue","orangered")[cluster_ids]
-```
 
-Let's now look at the pairs plot, using the new cluster assignment:
-```{r, class.source="codeblock",eval=FALSE}
-pairs(
-    mouse_exp,
-    col = clust_colors
-)
-```
-
-And look at the same data in 3D:
-
-```{r, class.source="codeblock",eval=FALSE}
-rgl.spheres(
-    x = mouse_exp$M1,
-    y = mouse_exp$NC2,
-    z = mouse_exp$NC3,
-    radius = 0.2,
-    col = clust_colors
+heatmap(
+    as.matrix(mouse_exp),
+    col = brewer.pal("Blues",n=8),
+    hclustfun = hclust_fun,
+    RowSideColors = clust_colors, # kmeans labels
+    ColSideColors = c(
+        rep("darkgreen",3),
+        rep("deeppink2",3)
+    )
 )
 ```
 
 
+## Exercise {-}
 
+For your exercise, try the following:
 
+* Library the MASS package using: `library(MASS)`
+* Import `crabs` dataset using: `data(crabs)`
+* Learn about this dataset using: `?crabs`
+* Extract the numeric columns describing the crab measurements (“FL”, “RW”, “CL”, “CW”, “BD”)
+* Cluster the numeric columns using your method of choice
+* Plot and color your data by clusters, by species (`sp`), and `sex`
+* Do your clusters seem to separate these groups in the same way? 
 
-
-
-
-
-## Exercise
-
-LINK TO LECTURE SLIDES
 

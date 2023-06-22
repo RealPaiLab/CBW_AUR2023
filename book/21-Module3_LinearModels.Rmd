@@ -1,4 +1,4 @@
-# Module 3 - Generalized Linear Models
+# Module 3: Generalized Linear Models {-}
 
  In this module we're going to cover:
 
@@ -7,7 +7,7 @@
  * Fitting models with binary outcomes using generalized linear models
 
 
-## Read data from files and explore variable distribution
+## Read data from files and explore variable distribution {-}
 We're going to use a popular dataset for data analysis, pertaining to survival of passengers aboard the Titanic. 
 
 Let's read in the data from a file:
@@ -38,7 +38,7 @@ summary(dat$Age)
 Notice that there are 177 `NA` (missing) values for age.
 Let's visualize the missing data more systematically.
 
-## Explore missing data
+## Explore missing data {-}
 
 For this let's use a little script that converts a table into black and white squares to visualize missing data. For this, install the `plotrix` package
 
@@ -86,7 +86,7 @@ This confirms that `Age` is the only column with missing data.
 
 Now let's explore the data using plots.
 
-## Create plots with `ggplot2` to explore variable relationships
+## Create plots with `ggplot2` to explore variable relationships {-}
 
 `ggplot2` is a popular plotting package that uses an additive paradigm to build plots.  The [ggplot2 website]() is a wealth of reference information, so here we just touch on the basics to get you started. 
 
@@ -160,7 +160,7 @@ p + geom_bar(
 )
 ```
 
-## Fit binary response variable using `glm()` and logistic regression
+## Fit binary response variable using `glm()` and logistic regression {-}
 
 Let's fit a model to a binary outcome. For this we load a dataset that measures physiological variables in a cohort of Pima Indians.
 
@@ -217,7 +217,7 @@ In practice you may need to do more work to test multiple models to ascertain be
 We strongly recommend that you learn these topics before applying these methods to your own data.
 ```
 
-### Exercise
+## Exercise {-}
 
 Now let's apply the ideas above to a dataset for classifying a breast cell as being either benign or malignant. 
 
