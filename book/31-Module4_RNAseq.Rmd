@@ -232,7 +232,15 @@ Estimate variation ("dispersion") for each gene:
 dge <- estimateDisp(dge, mod)
 ```
 
-Call differentially expressed genes:
+Call differentially expressed genes. 
+Here we:
+* fit a model for each gene, using `glmFit`
+* we have built in an estimate of gene-wise dispersion to better identify treatment effect (or "contrast")
+* for each gene, we run a likelihood ratio test which compares which model fits the data better: a null model (treatment effect = 0)
+ or a full model (treatment effect is non-zero)
+
+Note that `coef=2` fetches the effects for the treatment effect; `coef=1` would fetch effects of the intercept term.
+
 ```{r dge-diffex, class.source="codeblock",eval=TRUE}
 fit <- glmFit(dge,mod)
 diffEx <- glmLRT(fit, coef = 2) # get coefficients for group term
