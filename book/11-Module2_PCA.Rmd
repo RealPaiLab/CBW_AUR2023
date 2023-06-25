@@ -12,6 +12,15 @@ METHOD 1: PRINCIPAL COMPONENT ANALYSIS
 
 Let's start with PCA. PCA is commonly used as one step in a series of analyses. The goal of PCA is to explain most of the variability in the data with a smaller number of variables than the original data set. You can use PCA to explain the variability in your data using fewer variables. Typically, it is useful to identify outliers and determine if there's batch effect in your data.
 
+Data: We will use the dataset that we used for exploratory analysis in Module 1. Load the mouse data.
+
+```{r}
+library(clValid)
+data("mouse")
+mouse_exp = mouse[,c("M1","M2","M3","NC1","NC2","NC3")]
+```
+
+
 Step 1. Preparing Our Data
 
 It is important to make sure that all the variables in your dataset are on the same scale to ensure they are comparable. So, let us check if that is the case with our dataset. To do that, we will first compute the means and variances of each variable using `apply()`.
@@ -181,34 +190,66 @@ The axes show the principal component scores, and the vectors are the loading ve
 
 ```
 
+METHOD 2: t-Distributed Stochastic Neighbor Embedding (t-SNE)
 
-## tsne on the mouse data
+t-SNE is a technique for dimensionality reduction that is particularly well suited for the visualization of high-dimensional datasets.
+
+There are several packages that have implemented t-SNE. Here we are going to use  the package `tsne` and the function `tsne`. Let’s run the t-SNE algorithm on the mouse and generate a t-SNE plot.
+
 ```{r}
 library(tsne)
+mouse_tsne = tsne(log(mouse_exp))
 
+library(RColorBrewer)
+my_cols_vec = brewer.pal("Set3",n = 9)
+plot(mouse_tsne,
+     pch=16, 
+     col=my_cols_vec)
+legend("topright",
+        legend = levels(mouse$FC),
+        col = my_cols_vec,
+        pch = 19)
+```
+tsne function has a parameter called `perplexity` which determines how to balance attention to neighborhood vs global structure. Default value is 30 which was used above. Set perplexity to 10, 20, 50, 100 and rerun tsne. Then visualise each result.
+
+```{r}
 mouse_tsne10 = tsne(log(mouse_exp),perplexity = 10)
 mouse_tsne20 = tsne(log(mouse_exp),perplexity = 20)
 mouse_tsne50 = tsne(log(mouse_exp),perplexity = 50)
 mouse_tsne100 = tsne(log(mouse_exp),perplexity = 100)
+```
 
+
+```{r, fig.width=7, fig.height=7}
 par(mfrow=c(2,2))
 plot(mouse_tsne10[,1],
      mouse_tsne10[,2],
      main = "Perplexity = 10",
-     col = my_cols_vec)
+     col = my_cols_vec,
+     pch=16)
 plot(mouse_tsne20[,1],
      mouse_tsne20[,2],
      main = "Perplexity = 20",
-     col = my_cols_vec)
+     col = my_cols_vec,
+     pch=16)
 plot(mouse_tsne50[,1],
      mouse_tsne50[,2],
      main = "Perplexity = 50",
-     col = my_cols_vec)
+     col = my_cols_vec,
+     pch=16)
 plot(mouse_tsne100[,1],
      mouse_tsne100[,2],
      main = "Perplexity = 100",
-     col = my_cols_vec)
+     col = my_cols_vec,
+     pch=16)
 ```
+Higher perplexity leads to higher spread in your data.
+
+METHOD 3 - Uniform Manifold Approximation and Projection (UMAP)
+
+UMAP is another dimension reduction method and it uses similar neighborhood approach as t-SNE except uses Riemannian geometry.
+
+Here we are going to use  the package `umap` and the function `umap`. Let’s apply UMAP on the mouse and generate a UMAP plot.
 
 ```{r}
 ## umap
@@ -216,13 +257,27 @@ library(umap)
 
 mouse_umap = umap(log(mouse_exp))
 str(mouse_umap)
+```
 
+
+```{r}
 par(mfrow=c(1,1))
 plot(mouse_umap$layout[,1],
      mouse_umap$layout[,2],
      col = my_cols_vec, pch = 19)
-
-
+legend("topright",
+        legend = levels(mouse$FC),
+        col = my_cols_vec,
+        pch = 19)
 ```
+## Exercise {-}
 
+For your exercise, try the following:
+
+* Return to your crabs data
+* Compute the principle components (PCs) for the numeric columns 
+* Plot these PCs and color them by species (“sp”) and sex 
+* Now compute 2 t-SNE components for these data and color by species and sex
+* Finally compute 2 UMAP components for these data and color by species and sex 
+* Do any of these dimensionality reduction methods seem to segregate sex/species groups? 
 
