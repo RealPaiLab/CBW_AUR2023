@@ -55,7 +55,7 @@ The output of `prcomp()` contains five elements `sdev`, `rotation`, `center`, `s
 pc_out$sdev
 ```
 
-`sddev` gives standard deviation
+`sdev` gives standard deviation
 
 ```{r, class.source="codeblock",eval=TRUE}
 pc_out$rotation
