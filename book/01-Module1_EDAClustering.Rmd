@@ -5,7 +5,7 @@ The goal of this lab is to examine correlation structure in a sample transcripto
 Specifically, we will:
 
 * Load and briefly explore transcriptomic measures from two mouse tissues
-* Explore the correlation strucutre in the data using `pairs()`
+* Explore the correlation structure in the data using `pairs()`
 * See the effect of running k-means and hierarchical clustering on the data
 * Use `clValid` to find out what cluster number best separates groups
 
@@ -82,6 +82,7 @@ dim(mouse_cor)
 round(mouse_cor,2)
 corrplot(mouse_cor, method="color")
 ```
+
 * Which samples appear to be best correlated with each other?
 * Which samples don't appear to be as well correlated with each other?
 
@@ -96,6 +97,7 @@ d <- dist(log(mouse_exp))
 h <- hclust(d,method="ward.D2")
 plot(h)
 ```
+
 Can you guess how many clusters could best fit the data?
 
 Now let's add a heatmap to this dendrogram, so we can see the values of genes in each cluster. For this we will use the `heatmap()` function, which requires assigned cluster labels to each sample, and a dendrogram-generating function. 
@@ -164,7 +166,8 @@ kclust
 ## Using `clValid` to determine number of clusters {-}
 
 Use the `clValid()` function to validate clusters using the:
-* Dunn index
+
+* Dunn index,
 * silhouette scores, and
 * connectivity
 
@@ -209,7 +212,7 @@ heatmap(
 
 For your exercise, try the following:
 
-* Library the MASS package using: `library(MASS)`
+* Load the MASS package using: `library(MASS)`
 * Import `crabs` dataset using: `data(crabs)`
 * Learn about this dataset using: `?crabs`
 * Extract the numeric columns describing the crab measurements (“FL”, “RW”, “CL”, “CW”, “BD”)
