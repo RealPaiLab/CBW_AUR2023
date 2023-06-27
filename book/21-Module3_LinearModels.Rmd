@@ -6,9 +6,34 @@
  * Creating publication-quality plots with `ggplot2`
  * Fitting models with binary outcomes using generalized linear models
 
+## Essential R: Read tables from files and merge {-}
+
+For this we're going to use two data files available in the course data directory.
+
+[Download these](https://drive.google.com/drive/folders/1hKRa7ui-DmQCbqoKlgkmvhlrbXDmbgsV?usp=sharing) for use and put them in your R working directory.
+
+* `tomerge1.csv` : comma-separated values
+* `tomerge2.txt` : tab-delimited values
+
+Use `read.delim()` to read in tables. Note the use of the `sep=` parameter to indicate what the column separator is:
+
+```{r, class.source="codeblock",eval=TRUE}
+x1 <- read.delim("data/tomerge1.csv",sep=",")
+head(x1)
+
+x2 <- read.delim("data/tomerge2.txt",sep="\t")
+head(x2)
+```
+
+Use `merge()` to combine the two tables by sample ID. Note the use of `by.x` and `by.y` to tell `merge()` which columns are equivalent:
+
+
+
 
 ## Read data from files and explore variable distribution {-}
 We're going to use a popular dataset for data analysis, pertaining to survival of passengers aboard the Titanic. 
+
+Download [the dataset here](https://drive.google.com/file/d/1PdP7bZTbmcRrPPPYFf1Mr8vfucom-d4k/view?usp=sharing) and copy it into your working directory.
 
 Let's read in the data from a file:
 ```{r, class.source="codeblock",eval=TRUE}
@@ -103,10 +128,14 @@ Create a base plot using the `ggplot` function. Then "add" a scatterplot to it. 
 
 This setup is standard for `ggplot2` and allows multiple visualizations to be applied to the same base plot.
 
+We use `aes` to tell ggplot what the `x` and `y` axes are, and later, if we want to colour-code by a particular column.
+
 
 ```{r load-states-data, class.source="codeblock",eval=TRUE}
 require(ggplot2)
-p <- ggplot(state.x77, aes(Illiteracy,Income))
+p <- ggplot(state.x77, 
+    aes(x = Illiteracy,y = Income)
+    )
 
 p <- p + geom_point() # scatter plot
 p
@@ -132,8 +161,8 @@ In the titanic set, let's look at the fare paid based on passenger class:
 ```{r boxplot, class.source="codeblock",eval=TRUE}
 p <- ggplot(dat)
 p + geom_boxplot(
-    aes(factor(Pclass), # make categorical
-        Fare))
+    aes(x = factor(Pclass), # make categorical
+        y = Fare))
 ```
 
 We can use barplots to examine counts and proportions.
@@ -178,14 +207,14 @@ Let's look at the impact of blood glucose levels on diabetes diagnosis. First le
 Could there be a relationship?
 
 ```{r plot-diabetes-vs-glucose, class.source="codeblock",eval=TRUE}
-p <- ggplot(dat, aes(glucose, factor(diabetes)))
+p <- ggplot(dat, aes(x = glucose, y = factor(diabetes)))
 p + geom_point()
 ```
 
 Could this be fit with a linear model?
 
 ```{r, class.source="codeblock",eval=TRUE}
-p <- ggplot(dat, aes(glucose, factor(diabetes)))
+p <- ggplot(dat, aes(x = glucose, y = factor(diabetes)))
 p + geom_point() + geom_smooth()
 ```
 

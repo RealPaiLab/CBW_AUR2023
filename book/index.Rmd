@@ -85,6 +85,8 @@ if (!requireNamespace("edgeR", quietly = TRUE)) BiocManager::install("edgeR")
 if (!requireNamespace("curatedTCGAData", quietly = TRUE)) BiocManager::install("curatedTCGAData")
 ```
 
+We are going to use `titanic.csv` in Module 3.
+Download [the dataset here](https://drive.google.com/file/d/1PdP7bZTbmcRrPPPYFf1Mr8vfucom-d4k/view?usp=sharing) and copy it into your working directory.
 
 # Lecture slides {-}
 

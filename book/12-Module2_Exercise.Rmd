@@ -1,19 +1,19 @@
 # Module 2 exercise {-}
 
 PCA
-```{r, class.source="codeblock",eval=FALSE}
+```{r, class.source="codeblock",eval=TRUE}
 c_pcs = prcomp(crabs_meas)
 ```
 
 Plot PC projections (embeddings). 
-```{r, class.source="codeblock",eval=FALSE}
+```{r, class.source="codeblock",eval=TRUE}
 pairs(c_pcs$x, col = c("orchid","forestgreen")[factor(crabs$sp)])
 pairs(c_pcs$x, col = c("orchid","forestgreen")[factor(crabs$sex)])
 ```
 
 tSNE:
 
-```{r, class.source="codeblock",eval=FALSE}
+```{r, class.source="codeblock",eval=TRUE}
 library(tsne)
 c_tsne10 = tsne(crabs_meas,perplexity = 10)
 c_tsne20 = tsne(crabs_meas,perplexity = 20)
@@ -25,7 +25,7 @@ c_tsne100 = tsne(crabs_meas,perplexity = 100)
 sex_cols = c("orchid","forestgreen")[factor(crabs$sex)]
 
 Color-code tSNE plot by species, try various perplexity levels:
-```{r, class.source="codeblock",eval=FALSE}
+```{r, class.source="codeblock",eval=TRUE}
 species_cols = c("orchid","forestgreen")[factor(crabs$sp)]
 par(mfrow=c(2,2))
 plot(c_tsne10[,1],
@@ -49,7 +49,7 @@ plot(c_tsne100[,1],
 
 Now do the same, but colour-code for sex:
 
-```{r, class.source="codeblock",eval=FALSE}
+```{r, class.source="codeblock",eval=TRUE}
 sex_cols = c("orchid","forestgreen")[factor(crabs$sex)]
 par(mfrow=c(2,2))
 plot(c_tsne10[,1],
@@ -72,7 +72,7 @@ plot(c_tsne100[,1],
 
 
 Run UMAP
-```{r, class.source="codeblock",eval=FALSE}
+```{r, class.source="codeblock",eval=TRUE}
 library(umap)
 c_umap <- umap(crabs_meas)
 str(c_umap)

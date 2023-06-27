@@ -2,6 +2,13 @@
 # Module 3: Fitting generalized linear models
 rm(list=ls())
 
+xvals <- runif(100, 1,10)
+yvals <- (2*xvals) + rnorm(100,0,2)
+df <- data.frame(x=xvals,y=yvals)
+p <- ggplot(df,aes(x,y)) + geom_point() + geom_smooth()
+p
+
+
 ## Merging data
 
 ## Missing data
@@ -122,3 +129,13 @@ p <- ggplot(dat, aes(glucose)) + geom_boxplot(aes(fill=diabetes))
 plotMissMat(dat)
 mod <- glm(diabetes ~ glucose + pregnant + age, dat, family="binomial")
 summary(mod)
+
+# fit sigmoid to data points
+df <- data.frame(dat$glucose,dat$diabetes)
+df <- na.omit(df)
+xw <- seq(50,200,1)
+mod <- glm(diabetes~glucose, family="binomial")
+yw <- predict(mod, data.frame(glucose=xw),type="response")
+newdat <- data.frame(x=xw,y=yw)
+p <- ggplot(df,(gluocose,diabetes)) + geom_point
+p + geom_line(data=newdat, aes(x,y),col="blue")
