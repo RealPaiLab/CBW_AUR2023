@@ -74,9 +74,9 @@ Install these tools on your laptop before coming to the workshop:
 
 ### R packages {-}
 
-```{r, eval=TRUE}
+```{r install-packages, eval=TRUE}
 pkgList <- c("tidyverse", "clValid","rgl","RColorBrewer","corrplot","ClusterR",
-  "Rtsne","umap","BiocManager","mlbench","plotrix", "factoextra")
+  "Rtsne","umap","BiocManager","mlbench","plotrix") #, "factoextra")
 for (cur in pkgList){
   message(sprintf("\tChecking for %s ...", cur))
   if (!requireNamespace(cur, quietly = TRUE)) install.packages(cur)

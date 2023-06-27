@@ -15,7 +15,7 @@ Let's start with PCA. PCA is commonly used as one step in a series of analyses. 
 
 Data: We will use the dataset that we used for exploratory analysis in Module 1. Load the mouse data.
 
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 library(clValid)
 data("mouse")
 mouse_exp = mouse[,c("M1","M2","M3","NC1","NC2","NC3")]
@@ -26,7 +26,7 @@ Step 1. Preparing Our Data
 
 It is important to make sure that all the variables in your dataset are on the same scale to ensure they are comparable. So, let us check if that is the case with our dataset. To do that, we will first compute the means and variances of each variable using `apply()`.
 
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 apply(mouse_exp, 2, mean)
 apply(mouse_exp, 2, var)
 ```
@@ -39,40 +39,40 @@ Step 2. Apply PCA
 
 Since our variables are on the same scale, we can directly apply PCA using `prcomp()`.
 
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 pc_out <- prcomp(mouse_exp)
 ```
 
 The output of `prcomp()` is a list. Examine the internal structure of `pc_out`.
 
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 str(pc_out)
 ```
 
 The output of `prcomp()` contains five elements `sdev`, `rotation`, `center`, `scale` and `x`. Let us examine what each looks like. 
 
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 pc_out$sdev
 ```
 
 `sddev` gives standard deviation (used for computing variance explained). We will see how in sections below.
 
 
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 pc_out$rotation
 ```
 
 After PCA, the observations are expressed in new axes and the loadings are provided in `pc_out$rotation`. Each column of `pc_out$rotation` contains the corresponding principal component loading vector.
 
 We see that there are six distinct principal components, as indicated by column names of `pc_out$rotation`. 
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 pc_out$center
 pc_out$scale
 ```
 
 The `center` and `scale` elements correspond to the means and standard deviations of the variables that were used for scaling prior to implementing PCA.
 
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 # See the principal components
 dim(pc_out$x)
 pc_out$x
@@ -81,7 +81,7 @@ pc_out$x
 
 Let’s now see the summary of the analysis using the `summary()` function!
 
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 summary(pc_out)
 ```
 
@@ -90,7 +90,7 @@ The first row gives the `Standard deviation` of each component, which is the sam
 The second row, `Proportion of Variance`, shows the percentage of explained variance, also obtained as variance/sum(variance) where variance is the square of sdev.
 
 Compute variance
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 pc_out$sdev^2 / sum(pc_out$sdev^2)
 ```
 
@@ -108,7 +108,7 @@ A. Scree plot
 
 We can visualize the percentage of explained variance per principal component by using what is called a scree plot. We will call the `fviz_eig()` function of the factoextra package for the application. You may need to install the package using `install.packages("factoextra")`.
 
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 library(factoextra)
 fviz_eig(pc_out, 
          addlabels = TRUE)
@@ -126,13 +126,13 @@ After a PCA, the observations are expressed in principal component scores (as we
 
 This can be achieved by drawing a scatterplot. To do so, first, we need to extract and the principal component scores in `pc_out$rotation`, and then we will store them in a data frame called PC.
 
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 PC <- as.data.frame(pc_out$rotation)
 ```
 
 Plot the first two principal components as follows:
 
-```{r, class.source="codeblock",eval=TRUE, fig.width=7, fig.height=7}
+```{r, class.source="codeblock",eval=FALSE, fig.width=7, fig.height=7}
 plot(x = PC$PC1,
      y = PC$PC2,
      pch = 19,
@@ -144,14 +144,14 @@ We see six points in two different groups. The points correspond to six samples.
 
 That can be done by adding sample-related information to the data.frame `PC` (such as cell type, treatment type, batch they were processed etc) as new variables. Here we will add the sample names and the cell types. 
 
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 PC$sample <- factor(rownames(PC))
 PC$cells <- factor(c(rep("mesoderm", 3), rep("neural_crest", 3)))
 ```
 
 Plot the scatterplot again and now, colour the points by cell type. Then, add sample names and legend.
 
-```{r, , class.source="codeblock",eval=TRUE, fig.width=7, fig.height=7}
+```{r, , class.source="codeblock",eval=FALSE, fig.width=7, fig.height=7}
 plot(x = PC$PC1,
      y = PC$PC2,
      col = PC$cells,
@@ -173,7 +173,7 @@ legend("bottomright",
 Samples from each cell type are closer together on the scatter plot. If the batch information is available, it can also be used to colour the scatterplot. Ideally, samples from different conditions should cluster together, irrespective of the batch they were processed in.
 
 You can also plot other PCs such as PC2 vs PC3 by changing the x and y variables above. Another way to plot all PCs is using `pairs()`
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 pairs(PC[,1:6], 
       col=c("black","red")[PC$cells], 
       pch=16)
@@ -184,7 +184,7 @@ C. Biplot
 
 Another useful plots to understand the results are biplots. We will use the `fviz_pca_biplot()` function of the factoextra package. We will set label="var" argument to label the variables.
 
-```{r, class.source="codeblock",eval=TRUE, fig.width=7, fig.height=7}
+```{r, class.source="codeblock",eval=FALSE, fig.width=7, fig.height=7}
 fviz_pca_biplot(pc_out, label = "var")
 ```
 
@@ -196,7 +196,7 @@ t-SNE is a technique for dimensionality reduction that is particularly well suit
 
 There are several packages that have implemented t-SNE. Here we are going to use  the package `tsne` and the function `tsne`. Let’s run the t-SNE algorithm on the mouse and generate a t-SNE plot.
 
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 library(tsne)
 mouse_tsne = tsne(mouse_exp)
 
@@ -213,7 +213,7 @@ plot(mouse_tsne,
 
 The `tsne` function has a parameter called `perplexity` which determines how to balance attention to neighborhood vs global structure. Default value is 30 which was used above. Set perplexity to 10, 20, 50, 100 and rerun tsne. Then visualise each result.
 
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 mouse_tsne10 = tsne(mouse_exp,perplexity = 10)
 mouse_tsne20 = tsne(mouse_exp,perplexity = 20)
 mouse_tsne50 = tsne(mouse_exp,perplexity = 50)
@@ -221,7 +221,7 @@ mouse_tsne100 = tsne(mouse_exp,perplexity = 100)
 ```
 
 
-```{r, fig.width=7, fig.height=7, class.source="codeblock",eval=TRUE}
+```{r, fig.width=7, fig.height=7, class.source="codeblock",eval=FALSE}
 par(mfrow=c(2,2))
 plot(mouse_tsne10[,1],
      mouse_tsne10[,2],
@@ -253,7 +253,7 @@ UMAP is another dimension reduction method and it uses similar neighborhood appr
 
 Here we are going to use  the package `umap` and the function `umap`. Let’s apply UMAP on the mouse and generate a UMAP plot.
 
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 ## umap
 library(umap)
 
@@ -262,7 +262,7 @@ str(mouse_umap)
 ```
 
 
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=FALSE}
 par(mfrow=c(1,1))
 plot(mouse_umap$layout[,1],
      mouse_umap$layout[,2],

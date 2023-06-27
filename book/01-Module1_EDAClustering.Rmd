@@ -157,7 +157,7 @@ Let's try using k-means clustering, asking for three clusters:
 
 ```{r, class.source="codeblock",eval=TRUE}
 kclust <- kmeans(
-    log(mouse_exp), 
+    mouse_exp, 
     centers = 3
 )
 kclust
