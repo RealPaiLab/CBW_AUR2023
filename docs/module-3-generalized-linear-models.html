@@ -31,7 +31,7 @@
   
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="module-2-exercise.html"/>
-<link rel="next" href="module-3-exercise.html"/>
+<link rel="next" href="module-4-finding-differentially-expressed-genes-with-rna-seq.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -157,7 +157,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="module-1-exploratory-data-analysis-and-clustering.html#using-clvalid-to-determine-number-of-clusters">Using <code>clValid</code> to determine number of clusters</a></li>
 <li class="chapter" data-level="" data-path="module-1-exploratory-data-analysis-and-clustering.html"><a href="module-1-exploratory-data-analysis-and-clustering.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-1-exercise-results.html"><a href="module-1-exercise-results.html"><i class="fa fa-check"></i>Module 1 Exercise Results</a></li>
 <li class="chapter" data-level="" data-path="module-2-dimensionality-reduction.html"><a href="module-2-dimensionality-reduction.html"><i class="fa fa-check"></i>Module 2: Dimensionality reduction</a>
 <ul>
 <li class="chapter" data-level="" data-path="module-2-dimensionality-reduction.html"><a href="module-2-dimensionality-reduction.html#principal-component-analysis"><i class="fa fa-check"></i>Principal Component Analysis</a>
@@ -180,7 +179,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="module-3-generalized-linear-models.html#fit-binary-response-variable-using-glm-and-logistic-regression">Fit binary response variable using <code>glm()</code> and logistic regression</a></li>
 <li class="chapter" data-level="" data-path="module-3-generalized-linear-models.html"><a href="module-3-generalized-linear-models.html#exercise-2"><i class="fa fa-check"></i>Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-3-exercise.html"><a href="module-3-exercise.html"><i class="fa fa-check"></i>Module 3 exercise</a></li>
 <li class="chapter" data-level="" data-path="module-4-finding-differentially-expressed-genes-with-rna-seq.html"><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html"><i class="fa fa-check"></i>Module 4: Finding differentially expressed genes with RNA-seq</a>
 <ul>
 <li class="chapter" data-level="" data-path="module-4-finding-differentially-expressed-genes-with-rna-seq.html"><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html#mini-introduction-to-bioconductor"><i class="fa fa-check"></i>Mini introduction to BioConductor</a></li>
@@ -191,8 +189,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html#differential-expression-analysis-with-edger">Differential expression analysis with <code>edgeR</code></a></li>
 <li class="chapter" data-level="" data-path="module-4-finding-differentially-expressed-genes-with-rna-seq.html"><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html#exercise-3"><i class="fa fa-check"></i>Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-4---exercises.html"><a href="module-4---exercises.html"><i class="fa fa-check"></i>Module 4 - exercises</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -230,8 +226,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>tomerge2.txt</code> : tab-delimited values</li>
 </ul>
 <p>Use <code>read.delim()</code> to read in tables. Note the use of the <code>sep=</code> parameter to indicate what the column separator is:</p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb205-1"><a href="module-3-generalized-linear-models.html#cb205-1" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">&quot;data/tomerge1.csv&quot;</span>,<span class="at">sep=</span><span class="st">&quot;,&quot;</span>)</span>
-<span id="cb205-2"><a href="module-3-generalized-linear-models.html#cb205-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(x1)</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb196-1"><a href="module-3-generalized-linear-models.html#cb196-1" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">&quot;data/tomerge1.csv&quot;</span>,<span class="at">sep=</span><span class="st">&quot;,&quot;</span>)</span>
+<span id="cb196-2"><a href="module-3-generalized-linear-models.html#cb196-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(x1)</span></code></pre></div>
 <pre><code>##   Sample_ID Exposure Biomarker_value
 ## 1         A        0              35
 ## 2         B        0              22
@@ -239,8 +235,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4         D        0               3
 ## 5         E        1              56
 ## 6         F        1              37</code></pre>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb207-1"><a href="module-3-generalized-linear-models.html#cb207-1" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">&quot;data/tomerge2.txt&quot;</span>,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
-<span id="cb207-2"><a href="module-3-generalized-linear-models.html#cb207-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(x2)</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb198-1"><a href="module-3-generalized-linear-models.html#cb198-1" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">&quot;data/tomerge2.txt&quot;</span>,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb198-2"><a href="module-3-generalized-linear-models.html#cb198-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(x2)</span></code></pre></div>
 <pre><code>##   sampleID.Exposure_level.Biomarker2_detected
 ## 1                       A 0.654055170016363 1
 ## 2                       B 0.672028516884893 0
@@ -255,12 +251,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We’re going to use a popular dataset for data analysis, pertaining to survival of passengers aboard the Titanic.</p>
 <p>Download <a href="https://drive.google.com/file/d/1PdP7bZTbmcRrPPPYFf1Mr8vfucom-d4k/view?usp=sharing">the dataset here</a> and copy it into your working directory.</p>
 <p>Let’s read in the data from a file:</p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb209-1"><a href="module-3-generalized-linear-models.html#cb209-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(</span>
-<span id="cb209-2"><a href="module-3-generalized-linear-models.html#cb209-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;data/titanic.csv&quot;</span>,</span>
-<span id="cb209-3"><a href="module-3-generalized-linear-models.html#cb209-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">sep=</span><span class="st">&quot;,&quot;</span> <span class="co"># indicate the column separator</span></span>
-<span id="cb209-4"><a href="module-3-generalized-linear-models.html#cb209-4" aria-hidden="true" tabindex="-1"></a>    ) </span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb200-1"><a href="module-3-generalized-linear-models.html#cb200-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(</span>
+<span id="cb200-2"><a href="module-3-generalized-linear-models.html#cb200-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;data/titanic.csv&quot;</span>,</span>
+<span id="cb200-3"><a href="module-3-generalized-linear-models.html#cb200-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">sep=</span><span class="st">&quot;,&quot;</span> <span class="co"># indicate the column separator</span></span>
+<span id="cb200-4"><a href="module-3-generalized-linear-models.html#cb200-4" aria-hidden="true" tabindex="-1"></a>    ) </span></code></pre></div>
 <p>Examine the columns:</p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb210-1"><a href="module-3-generalized-linear-models.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dat)</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb201-1"><a href="module-3-generalized-linear-models.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dat)</span></code></pre></div>
 <pre><code>##   PassengerId Survived Pclass
 ## 1           1        0      3
 ## 2           2        1      1
@@ -268,85 +264,76 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4           4        1      1
 ## 5           5        0      3
 ## 6           6        0      3
-##                                                  Name
-## 1                             Braund, Mr. Owen Harris
-## 2 Cumings, Mrs. John Bradley (Florence Briggs Thayer)
-## 3                              Heikkinen, Miss. Laina
-## 4        Futrelle, Mrs. Jacques Heath (Lily May Peel)
-## 5                            Allen, Mr. William Henry
-## 6                                    Moran, Mr. James
-##      Sex Age SibSp Parch           Ticket    Fare
-## 1   male  22     1     0        A/5 21171  7.2500
-## 2 female  38     1     0         PC 17599 71.2833
-## 3 female  26     0     0 STON/O2. 3101282  7.9250
-## 4 female  35     1     0           113803 53.1000
-## 5   male  35     0     0           373450  8.0500
-## 6   male  NA     0     0           330877  8.4583
-##   Cabin Embarked
-## 1              S
-## 2   C85        C
-## 3              S
-## 4  C123        S
-## 5              S
-## 6              Q</code></pre>
+##                                                  Name    Sex Age SibSp
+## 1                             Braund, Mr. Owen Harris   male  22     1
+## 2 Cumings, Mrs. John Bradley (Florence Briggs Thayer) female  38     1
+## 3                              Heikkinen, Miss. Laina female  26     0
+## 4        Futrelle, Mrs. Jacques Heath (Lily May Peel) female  35     1
+## 5                            Allen, Mr. William Henry   male  35     0
+## 6                                    Moran, Mr. James   male  NA     0
+##   Parch           Ticket    Fare Cabin Embarked
+## 1     0        A/5 21171  7.2500              S
+## 2     0         PC 17599 71.2833   C85        C
+## 3     0 STON/O2. 3101282  7.9250              S
+## 4     0           113803 53.1000  C123        S
+## 5     0           373450  8.0500              S
+## 6     0           330877  8.4583              Q</code></pre>
 <p>Some of the columns are categorical, use <code>table()</code> to look at the tallies:
 Examine the columns:</p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb212-1"><a href="module-3-generalized-linear-models.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(dat<span class="sc">$</span>Survived)</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb203-1"><a href="module-3-generalized-linear-models.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(dat<span class="sc">$</span>Survived)</span></code></pre></div>
 <pre><code>## 
 ##   0   1 
 ## 549 342</code></pre>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb214-1"><a href="module-3-generalized-linear-models.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(dat<span class="sc">$</span>Pclass)</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb205-1"><a href="module-3-generalized-linear-models.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(dat<span class="sc">$</span>Pclass)</span></code></pre></div>
 <pre><code>## 
 ##   1   2   3 
 ## 216 184 491</code></pre>
 <p>Use <code>summary()</code> to look at continuous-valued data:</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb216-1"><a href="module-3-generalized-linear-models.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(dat<span class="sc">$</span>Age)</span></code></pre></div>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    0.42   20.12   28.00   29.70   38.00   80.00 
-##    NA&#39;s 
-##     177</code></pre>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb207-1"><a href="module-3-generalized-linear-models.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(dat<span class="sc">$</span>Age)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+##    0.42   20.12   28.00   29.70   38.00   80.00     177</code></pre>
 <p>Notice that there are 177 <code>NA</code> (missing) values for age.
 Let’s visualize the missing data more systematically.</p>
 </div>
 <div id="explore-missing-data" class="section level2 unnumbered">
 <h2>Explore missing data</h2>
 <p>For this let’s use a little script that converts a table into black and white squares to visualize missing data. For this, install the <code>plotrix</code> package</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb218-1"><a href="module-3-generalized-linear-models.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;plotrix&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) <span class="fu">install.packages</span>(<span class="st">&quot;plotrix&quot;</span>)</span>
-<span id="cb218-2"><a href="module-3-generalized-linear-models.html#cb218-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb218-3"><a href="module-3-generalized-linear-models.html#cb218-3" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">require</span>(plotrix))</span>
-<span id="cb218-4"><a href="module-3-generalized-linear-models.html#cb218-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb218-5"><a href="module-3-generalized-linear-models.html#cb218-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; show data missingness as a chequered matrix</span></span>
-<span id="cb218-6"><a href="module-3-generalized-linear-models.html#cb218-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; </span></span>
-<span id="cb218-7"><a href="module-3-generalized-linear-models.html#cb218-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param x (matrix) data matrix.</span></span>
-<span id="cb218-8"><a href="module-3-generalized-linear-models.html#cb218-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param outFile (char) path to file for printing graph</span></span>
-<span id="cb218-9"><a href="module-3-generalized-linear-models.html#cb218-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param wd (numeric) width in inches</span></span>
-<span id="cb218-10"><a href="module-3-generalized-linear-models.html#cb218-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param ht (numeric) height in inches</span></span>
-<span id="cb218-11"><a href="module-3-generalized-linear-models.html#cb218-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @return plots missingness matrix to file</span></span>
-<span id="cb218-12"><a href="module-3-generalized-linear-models.html#cb218-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @import plotrix</span></span>
-<span id="cb218-13"><a href="module-3-generalized-linear-models.html#cb218-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
-<span id="cb218-14"><a href="module-3-generalized-linear-models.html#cb218-14" aria-hidden="true" tabindex="-1"></a>plotMissMat <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">xlab=</span><span class="st">&quot;columns&quot;</span>,</span>
-<span id="cb218-15"><a href="module-3-generalized-linear-models.html#cb218-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab=</span><span class="st">&quot;rows&quot;</span>,<span class="at">border=</span><span class="cn">NA</span>) {</span>
-<span id="cb218-16"><a href="module-3-generalized-linear-models.html#cb218-16" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb218-17"><a href="module-3-generalized-linear-models.html#cb218-17" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="sc">!</span><span class="fu">is.na</span>(x)</span>
-<span id="cb218-18"><a href="module-3-generalized-linear-models.html#cb218-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">class</span>(x) <span class="ot">&lt;-</span> <span class="st">&quot;numeric&quot;</span></span>
-<span id="cb218-19"><a href="module-3-generalized-linear-models.html#cb218-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">color2D.matplot</span>(x,<span class="at">show.values=</span><span class="cn">FALSE</span>,<span class="at">axes=</span><span class="cn">FALSE</span>,</span>
-<span id="cb218-20"><a href="module-3-generalized-linear-models.html#cb218-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">cs1=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>),<span class="at">cs2=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>),<span class="at">cs3=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>),<span class="at">border=</span>border,</span>
-<span id="cb218-21"><a href="module-3-generalized-linear-models.html#cb218-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">cex=</span><span class="fl">0.8</span>,</span>
-<span id="cb218-22"><a href="module-3-generalized-linear-models.html#cb218-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab=</span>xlab,<span class="at">ylab=</span>ylab)</span>
-<span id="cb218-23"><a href="module-3-generalized-linear-models.html#cb218-23" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb209-1"><a href="module-3-generalized-linear-models.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;plotrix&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) <span class="fu">install.packages</span>(<span class="st">&quot;plotrix&quot;</span>)</span>
+<span id="cb209-2"><a href="module-3-generalized-linear-models.html#cb209-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb209-3"><a href="module-3-generalized-linear-models.html#cb209-3" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">require</span>(plotrix))</span>
+<span id="cb209-4"><a href="module-3-generalized-linear-models.html#cb209-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb209-5"><a href="module-3-generalized-linear-models.html#cb209-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; show data missingness as a chequered matrix</span></span>
+<span id="cb209-6"><a href="module-3-generalized-linear-models.html#cb209-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; </span></span>
+<span id="cb209-7"><a href="module-3-generalized-linear-models.html#cb209-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param x (matrix) data matrix.</span></span>
+<span id="cb209-8"><a href="module-3-generalized-linear-models.html#cb209-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param outFile (char) path to file for printing graph</span></span>
+<span id="cb209-9"><a href="module-3-generalized-linear-models.html#cb209-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param wd (numeric) width in inches</span></span>
+<span id="cb209-10"><a href="module-3-generalized-linear-models.html#cb209-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param ht (numeric) height in inches</span></span>
+<span id="cb209-11"><a href="module-3-generalized-linear-models.html#cb209-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @return plots missingness matrix to file</span></span>
+<span id="cb209-12"><a href="module-3-generalized-linear-models.html#cb209-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @import plotrix</span></span>
+<span id="cb209-13"><a href="module-3-generalized-linear-models.html#cb209-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
+<span id="cb209-14"><a href="module-3-generalized-linear-models.html#cb209-14" aria-hidden="true" tabindex="-1"></a>plotMissMat <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">xlab=</span><span class="st">&quot;columns&quot;</span>,</span>
+<span id="cb209-15"><a href="module-3-generalized-linear-models.html#cb209-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab=</span><span class="st">&quot;rows&quot;</span>,<span class="at">border=</span><span class="cn">NA</span>) {</span>
+<span id="cb209-16"><a href="module-3-generalized-linear-models.html#cb209-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb209-17"><a href="module-3-generalized-linear-models.html#cb209-17" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="sc">!</span><span class="fu">is.na</span>(x)</span>
+<span id="cb209-18"><a href="module-3-generalized-linear-models.html#cb209-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">class</span>(x) <span class="ot">&lt;-</span> <span class="st">&quot;numeric&quot;</span></span>
+<span id="cb209-19"><a href="module-3-generalized-linear-models.html#cb209-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">color2D.matplot</span>(x,<span class="at">show.values=</span><span class="cn">FALSE</span>,<span class="at">axes=</span><span class="cn">FALSE</span>,</span>
+<span id="cb209-20"><a href="module-3-generalized-linear-models.html#cb209-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">cs1=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>),<span class="at">cs2=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>),<span class="at">cs3=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>),<span class="at">border=</span>border,</span>
+<span id="cb209-21"><a href="module-3-generalized-linear-models.html#cb209-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">cex=</span><span class="fl">0.8</span>,</span>
+<span id="cb209-22"><a href="module-3-generalized-linear-models.html#cb209-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab=</span>xlab,<span class="at">ylab=</span>ylab)</span>
+<span id="cb209-23"><a href="module-3-generalized-linear-models.html#cb209-23" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Let’s look at the missingness in the Titanic dataset. Missing data is shown as a white cell, and non-missing data is shown in black.</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb219-1"><a href="module-3-generalized-linear-models.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotMissMat</span>(dat)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb210-1"><a href="module-3-generalized-linear-models.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotMissMat</span>(dat)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
 <p>We can see a column with many missing values. This is probably the “age” data.
 Let’s count the number of missing values on a per-column level.</p>
 <p>For this we combine <code>is.na()</code>, which returns a TRUE/FALSE value for NA values, and <code>colSums()</code> which adds up the TRUE values down the columns.</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb220-1"><a href="module-3-generalized-linear-models.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(dat))</span></code></pre></div>
-<pre><code>## PassengerId    Survived      Pclass        Name 
-##           0           0           0           0 
-##         Sex         Age       SibSp       Parch 
-##           0         177           0           0 
-##      Ticket        Fare       Cabin    Embarked 
-##           0           0           0           0</code></pre>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb211-1"><a href="module-3-generalized-linear-models.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(dat))</span></code></pre></div>
+<pre><code>## PassengerId    Survived      Pclass        Name         Sex 
+##           0           0           0           0           0 
+##         Age       SibSp       Parch      Ticket        Fare 
+##         177           0           0           0           0 
+##       Cabin    Embarked 
+##           0           0</code></pre>
 <p>This confirms that <code>Age</code> is the only column with missing data.</p>
 <p>Now let’s explore the data using plots.</p>
 </div>
@@ -355,43 +342,42 @@ Let’s count the number of missing values on a per-column level.</p>
 <p><code>ggplot2</code> is a popular plotting package that uses an additive paradigm to build plots. The <a href="">ggplot2 website</a> is a wealth of reference information, so here we just touch on the basics to get you started.</p>
 <p>Anytime you need to generate a specific kind of plot, the website will most likely have documentation for how to achieve it.</p>
 <p>Let’s start by creating a scatterplot. For this let’s load a dataset measuring statistics around quality of life in US states in the late 70’s:</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb222-1"><a href="module-3-generalized-linear-models.html#cb222-1" aria-hidden="true" tabindex="-1"></a>state.x77 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(state.x77)</span>
-<span id="cb222-2"><a href="module-3-generalized-linear-models.html#cb222-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(state.x77)</span></code></pre></div>
-<pre><code>##            Population Income Illiteracy Life Exp
-## Alabama          3615   3624        2.1    69.05
-## Alaska            365   6315        1.5    69.31
-## Arizona          2212   4530        1.8    70.55
-## Arkansas         2110   3378        1.9    70.66
-## California      21198   5114        1.1    71.71
-## Colorado         2541   4884        0.7    72.06
-##            Murder HS Grad Frost   Area
-## Alabama      15.1    41.3    20  50708
-## Alaska       11.3    66.7   152 566432
-## Arizona       7.8    58.1    15 113417
-## Arkansas     10.1    39.9    65  51945
-## California   10.3    62.6    20 156361
-## Colorado      6.8    63.9   166 103766</code></pre>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb213-1"><a href="module-3-generalized-linear-models.html#cb213-1" aria-hidden="true" tabindex="-1"></a>state.x77 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(state.x77)</span>
+<span id="cb213-2"><a href="module-3-generalized-linear-models.html#cb213-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(state.x77)</span></code></pre></div>
+<pre><code>##            Population Income Illiteracy Life Exp Murder HS Grad Frost
+## Alabama          3615   3624        2.1    69.05   15.1    41.3    20
+## Alaska            365   6315        1.5    69.31   11.3    66.7   152
+## Arizona          2212   4530        1.8    70.55    7.8    58.1    15
+## Arkansas         2110   3378        1.9    70.66   10.1    39.9    65
+## California      21198   5114        1.1    71.71   10.3    62.6    20
+## Colorado         2541   4884        0.7    72.06    6.8    63.9   166
+##              Area
+## Alabama     50708
+## Alaska     566432
+## Arizona    113417
+## Arkansas    51945
+## California 156361
+## Colorado   103766</code></pre>
 <p>Create a base plot using the <code>ggplot</code> function. Then “add” a scatterplot to it. Notice that the plot has been assigned to a variable named <code>p</code>.</p>
 <p>This setup is standard for <code>ggplot2</code> and allows multiple visualizations to be applied to the same base plot.</p>
 <p>We use <code>aes</code> to tell ggplot what the <code>x</code> and <code>y</code> axes are, and later, if we want to colour-code by a particular column.</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb224-1"><a href="module-3-generalized-linear-models.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ggplot2)</span>
-<span id="cb224-2"><a href="module-3-generalized-linear-models.html#cb224-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(state.x77, </span>
-<span id="cb224-3"><a href="module-3-generalized-linear-models.html#cb224-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Illiteracy,<span class="at">y =</span> Income)</span>
-<span id="cb224-4"><a href="module-3-generalized-linear-models.html#cb224-4" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb224-5"><a href="module-3-generalized-linear-models.html#cb224-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb224-6"><a href="module-3-generalized-linear-models.html#cb224-6" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="co"># scatter plot</span></span>
-<span id="cb224-7"><a href="module-3-generalized-linear-models.html#cb224-7" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb215-1"><a href="module-3-generalized-linear-models.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ggplot2)</span>
+<span id="cb215-2"><a href="module-3-generalized-linear-models.html#cb215-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(state.x77, </span>
+<span id="cb215-3"><a href="module-3-generalized-linear-models.html#cb215-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Illiteracy,<span class="at">y =</span> Income)</span>
+<span id="cb215-4"><a href="module-3-generalized-linear-models.html#cb215-4" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb215-5"><a href="module-3-generalized-linear-models.html#cb215-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb215-6"><a href="module-3-generalized-linear-models.html#cb215-6" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="co"># scatter plot</span></span>
+<span id="cb215-7"><a href="module-3-generalized-linear-models.html#cb215-7" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/load-states-data-1.png" width="672" /></p>
 <p>Now let’s add confidence intervals:</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb225-1"><a href="module-3-generalized-linear-models.html#cb225-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code></pre></div>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula =
-## &#39;y ~ x&#39;</code></pre>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb216-1"><a href="module-3-generalized-linear-models.html#cb216-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</code></pre>
 <p><img src="bookdown-demo_files/figure-html/states-geomsmooth-1.png" width="672" /></p>
 <p>It looks like there is a negative relationship between illiteracy and income.
 We can confirm this by looking at correlation:</p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb227-1"><a href="module-3-generalized-linear-models.html#cb227-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> state.x77<span class="sc">$</span>Illiteracy</span>
-<span id="cb227-2"><a href="module-3-generalized-linear-models.html#cb227-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> state.x77<span class="sc">$</span>Income</span>
-<span id="cb227-3"><a href="module-3-generalized-linear-models.html#cb227-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(x,y)</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb218-1"><a href="module-3-generalized-linear-models.html#cb218-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> state.x77<span class="sc">$</span>Illiteracy</span>
+<span id="cb218-2"><a href="module-3-generalized-linear-models.html#cb218-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> state.x77<span class="sc">$</span>Income</span>
+<span id="cb218-3"><a href="module-3-generalized-linear-models.html#cb218-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(x,y)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
@@ -403,80 +389,69 @@ We can confirm this by looking at correlation:</p>
 ## sample estimates:
 ##        cor 
 ## -0.4370752</code></pre>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb229-1"><a href="module-3-generalized-linear-models.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(x,y)<span class="sc">$</span>p.value</span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb220-1"><a href="module-3-generalized-linear-models.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(x,y)<span class="sc">$</span>p.value</span></code></pre></div>
 <pre><code>## [1] 0.001505073</code></pre>
 <p>Let’s now examine categorical variables.
 In the titanic set, let’s look at the fare paid based on passenger class:</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb231-1"><a href="module-3-generalized-linear-models.html#cb231-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dat)</span>
-<span id="cb231-2"><a href="module-3-generalized-linear-models.html#cb231-2" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_boxplot</span>(</span>
-<span id="cb231-3"><a href="module-3-generalized-linear-models.html#cb231-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(Pclass), <span class="co"># make categorical</span></span>
-<span id="cb231-4"><a href="module-3-generalized-linear-models.html#cb231-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> Fare))</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb222-1"><a href="module-3-generalized-linear-models.html#cb222-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dat)</span>
+<span id="cb222-2"><a href="module-3-generalized-linear-models.html#cb222-2" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_boxplot</span>(</span>
+<span id="cb222-3"><a href="module-3-generalized-linear-models.html#cb222-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(Pclass), <span class="co"># make categorical</span></span>
+<span id="cb222-4"><a href="module-3-generalized-linear-models.html#cb222-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> Fare))</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/boxplot-1.png" width="672" /></p>
 <p>We can use barplots to examine counts and proportions.
 Let’s look at number of survivors, split by passenger class</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb232-1"><a href="module-3-generalized-linear-models.html#cb232-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_bar</span>(</span>
-<span id="cb232-2"><a href="module-3-generalized-linear-models.html#cb232-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">fill=</span><span class="fu">factor</span>(Survived), Pclass)</span>
-<span id="cb232-3"><a href="module-3-generalized-linear-models.html#cb232-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb223-1"><a href="module-3-generalized-linear-models.html#cb223-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_bar</span>(</span>
+<span id="cb223-2"><a href="module-3-generalized-linear-models.html#cb223-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">fill=</span><span class="fu">factor</span>(Survived), Pclass)</span>
+<span id="cb223-3"><a href="module-3-generalized-linear-models.html#cb223-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/barplot-1.png" width="672" /></p>
 <p>The plot above shows count data. Let’s convert this to proportions. We can see that the fraction of non-survivors in “Class 3” is high.</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb233-1"><a href="module-3-generalized-linear-models.html#cb233-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_bar</span>(</span>
-<span id="cb233-2"><a href="module-3-generalized-linear-models.html#cb233-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">fill=</span><span class="fu">factor</span>(Survived), Pclass),</span>
-<span id="cb233-3"><a href="module-3-generalized-linear-models.html#cb233-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">&quot;fill&quot;</span></span>
-<span id="cb233-4"><a href="module-3-generalized-linear-models.html#cb233-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb224-1"><a href="module-3-generalized-linear-models.html#cb224-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_bar</span>(</span>
+<span id="cb224-2"><a href="module-3-generalized-linear-models.html#cb224-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">fill=</span><span class="fu">factor</span>(Survived), Pclass),</span>
+<span id="cb224-3"><a href="module-3-generalized-linear-models.html#cb224-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">&quot;fill&quot;</span></span>
+<span id="cb224-4"><a href="module-3-generalized-linear-models.html#cb224-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/barplot2%20-1.png" width="672" /></p>
 <p>How about males versus females?</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb234-1"><a href="module-3-generalized-linear-models.html#cb234-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_bar</span>(</span>
-<span id="cb234-2"><a href="module-3-generalized-linear-models.html#cb234-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">fill=</span><span class="fu">factor</span>(Survived), Sex),</span>
-<span id="cb234-3"><a href="module-3-generalized-linear-models.html#cb234-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">&quot;fill&quot;</span></span>
-<span id="cb234-4"><a href="module-3-generalized-linear-models.html#cb234-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb225-1"><a href="module-3-generalized-linear-models.html#cb225-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_bar</span>(</span>
+<span id="cb225-2"><a href="module-3-generalized-linear-models.html#cb225-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">fill=</span><span class="fu">factor</span>(Survived), Sex),</span>
+<span id="cb225-3"><a href="module-3-generalized-linear-models.html#cb225-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">&quot;fill&quot;</span></span>
+<span id="cb225-4"><a href="module-3-generalized-linear-models.html#cb225-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/finish-titanic-1.png" width="672" /></p>
 </div>
 <div id="fit-binary-response-variable-using-glm-and-logistic-regression" class="section level2 unnumbered">
 <h2>Fit binary response variable using <code>glm()</code> and logistic regression</h2>
 <p>Let’s fit a model to a binary outcome. For this we load a dataset that measures physiological variables in a cohort of Pima Indians.</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb235-1"><a href="module-3-generalized-linear-models.html#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(mlbench)</span>
-<span id="cb235-2"><a href="module-3-generalized-linear-models.html#cb235-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(PimaIndiansDiabetes2)</span>
-<span id="cb235-3"><a href="module-3-generalized-linear-models.html#cb235-3" aria-hidden="true" tabindex="-1"></a><span class="co"># type ?PimaIndiansDiabetes2 to learn more about the dataset.</span></span>
-<span id="cb235-4"><a href="module-3-generalized-linear-models.html#cb235-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb235-5"><a href="module-3-generalized-linear-models.html#cb235-5" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> PimaIndiansDiabetes2</span>
-<span id="cb235-6"><a href="module-3-generalized-linear-models.html#cb235-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dat)</span></code></pre></div>
-<pre><code>##   pregnant glucose pressure triceps insulin mass
-## 1        6     148       72      35      NA 33.6
-## 2        1      85       66      29      NA 26.6
-## 3        8     183       64      NA      NA 23.3
-## 4        1      89       66      23      94 28.1
-## 5        0     137       40      35     168 43.1
-## 6        5     116       74      NA      NA 25.6
-##   pedigree age diabetes
-## 1    0.627  50      pos
-## 2    0.351  31      neg
-## 3    0.672  32      pos
-## 4    0.167  21      neg
-## 5    2.288  33      pos
-## 6    0.201  30      neg</code></pre>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb226-1"><a href="module-3-generalized-linear-models.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(mlbench)</span>
+<span id="cb226-2"><a href="module-3-generalized-linear-models.html#cb226-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(PimaIndiansDiabetes2)</span>
+<span id="cb226-3"><a href="module-3-generalized-linear-models.html#cb226-3" aria-hidden="true" tabindex="-1"></a><span class="co"># type ?PimaIndiansDiabetes2 to learn more about the dataset.</span></span>
+<span id="cb226-4"><a href="module-3-generalized-linear-models.html#cb226-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb226-5"><a href="module-3-generalized-linear-models.html#cb226-5" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> PimaIndiansDiabetes2</span>
+<span id="cb226-6"><a href="module-3-generalized-linear-models.html#cb226-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dat)</span></code></pre></div>
+<pre><code>##   pregnant glucose pressure triceps insulin mass pedigree age diabetes
+## 1        6     148       72      35      NA 33.6    0.627  50      pos
+## 2        1      85       66      29      NA 26.6    0.351  31      neg
+## 3        8     183       64      NA      NA 23.3    0.672  32      pos
+## 4        1      89       66      23      94 28.1    0.167  21      neg
+## 5        0     137       40      35     168 43.1    2.288  33      pos
+## 6        5     116       74      NA      NA 25.6    0.201  30      neg</code></pre>
 <p>Let’s look at the impact of blood glucose levels on diabetes diagnosis. First let’s make a scatterplot.</p>
 <p>Could there be a relationship?</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb237-1"><a href="module-3-generalized-linear-models.html#cb237-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(<span class="at">x =</span> glucose, <span class="at">y =</span> <span class="fu">factor</span>(diabetes)))</span>
-<span id="cb237-2"><a href="module-3-generalized-linear-models.html#cb237-2" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
-<pre><code>## Warning: Removed 5 rows containing missing values
-## (`geom_point()`).</code></pre>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb228-1"><a href="module-3-generalized-linear-models.html#cb228-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(<span class="at">x =</span> glucose, <span class="at">y =</span> <span class="fu">factor</span>(diabetes)))</span>
+<span id="cb228-2"><a href="module-3-generalized-linear-models.html#cb228-2" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<pre><code>## Warning: Removed 5 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="bookdown-demo_files/figure-html/plot-diabetes-vs-glucose-1.png" width="672" /></p>
 <p>Could this be fit with a linear model?</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb239-1"><a href="module-3-generalized-linear-models.html#cb239-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(<span class="at">x =</span> glucose, <span class="at">y =</span> <span class="fu">factor</span>(diabetes)))</span>
-<span id="cb239-2"><a href="module-3-generalized-linear-models.html#cb239-2" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code></pre></div>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula =
-## &#39;y ~ x&#39;</code></pre>
-<pre><code>## Warning: Removed 5 rows containing non-finite values
-## (`stat_smooth()`).</code></pre>
-<pre><code>## Warning: Removed 5 rows containing missing values
-## (`geom_point()`).</code></pre>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb230-1"><a href="module-3-generalized-linear-models.html#cb230-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(<span class="at">x =</span> glucose, <span class="at">y =</span> <span class="fu">factor</span>(diabetes)))</span>
+<span id="cb230-2"><a href="module-3-generalized-linear-models.html#cb230-2" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</code></pre>
+<pre><code>## Warning: Removed 5 rows containing non-finite values (`stat_smooth()`).</code></pre>
+<pre><code>## Warning: Removed 5 rows containing missing values (`geom_point()`).</code></pre>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
 <p>This is a situation where a logistic regression model would be an appropriate choice. We’re going to use <code>glm()</code> to fit a model to these data:</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb243-1"><a href="module-3-generalized-linear-models.html#cb243-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">factor</span>(diabetes)<span class="sc">~</span>glucose, </span>
-<span id="cb243-2"><a href="module-3-generalized-linear-models.html#cb243-2" aria-hidden="true" tabindex="-1"></a>    dat,</span>
-<span id="cb243-3"><a href="module-3-generalized-linear-models.html#cb243-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span> <span class="co"># set to model binary outcome</span></span>
-<span id="cb243-4"><a href="module-3-generalized-linear-models.html#cb243-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb243-5"><a href="module-3-generalized-linear-models.html#cb243-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod)</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb234-1"><a href="module-3-generalized-linear-models.html#cb234-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">factor</span>(diabetes)<span class="sc">~</span>glucose, </span>
+<span id="cb234-2"><a href="module-3-generalized-linear-models.html#cb234-2" aria-hidden="true" tabindex="-1"></a>    dat,</span>
+<span id="cb234-3"><a href="module-3-generalized-linear-models.html#cb234-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span> <span class="co"># set to model binary outcome</span></span>
+<span id="cb234-4"><a href="module-3-generalized-linear-models.html#cb234-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb234-5"><a href="module-3-generalized-linear-models.html#cb234-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = factor(diabetes) ~ glucose, family = &quot;binomial&quot;, 
@@ -487,15 +462,11 @@ Let’s look at number of survivors, split by passenger class</p>
 ## -2.1846  -0.7773  -0.5094   0.8232   2.2896  
 ## 
 ## Coefficients:
-##              Estimate Std. Error z value Pr(&gt;|z|)
-## (Intercept) -5.715088   0.438100  -13.04   &lt;2e-16
-## glucose      0.040634   0.003382   12.01   &lt;2e-16
-##                
-## (Intercept) ***
-## glucose     ***
+##              Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -5.715088   0.438100  -13.04   &lt;2e-16 ***
+## glucose      0.040634   0.003382   12.01   &lt;2e-16 ***
 ## ---
-## Signif. codes:  
-## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## (Dispersion parameter for binomial family taken to be 1)
 ## 
@@ -507,10 +478,10 @@ Let’s look at number of survivors, split by passenger class</p>
 ## Number of Fisher Scoring iterations: 4</code></pre>
 <p>Which factors explain a diabetes diagnosis?</p>
 <p>What if we include a couple other factors?</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb245-1"><a href="module-3-generalized-linear-models.html#cb245-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">factor</span>(diabetes)<span class="sc">~</span> glucose <span class="sc">+</span> pregnant <span class="sc">+</span> age <span class="sc">+</span> pressure <span class="sc">+</span> triceps,</span>
-<span id="cb245-2"><a href="module-3-generalized-linear-models.html#cb245-2" aria-hidden="true" tabindex="-1"></a>    dat,</span>
-<span id="cb245-3"><a href="module-3-generalized-linear-models.html#cb245-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
-<span id="cb245-4"><a href="module-3-generalized-linear-models.html#cb245-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod)</span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb236-1"><a href="module-3-generalized-linear-models.html#cb236-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">factor</span>(diabetes)<span class="sc">~</span> glucose <span class="sc">+</span> pregnant <span class="sc">+</span> age <span class="sc">+</span> pressure <span class="sc">+</span> triceps,</span>
+<span id="cb236-2"><a href="module-3-generalized-linear-models.html#cb236-2" aria-hidden="true" tabindex="-1"></a>    dat,</span>
+<span id="cb236-3"><a href="module-3-generalized-linear-models.html#cb236-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
+<span id="cb236-4"><a href="module-3-generalized-linear-models.html#cb236-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = factor(diabetes) ~ glucose + pregnant + age + pressure + 
@@ -521,23 +492,15 @@ Let’s look at number of survivors, split by passenger class</p>
 ## -2.1790  -0.6813  -0.4061   0.7167   2.3204  
 ## 
 ## Coefficients:
-##               Estimate Std. Error z value Pr(&gt;|z|)
-## (Intercept) -7.6685706  0.8451262  -9.074  &lt; 2e-16
-## glucose      0.0365926  0.0041105   8.902  &lt; 2e-16
-## pregnant     0.0972493  0.0417560   2.329 0.019860
-## age          0.0249707  0.0135945   1.837 0.066235
-## pressure    -0.0009321  0.0099322  -0.094 0.925230
-## triceps      0.0420045  0.0117044   3.589 0.000332
-##                
-## (Intercept) ***
-## glucose     ***
-## pregnant    *  
-## age         .  
-## pressure       
-## triceps     ***
+##               Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -7.6685706  0.8451262  -9.074  &lt; 2e-16 ***
+## glucose      0.0365926  0.0041105   8.902  &lt; 2e-16 ***
+## pregnant     0.0972493  0.0417560   2.329 0.019860 *  
+## age          0.0249707  0.0135945   1.837 0.066235 .  
+## pressure    -0.0009321  0.0099322  -0.094 0.925230    
+## triceps      0.0420045  0.0117044   3.589 0.000332 ***
 ## ---
-## Signif. codes:  
-## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## (Dispersion parameter for binomial family taken to be 1)
 ## 
@@ -562,34 +525,27 @@ We strongly recommend that you learn these topics before applying these methods 
 <div id="exercise-2" class="section level2 unnumbered">
 <h2>Exercise</h2>
 <p>Now let’s apply the ideas above to a dataset for classifying a breast cell as being either benign or malignant.</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb247-1"><a href="module-3-generalized-linear-models.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(BreastCancer)</span>
-<span id="cb247-2"><a href="module-3-generalized-linear-models.html#cb247-2" aria-hidden="true" tabindex="-1"></a>bc <span class="ot">&lt;-</span> BreastCancer</span>
-<span id="cb247-3"><a href="module-3-generalized-linear-models.html#cb247-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>) <span class="co"># altered for current lab</span></span>
-<span id="cb247-4"><a href="module-3-generalized-linear-models.html#cb247-4" aria-hidden="true" tabindex="-1"></a>    bc[,k] <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(bc[,k]) </span>
-<span id="cb247-5"><a href="module-3-generalized-linear-models.html#cb247-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(bc)</span></code></pre></div>
-<pre><code>##        Id Cl.thickness Cell.size Cell.shape
-## 1 1000025            5         1          1
-## 2 1002945            5         4          4
-## 3 1015425            3         1          1
-## 4 1016277            6         8          8
-## 5 1017023            4         1          1
-## 6 1017122            8        10         10
-##   Marg.adhesion Epith.c.size Bare.nuclei Bl.cromatin
-## 1             1            2           1           3
-## 2             5            7          10           3
-## 3             1            2           2           3
-## 4             1            3           4           3
-## 5             3            2           1           3
-## 6             8            7          10           9
-##   Normal.nucleoli Mitoses     Class
-## 1               1       1    benign
-## 2               2       1    benign
-## 3               1       1    benign
-## 4               7       1    benign
-## 5               1       1    benign
-## 6               7       1 malignant</code></pre>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb238-1"><a href="module-3-generalized-linear-models.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(BreastCancer)</span>
+<span id="cb238-2"><a href="module-3-generalized-linear-models.html#cb238-2" aria-hidden="true" tabindex="-1"></a>bc <span class="ot">&lt;-</span> BreastCancer</span>
+<span id="cb238-3"><a href="module-3-generalized-linear-models.html#cb238-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>) <span class="co"># altered for current lab</span></span>
+<span id="cb238-4"><a href="module-3-generalized-linear-models.html#cb238-4" aria-hidden="true" tabindex="-1"></a>    bc[,k] <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(bc[,k]) </span>
+<span id="cb238-5"><a href="module-3-generalized-linear-models.html#cb238-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(bc)</span></code></pre></div>
+<pre><code>##        Id Cl.thickness Cell.size Cell.shape Marg.adhesion Epith.c.size
+## 1 1000025            5         1          1             1            2
+## 2 1002945            5         4          4             5            7
+## 3 1015425            3         1          1             1            2
+## 4 1016277            6         8          8             1            3
+## 5 1017023            4         1          1             3            2
+## 6 1017122            8        10         10             8            7
+##   Bare.nuclei Bl.cromatin Normal.nucleoli Mitoses     Class
+## 1           1           3               1       1    benign
+## 2          10           3               2       1    benign
+## 3           2           3               1       1    benign
+## 4           4           3               7       1    benign
+## 5           1           3               1       1    benign
+## 6          10           9               7       1 malignant</code></pre>
 <p>Learn more about the dataset:</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb249-1"><a href="module-3-generalized-linear-models.html#cb249-1" aria-hidden="true" tabindex="-1"></a>?BreastCancer</span></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb240-1"><a href="module-3-generalized-linear-models.html#cb240-1" aria-hidden="true" tabindex="-1"></a>?BreastCancer</span></code></pre></div>
 <p>For your exercise, answer the following questions:</p>
 <ul>
 <li>Is there missing data?</li>
@@ -606,7 +562,7 @@ We strongly recommend that you learn these topics before applying these methods 
         </div>
       </div>
 <a href="module-2-exercise.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="module-3-exercise.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
