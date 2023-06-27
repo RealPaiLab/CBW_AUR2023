@@ -53,13 +53,13 @@ The output of `prcomp()` contains five elements `sdev`, `rotation`, `center`, `s
 pc_out$sdev
 ```
 
-`sddev` gives standard deviation
+`sddev` gives standard deviation (used for computing variance explained). We will see how in sections below.
 
 ```{r, class.source="codeblock",eval=TRUE}
 pc_out$rotation
 ```
 
-After PCA, the observations are expressed in new axes and the principal component scores or loadings are provided in `pc_out$rotation`. Each column of `pc_out$rotation` contains the corresponding principal component loading vector.
+After PCA, the observations are expressed in new axes and the loadings are provided in `pc_out$rotation`. Each column of `pc_out$rotation` contains the corresponding principal component loading vector.
 
 We see that there are six distinct principal components, as indicated by column names of `pc_out$rotation`. 
 ```{r, class.source="codeblock",eval=TRUE}
@@ -128,7 +128,7 @@ PC <- as.data.frame(pc_out$rotation)
 
 Plot the first two principal components as follows:
 
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=TRUE, fig.width=7, fig.height=7}
 plot(x = PC$PC1,
      y = PC$PC2,
      pch = 19,
@@ -178,7 +178,7 @@ C. Biplot
 
 Another useful plots to understand the results are biplots. We will use the `fviz_pca_biplot()` function of the factoextra package. We will set label="var" argument to label the variables.
 
-```{r, class.source="codeblock",eval=TRUE}
+```{r, class.source="codeblock",eval=TRUE, fig.width=7, fig.height=7}
 fviz_pca_biplot(pc_out, label = "var")
 ```
 
@@ -192,25 +192,25 @@ There are several packages that have implemented t-SNE. Here we are going to use
 
 ```{r, class.source="codeblock",eval=TRUE}
 library(tsne)
-mouse_tsne = tsne(log(mouse_exp))
+mouse_tsne = tsne(mouse_exp)
 
 library(RColorBrewer)
 my_cols_vec = brewer.pal("Set3",n = 9)
 plot(mouse_tsne,
      pch=16, 
      col=my_cols_vec)
-legend("topright",
-        legend = levels(mouse$FC),
-        col = my_cols_vec,
-        pch = 19)
+# legend("topright",
+#         legend = levels(mouse$FC),
+#         col = my_cols_vec,
+#         pch = 19)
 ```
 tsne function has a parameter called `perplexity` which determines how to balance attention to neighborhood vs global structure. Default value is 30 which was used above. Set perplexity to 10, 20, 50, 100 and rerun tsne. Then visualise each result.
 
 ```{r, class.source="codeblock",eval=TRUE}
-mouse_tsne10 = tsne(log(mouse_exp),perplexity = 10)
-mouse_tsne20 = tsne(log(mouse_exp),perplexity = 20)
-mouse_tsne50 = tsne(log(mouse_exp),perplexity = 50)
-mouse_tsne100 = tsne(log(mouse_exp),perplexity = 100)
+mouse_tsne10 = tsne(mouse_exp,perplexity = 10)
+mouse_tsne20 = tsne(mouse_exp,perplexity = 20)
+mouse_tsne50 = tsne(mouse_exp,perplexity = 50)
+mouse_tsne100 = tsne(mouse_exp,perplexity = 100)
 ```
 
 
@@ -249,7 +249,7 @@ Here we are going to use  the package `umap` and the function `umap`. Let’s ap
 ## umap
 library(umap)
 
-mouse_umap = umap(log(mouse_exp))
+mouse_umap = umap(mouse_exp)
 str(mouse_umap)
 ```
 
@@ -259,10 +259,10 @@ par(mfrow=c(1,1))
 plot(mouse_umap$layout[,1],
      mouse_umap$layout[,2],
      col = my_cols_vec, pch = 19)
-legend("topright",
-        legend = levels(mouse$FC),
-        col = my_cols_vec,
-        pch = 19)
+# legend("topright",
+#         legend = levels(mouse$FC),
+#         col = my_cols_vec,
+#         pch = 19)
 ```
 ## Exercise {-}
 
