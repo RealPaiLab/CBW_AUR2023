@@ -206,56 +206,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="module-4---exercises" class="section level1 unnumbered">
 <h1>Module 4 - exercises</h1>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb203-1"><a href="module-4---exercises.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;yeastRNASeq&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) </span>
-<span id="cb203-2"><a href="module-4---exercises.html#cb203-2" aria-hidden="true" tabindex="-1"></a>  BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;yeastRNASeq&quot;</span>)</span>
-<span id="cb203-3"><a href="module-4---exercises.html#cb203-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb203-4"><a href="module-4---exercises.html#cb203-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(yeastRNASeq)</span>
-<span id="cb203-5"><a href="module-4---exercises.html#cb203-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb203-6"><a href="module-4---exercises.html#cb203-6" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(geneLevelData)</span>
-<span id="cb203-7"><a href="module-4---exercises.html#cb203-7" aria-hidden="true" tabindex="-1"></a>gene_keep <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(geneLevelData) <span class="sc">&gt;</span> <span class="dv">2</span> </span>
-<span id="cb203-8"><a href="module-4---exercises.html#cb203-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb203-9"><a href="module-4---exercises.html#cb203-9" aria-hidden="true" tabindex="-1"></a><span class="co"># What genes pass this threshold?</span></span>
-<span id="cb203-10"><a href="module-4---exercises.html#cb203-10" aria-hidden="true" tabindex="-1"></a>filtered <span class="ot">&lt;-</span> geneLevelData[gene_keep,] </span>
-<span id="cb203-11"><a href="module-4---exercises.html#cb203-11" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(filtered)</span></code></pre></div>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb204-1"><a href="module-4---exercises.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  as.matrix(filtered): the count data in the right class</span></span>
-<span id="cb204-2"><a href="module-4---exercises.html#cb204-2" aria-hidden="true" tabindex="-1"></a><span class="co"># phenoData: The sample information</span></span>
-<span id="cb204-3"><a href="module-4---exercises.html#cb204-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb204-4"><a href="module-4---exercises.html#cb204-4" aria-hidden="true" tabindex="-1"></a>group <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Mut&quot;</span>, <span class="st">&quot;WT&quot;</span>),<span class="at">each=</span><span class="dv">2</span>), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;WT&quot;</span>,<span class="st">&quot;Mut&quot;</span>)) </span>
-<span id="cb204-5"><a href="module-4---exercises.html#cb204-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">DGEList</span>(<span class="fu">as.matrix</span>(filtered), </span>
-<span id="cb204-6"><a href="module-4---exercises.html#cb204-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">group =</span> group)  </span>
-<span id="cb204-7"><a href="module-4---exercises.html#cb204-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb204-8"><a href="module-4---exercises.html#cb204-8" aria-hidden="true" tabindex="-1"></a><span class="do">## matrix of experimental design </span></span>
-<span id="cb204-9"><a href="module-4---exercises.html#cb204-9" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">=</span> <span class="fu">model.matrix</span>(<span class="sc">~</span>group, y)</span>
-<span id="cb204-10"><a href="module-4---exercises.html#cb204-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb204-11"><a href="module-4---exercises.html#cb204-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb204-12"><a href="module-4---exercises.html#cb204-12" aria-hidden="true" tabindex="-1"></a><span class="do">## Normalize data</span></span>
-<span id="cb204-13"><a href="module-4---exercises.html#cb204-13" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">calcNormFactors</span>(y, <span class="at">method =</span> <span class="st">&quot;upperquartile&quot;</span>)</span>
-<span id="cb204-14"><a href="module-4---exercises.html#cb204-14" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">estimateDisp</span>(y, mod)</span>
-<span id="cb204-15"><a href="module-4---exercises.html#cb204-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb204-16"><a href="module-4---exercises.html#cb204-16" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">=</span> <span class="fu">glmFit</span>(y, mod)</span>
-<span id="cb204-17"><a href="module-4---exercises.html#cb204-17" aria-hidden="true" tabindex="-1"></a>lrt <span class="ot">=</span> <span class="fu">glmLRT</span>(fit, <span class="at">coef =</span> <span class="dv">2</span>)</span>
-<span id="cb204-18"><a href="module-4---exercises.html#cb204-18" aria-hidden="true" tabindex="-1"></a>diffEx2 <span class="ot">&lt;-</span> <span class="fu">decideTestsDGE</span>(lrt, </span>
-<span id="cb204-19"><a href="module-4---exercises.html#cb204-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">adjust.method=</span><span class="st">&quot;BH&quot;</span>, </span>
-<span id="cb204-20"><a href="module-4---exercises.html#cb204-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">p.value=</span><span class="fl">0.05</span></span>
-<span id="cb204-21"><a href="module-4---exercises.html#cb204-21" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb204-22"><a href="module-4---exercises.html#cb204-22" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(diffEx2)</span></code></pre></div>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb205-1"><a href="module-4---exercises.html#cb205-1" aria-hidden="true" tabindex="-1"></a>DEGS <span class="ot">=</span> <span class="fu">topTags</span>(lrt, <span class="at">n=</span><span class="fu">nrow</span>(y))<span class="sc">$</span>table</span></code></pre></div>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb206-1"><a href="module-4---exercises.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="do">## check out differentially expressed genes</span></span>
-<span id="cb206-2"><a href="module-4---exercises.html#cb206-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DEGS)</span>
-<span id="cb206-3"><a href="module-4---exercises.html#cb206-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb206-4"><a href="module-4---exercises.html#cb206-4" aria-hidden="true" tabindex="-1"></a>DEGS_sig <span class="ot">=</span> DEGS[DEGS<span class="sc">$</span>FDR <span class="sc">&lt;</span> <span class="fl">0.05</span>,]</span>
-<span id="cb206-5"><a href="module-4---exercises.html#cb206-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DEGS_sig)</span>
-<span id="cb206-6"><a href="module-4---exercises.html#cb206-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(DEGS_sig)</span></code></pre></div>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb207-1"><a href="module-4---exercises.html#cb207-1" aria-hidden="true" tabindex="-1"></a>midx <span class="ot">&lt;-</span> <span class="fu">match</span>(<span class="fu">rownames</span>(DEGS), <span class="fu">rownames</span>(diffEx2))</span>
-<span id="cb207-2"><a href="module-4---exercises.html#cb207-2" aria-hidden="true" tabindex="-1"></a>diffEx2 <span class="ot">&lt;-</span> diffEx2[midx,]</span>
-<span id="cb207-3"><a href="module-4---exercises.html#cb207-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb207-4"><a href="module-4---exercises.html#cb207-4" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">&quot;black&quot;</span>,<span class="fu">nrow</span>(diffEx2))</span>
-<span id="cb207-5"><a href="module-4---exercises.html#cb207-5" aria-hidden="true" tabindex="-1"></a>cols[<span class="fu">which</span>(diffEx2<span class="sc">&gt;</span><span class="dv">0</span> )]  <span class="ot">&lt;-</span> <span class="st">&quot;red&quot;</span></span>
-<span id="cb207-6"><a href="module-4---exercises.html#cb207-6" aria-hidden="true" tabindex="-1"></a>cols[<span class="fu">which</span>(diffEx2<span class="sc">&lt;</span><span class="dv">0</span>)]  <span class="ot">&lt;-</span> <span class="st">&quot;blue&quot;</span></span>
-<span id="cb207-7"><a href="module-4---exercises.html#cb207-7" aria-hidden="true" tabindex="-1"></a><span class="co"># volcano plot</span></span>
-<span id="cb207-8"><a href="module-4---exercises.html#cb207-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(DEGS<span class="sc">$</span>logFC,<span class="sc">-</span><span class="fu">log10</span>(DEGS<span class="sc">$</span>PValue),<span class="at">pch=</span><span class="dv">16</span>,</span>
-<span id="cb207-9"><a href="module-4---exercises.html#cb207-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">col=</span>cols)</span>
-<span id="cb207-10"><a href="module-4---exercises.html#cb207-10" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">0</span>,<span class="at">lty=</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb178-1"><a href="module-4---exercises.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;yeastRNASeq&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) </span>
+<span id="cb178-2"><a href="module-4---exercises.html#cb178-2" aria-hidden="true" tabindex="-1"></a>  BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;yeastRNASeq&quot;</span>)</span>
+<span id="cb178-3"><a href="module-4---exercises.html#cb178-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb178-4"><a href="module-4---exercises.html#cb178-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(yeastRNASeq)</span>
+<span id="cb178-5"><a href="module-4---exercises.html#cb178-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb178-6"><a href="module-4---exercises.html#cb178-6" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(geneLevelData)</span>
+<span id="cb178-7"><a href="module-4---exercises.html#cb178-7" aria-hidden="true" tabindex="-1"></a>gene_keep <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(geneLevelData) <span class="sc">&gt;</span> <span class="dv">2</span> </span>
+<span id="cb178-8"><a href="module-4---exercises.html#cb178-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb178-9"><a href="module-4---exercises.html#cb178-9" aria-hidden="true" tabindex="-1"></a><span class="co"># What genes pass this threshold?</span></span>
+<span id="cb178-10"><a href="module-4---exercises.html#cb178-10" aria-hidden="true" tabindex="-1"></a>filtered <span class="ot">&lt;-</span> geneLevelData[gene_keep,] </span>
+<span id="cb178-11"><a href="module-4---exercises.html#cb178-11" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(filtered)</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb179-1"><a href="module-4---exercises.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  as.matrix(filtered): the count data in the right class</span></span>
+<span id="cb179-2"><a href="module-4---exercises.html#cb179-2" aria-hidden="true" tabindex="-1"></a><span class="co"># phenoData: The sample information</span></span>
+<span id="cb179-3"><a href="module-4---exercises.html#cb179-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb179-4"><a href="module-4---exercises.html#cb179-4" aria-hidden="true" tabindex="-1"></a>group <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Mut&quot;</span>, <span class="st">&quot;WT&quot;</span>),<span class="at">each=</span><span class="dv">2</span>), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;WT&quot;</span>,<span class="st">&quot;Mut&quot;</span>)) </span>
+<span id="cb179-5"><a href="module-4---exercises.html#cb179-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">DGEList</span>(<span class="fu">as.matrix</span>(filtered), </span>
+<span id="cb179-6"><a href="module-4---exercises.html#cb179-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">group =</span> group)  </span>
+<span id="cb179-7"><a href="module-4---exercises.html#cb179-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb179-8"><a href="module-4---exercises.html#cb179-8" aria-hidden="true" tabindex="-1"></a><span class="do">## matrix of experimental design </span></span>
+<span id="cb179-9"><a href="module-4---exercises.html#cb179-9" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">=</span> <span class="fu">model.matrix</span>(<span class="sc">~</span>group, y)</span>
+<span id="cb179-10"><a href="module-4---exercises.html#cb179-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb179-11"><a href="module-4---exercises.html#cb179-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb179-12"><a href="module-4---exercises.html#cb179-12" aria-hidden="true" tabindex="-1"></a><span class="do">## Normalize data</span></span>
+<span id="cb179-13"><a href="module-4---exercises.html#cb179-13" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">calcNormFactors</span>(y, <span class="at">method =</span> <span class="st">&quot;upperquartile&quot;</span>)</span>
+<span id="cb179-14"><a href="module-4---exercises.html#cb179-14" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">estimateDisp</span>(y, mod)</span>
+<span id="cb179-15"><a href="module-4---exercises.html#cb179-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb179-16"><a href="module-4---exercises.html#cb179-16" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">=</span> <span class="fu">glmFit</span>(y, mod)</span>
+<span id="cb179-17"><a href="module-4---exercises.html#cb179-17" aria-hidden="true" tabindex="-1"></a>lrt <span class="ot">=</span> <span class="fu">glmLRT</span>(fit, <span class="at">coef =</span> <span class="dv">2</span>)</span>
+<span id="cb179-18"><a href="module-4---exercises.html#cb179-18" aria-hidden="true" tabindex="-1"></a>diffEx2 <span class="ot">&lt;-</span> <span class="fu">decideTestsDGE</span>(lrt, </span>
+<span id="cb179-19"><a href="module-4---exercises.html#cb179-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">adjust.method=</span><span class="st">&quot;BH&quot;</span>, </span>
+<span id="cb179-20"><a href="module-4---exercises.html#cb179-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">p.value=</span><span class="fl">0.05</span></span>
+<span id="cb179-21"><a href="module-4---exercises.html#cb179-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb179-22"><a href="module-4---exercises.html#cb179-22" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(diffEx2)</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb180-1"><a href="module-4---exercises.html#cb180-1" aria-hidden="true" tabindex="-1"></a>DEGS <span class="ot">=</span> <span class="fu">topTags</span>(lrt, <span class="at">n=</span><span class="fu">nrow</span>(y))<span class="sc">$</span>table</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb181-1"><a href="module-4---exercises.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="do">## check out differentially expressed genes</span></span>
+<span id="cb181-2"><a href="module-4---exercises.html#cb181-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DEGS)</span>
+<span id="cb181-3"><a href="module-4---exercises.html#cb181-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb181-4"><a href="module-4---exercises.html#cb181-4" aria-hidden="true" tabindex="-1"></a>DEGS_sig <span class="ot">=</span> DEGS[DEGS<span class="sc">$</span>FDR <span class="sc">&lt;</span> <span class="fl">0.05</span>,]</span>
+<span id="cb181-5"><a href="module-4---exercises.html#cb181-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DEGS_sig)</span>
+<span id="cb181-6"><a href="module-4---exercises.html#cb181-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(DEGS_sig)</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb182-1"><a href="module-4---exercises.html#cb182-1" aria-hidden="true" tabindex="-1"></a>midx <span class="ot">&lt;-</span> <span class="fu">match</span>(<span class="fu">rownames</span>(DEGS), <span class="fu">rownames</span>(diffEx2))</span>
+<span id="cb182-2"><a href="module-4---exercises.html#cb182-2" aria-hidden="true" tabindex="-1"></a>diffEx2 <span class="ot">&lt;-</span> diffEx2[midx,]</span>
+<span id="cb182-3"><a href="module-4---exercises.html#cb182-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb182-4"><a href="module-4---exercises.html#cb182-4" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">&quot;black&quot;</span>,<span class="fu">nrow</span>(diffEx2))</span>
+<span id="cb182-5"><a href="module-4---exercises.html#cb182-5" aria-hidden="true" tabindex="-1"></a>cols[<span class="fu">which</span>(diffEx2<span class="sc">&gt;</span><span class="dv">0</span> )]  <span class="ot">&lt;-</span> <span class="st">&quot;red&quot;</span></span>
+<span id="cb182-6"><a href="module-4---exercises.html#cb182-6" aria-hidden="true" tabindex="-1"></a>cols[<span class="fu">which</span>(diffEx2<span class="sc">&lt;</span><span class="dv">0</span>)]  <span class="ot">&lt;-</span> <span class="st">&quot;blue&quot;</span></span>
+<span id="cb182-7"><a href="module-4---exercises.html#cb182-7" aria-hidden="true" tabindex="-1"></a><span class="co"># volcano plot</span></span>
+<span id="cb182-8"><a href="module-4---exercises.html#cb182-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(DEGS<span class="sc">$</span>logFC,<span class="sc">-</span><span class="fu">log10</span>(DEGS<span class="sc">$</span>PValue),<span class="at">pch=</span><span class="dv">16</span>,</span>
+<span id="cb182-9"><a href="module-4---exercises.html#cb182-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">col=</span>cols)</span>
+<span id="cb182-10"><a href="module-4---exercises.html#cb182-10" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">0</span>,<span class="at">lty=</span><span class="dv">3</span>)</span></code></pre></div>
 
 </div>
             </section>
