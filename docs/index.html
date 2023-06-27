@@ -160,11 +160,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="module-1-exercise-results.html"><a href="module-1-exercise-results.html"><i class="fa fa-check"></i>Module 1 Exercise Results</a></li>
 <li class="chapter" data-level="" data-path="module-2-dimensionality-reduction.html"><a href="module-2-dimensionality-reduction.html"><i class="fa fa-check"></i>Module 2: Dimensionality reduction</a>
 <ul>
+<li class="chapter" data-level="" data-path="module-2-dimensionality-reduction.html"><a href="module-2-dimensionality-reduction.html#principal-component-analysis"><i class="fa fa-check"></i>Principal Component Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-2-dimensionality-reduction.html"><a href="module-2-dimensionality-reduction.html#step-1.-preparing-our-data"><i class="fa fa-check"></i>Step 1. Preparing Our Data</a></li>
+<li class="chapter" data-level="" data-path="module-2-dimensionality-reduction.html"><a href="module-2-dimensionality-reduction.html#step-2.-apply-pca"><i class="fa fa-check"></i>Step 2. Apply PCA</a></li>
+<li class="chapter" data-level="" data-path="module-2-dimensionality-reduction.html"><a href="module-2-dimensionality-reduction.html#step-3.-visualisation-of-pca-results"><i class="fa fa-check"></i>Step 3. Visualisation of PCA results</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-2-dimensionality-reduction.html"><a href="module-2-dimensionality-reduction.html#t-distributed-stochastic-neighbor-embedding-t-sne"><i class="fa fa-check"></i>t-Distributed Stochastic Neighbor Embedding (t-SNE)</a></li>
+<li class="chapter" data-level="" data-path="module-2-dimensionality-reduction.html"><a href="module-2-dimensionality-reduction.html#uniform-manifold-approximation-and-projection-umap"><i class="fa fa-check"></i>Uniform Manifold Approximation and Projection (UMAP)</a></li>
 <li class="chapter" data-level="" data-path="module-2-dimensionality-reduction.html"><a href="module-2-dimensionality-reduction.html#exercise-1"><i class="fa fa-check"></i>Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="module-2-exercise.html"><a href="module-2-exercise.html"><i class="fa fa-check"></i>Module 2 exercise</a></li>
 <li class="chapter" data-level="" data-path="module-3-generalized-linear-models.html"><a href="module-3-generalized-linear-models.html"><i class="fa fa-check"></i>Module 3: Generalized Linear Models</a>
 <ul>
+<li class="chapter" data-level="" data-path="module-3-generalized-linear-models.html"><a href="module-3-generalized-linear-models.html#essential-r-read-tables-from-files-and-merge"><i class="fa fa-check"></i>Essential R: Read tables from files and merge</a></li>
 <li class="chapter" data-level="" data-path="module-3-generalized-linear-models.html"><a href="module-3-generalized-linear-models.html#read-data-from-files-and-explore-variable-distribution"><i class="fa fa-check"></i>Read data from files and explore variable distribution</a></li>
 <li class="chapter" data-level="" data-path="module-3-generalized-linear-models.html"><a href="module-3-generalized-linear-models.html#explore-missing-data"><i class="fa fa-check"></i>Explore missing data</a></li>
 <li><a href="module-3-generalized-linear-models.html#create-plots-with-ggplot2-to-explore-variable-relationships">Create plots with <code>ggplot2</code> to explore variable relationships</a></li>
@@ -230,6 +239,13 @@ University Health Network</p>
 <p><img src="images/Chaitra_Sarathy.jpeg" ALIGN="right" hspace=25>
 Dr. Sarathy is a computational biologist with experience in software development. During her PhD, she applied mathematical modelling, network analysis and multi-omics integration to study complex diseases. She has contributed to open-source toolboxes (openCOBRA) and developed softwares (EFMviz &amp; ComMet) to analyse genome-scale metabolic models. She currently works in the Bader lab’s MODiL team (Multi Omics Data Integration and Analysis) and with groups at PMCC, where she develops pipelines to analyse various omics data types and discover new drug targets in cancer.</p>
 </div>
+<div id="delaram-pouyabahar" class="section level3 unlisted unnumbered">
+<h3>Delaram Pouyabahar</h3>
+<p>PhD Candidate <br>
+University of Toronto, Donnelly Centre <br></p>
+<p><img src="images/DelaramPouyabahar.jpeg" ALIGN="right" hspace=25>
+Delaram is a Ph.D. candidate in Computational Biology at the Molecular Genetics department at UofT. She completed her undergraduate studies at the University of Tehran before joining the Bader lab in Toronto. Her research centers around the development of computational tools to explore sources of variation in single-cell transcriptomics maps, with a particular emphasis on liver biology and transplantation.</p>
+</div>
 <div id="ian-cheong" class="section level3 unlisted unnumbered">
 <h3>Ian Cheong</h3>
 <p><img src="images/IanCheong.jpg" ALIGN="right" hspace=25 width=200 height=200 style="object-fit: cover;">
@@ -285,6 +301,8 @@ Bioinformatics.ca<br>
 <pre><code>##  Checking for plotrix ...</code></pre>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="index.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;edgeR&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;edgeR&quot;</span>)</span>
 <span id="cb13-2"><a href="index.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;curatedTCGAData&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;curatedTCGAData&quot;</span>)</span></code></pre></div>
+<p>We are going to use <code>titanic.csv</code> in Module 3.
+Download <a href="https://drive.google.com/file/d/1PdP7bZTbmcRrPPPYFf1Mr8vfucom-d4k/view?usp=sharing">the dataset here</a> and copy it into your working directory.</p>
 </div>
 </div>
 </div>

@@ -160,11 +160,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="module-1-exercise-results.html"><a href="module-1-exercise-results.html"><i class="fa fa-check"></i>Module 1 Exercise Results</a></li>
 <li class="chapter" data-level="" data-path="module-2-dimensionality-reduction.html"><a href="module-2-dimensionality-reduction.html"><i class="fa fa-check"></i>Module 2: Dimensionality reduction</a>
 <ul>
+<li class="chapter" data-level="" data-path="module-2-dimensionality-reduction.html"><a href="module-2-dimensionality-reduction.html#principal-component-analysis"><i class="fa fa-check"></i>Principal Component Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-2-dimensionality-reduction.html"><a href="module-2-dimensionality-reduction.html#step-1.-preparing-our-data"><i class="fa fa-check"></i>Step 1. Preparing Our Data</a></li>
+<li class="chapter" data-level="" data-path="module-2-dimensionality-reduction.html"><a href="module-2-dimensionality-reduction.html#step-2.-apply-pca"><i class="fa fa-check"></i>Step 2. Apply PCA</a></li>
+<li class="chapter" data-level="" data-path="module-2-dimensionality-reduction.html"><a href="module-2-dimensionality-reduction.html#step-3.-visualisation-of-pca-results"><i class="fa fa-check"></i>Step 3. Visualisation of PCA results</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-2-dimensionality-reduction.html"><a href="module-2-dimensionality-reduction.html#t-distributed-stochastic-neighbor-embedding-t-sne"><i class="fa fa-check"></i>t-Distributed Stochastic Neighbor Embedding (t-SNE)</a></li>
+<li class="chapter" data-level="" data-path="module-2-dimensionality-reduction.html"><a href="module-2-dimensionality-reduction.html#uniform-manifold-approximation-and-projection-umap"><i class="fa fa-check"></i>Uniform Manifold Approximation and Projection (UMAP)</a></li>
 <li class="chapter" data-level="" data-path="module-2-dimensionality-reduction.html"><a href="module-2-dimensionality-reduction.html#exercise-1"><i class="fa fa-check"></i>Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="module-2-exercise.html"><a href="module-2-exercise.html"><i class="fa fa-check"></i>Module 2 exercise</a></li>
 <li class="chapter" data-level="" data-path="module-3-generalized-linear-models.html"><a href="module-3-generalized-linear-models.html"><i class="fa fa-check"></i>Module 3: Generalized Linear Models</a>
 <ul>
+<li class="chapter" data-level="" data-path="module-3-generalized-linear-models.html"><a href="module-3-generalized-linear-models.html#essential-r-read-tables-from-files-and-merge"><i class="fa fa-check"></i>Essential R: Read tables from files and merge</a></li>
 <li class="chapter" data-level="" data-path="module-3-generalized-linear-models.html"><a href="module-3-generalized-linear-models.html#read-data-from-files-and-explore-variable-distribution"><i class="fa fa-check"></i>Read data from files and explore variable distribution</a></li>
 <li class="chapter" data-level="" data-path="module-3-generalized-linear-models.html"><a href="module-3-generalized-linear-models.html#explore-missing-data"><i class="fa fa-check"></i>Explore missing data</a></li>
 <li><a href="module-3-generalized-linear-models.html#create-plots-with-ggplot2-to-explore-variable-relationships">Create plots with <code>ggplot2</code> to explore variable relationships</a></li>
@@ -206,49 +215,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="module-3-exercise" class="section level1 unnumbered">
 <h1>Module 3 exercise</h1>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb119-1"><a href="module-3-exercise.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(BreastCancer)</span>
-<span id="cb119-2"><a href="module-3-exercise.html#cb119-2" aria-hidden="true" tabindex="-1"></a>bc <span class="ot">&lt;-</span> BreastCancer</span>
-<span id="cb119-3"><a href="module-3-exercise.html#cb119-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>) <span class="co"># altered for current lab</span></span>
-<span id="cb119-4"><a href="module-3-exercise.html#cb119-4" aria-hidden="true" tabindex="-1"></a>    bc[,k] <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(bc[,k]) </span>
-<span id="cb119-5"><a href="module-3-exercise.html#cb119-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(bc)</span></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb249-1"><a href="module-3-exercise.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(BreastCancer)</span>
+<span id="cb249-2"><a href="module-3-exercise.html#cb249-2" aria-hidden="true" tabindex="-1"></a>bc <span class="ot">&lt;-</span> BreastCancer</span>
+<span id="cb249-3"><a href="module-3-exercise.html#cb249-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>) <span class="co"># altered for current lab</span></span>
+<span id="cb249-4"><a href="module-3-exercise.html#cb249-4" aria-hidden="true" tabindex="-1"></a>    bc[,k] <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(bc[,k]) </span>
+<span id="cb249-5"><a href="module-3-exercise.html#cb249-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(bc)</span></code></pre></div>
 <p>Explore missingness:</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb120-1"><a href="module-3-exercise.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">require</span>(plotrix))</span>
-<span id="cb120-2"><a href="module-3-exercise.html#cb120-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-3"><a href="module-3-exercise.html#cb120-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; show data missingness as a chequered matrix</span></span>
-<span id="cb120-4"><a href="module-3-exercise.html#cb120-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; </span></span>
-<span id="cb120-5"><a href="module-3-exercise.html#cb120-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param x (matrix) data matrix.</span></span>
-<span id="cb120-6"><a href="module-3-exercise.html#cb120-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param outFile (char) path to file for printing graph</span></span>
-<span id="cb120-7"><a href="module-3-exercise.html#cb120-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param wd (numeric) width in inches</span></span>
-<span id="cb120-8"><a href="module-3-exercise.html#cb120-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param ht (numeric) height in inches</span></span>
-<span id="cb120-9"><a href="module-3-exercise.html#cb120-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @return plots missingness matrix to file</span></span>
-<span id="cb120-10"><a href="module-3-exercise.html#cb120-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @import plotrix</span></span>
-<span id="cb120-11"><a href="module-3-exercise.html#cb120-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
-<span id="cb120-12"><a href="module-3-exercise.html#cb120-12" aria-hidden="true" tabindex="-1"></a>plotMissMat <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">xlab=</span><span class="st">&quot;columns&quot;</span>,</span>
-<span id="cb120-13"><a href="module-3-exercise.html#cb120-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab=</span><span class="st">&quot;rows&quot;</span>,<span class="at">border=</span><span class="cn">NA</span>) {</span>
-<span id="cb120-14"><a href="module-3-exercise.html#cb120-14" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb120-15"><a href="module-3-exercise.html#cb120-15" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="sc">!</span><span class="fu">is.na</span>(x)</span>
-<span id="cb120-16"><a href="module-3-exercise.html#cb120-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">class</span>(x) <span class="ot">&lt;-</span> <span class="st">&quot;numeric&quot;</span></span>
-<span id="cb120-17"><a href="module-3-exercise.html#cb120-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">color2D.matplot</span>(x,<span class="at">show.values=</span><span class="cn">FALSE</span>,<span class="at">axes=</span><span class="cn">FALSE</span>,</span>
-<span id="cb120-18"><a href="module-3-exercise.html#cb120-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">cs1=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>),<span class="at">cs2=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>),<span class="at">cs3=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>),<span class="at">border=</span>border,</span>
-<span id="cb120-19"><a href="module-3-exercise.html#cb120-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">cex=</span><span class="fl">0.8</span>,</span>
-<span id="cb120-20"><a href="module-3-exercise.html#cb120-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab=</span>xlab,<span class="at">ylab=</span>ylab)</span>
-<span id="cb120-21"><a href="module-3-exercise.html#cb120-21" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb250-1"><a href="module-3-exercise.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">require</span>(plotrix))</span>
+<span id="cb250-2"><a href="module-3-exercise.html#cb250-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb250-3"><a href="module-3-exercise.html#cb250-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; show data missingness as a chequered matrix</span></span>
+<span id="cb250-4"><a href="module-3-exercise.html#cb250-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; </span></span>
+<span id="cb250-5"><a href="module-3-exercise.html#cb250-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param x (matrix) data matrix.</span></span>
+<span id="cb250-6"><a href="module-3-exercise.html#cb250-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param outFile (char) path to file for printing graph</span></span>
+<span id="cb250-7"><a href="module-3-exercise.html#cb250-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param wd (numeric) width in inches</span></span>
+<span id="cb250-8"><a href="module-3-exercise.html#cb250-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param ht (numeric) height in inches</span></span>
+<span id="cb250-9"><a href="module-3-exercise.html#cb250-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @return plots missingness matrix to file</span></span>
+<span id="cb250-10"><a href="module-3-exercise.html#cb250-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @import plotrix</span></span>
+<span id="cb250-11"><a href="module-3-exercise.html#cb250-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
+<span id="cb250-12"><a href="module-3-exercise.html#cb250-12" aria-hidden="true" tabindex="-1"></a>plotMissMat <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">xlab=</span><span class="st">&quot;columns&quot;</span>,</span>
+<span id="cb250-13"><a href="module-3-exercise.html#cb250-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab=</span><span class="st">&quot;rows&quot;</span>,<span class="at">border=</span><span class="cn">NA</span>) {</span>
+<span id="cb250-14"><a href="module-3-exercise.html#cb250-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb250-15"><a href="module-3-exercise.html#cb250-15" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="sc">!</span><span class="fu">is.na</span>(x)</span>
+<span id="cb250-16"><a href="module-3-exercise.html#cb250-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">class</span>(x) <span class="ot">&lt;-</span> <span class="st">&quot;numeric&quot;</span></span>
+<span id="cb250-17"><a href="module-3-exercise.html#cb250-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">color2D.matplot</span>(x,<span class="at">show.values=</span><span class="cn">FALSE</span>,<span class="at">axes=</span><span class="cn">FALSE</span>,</span>
+<span id="cb250-18"><a href="module-3-exercise.html#cb250-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">cs1=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>),<span class="at">cs2=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>),<span class="at">cs3=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>),<span class="at">border=</span>border,</span>
+<span id="cb250-19"><a href="module-3-exercise.html#cb250-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">cex=</span><span class="fl">0.8</span>,</span>
+<span id="cb250-20"><a href="module-3-exercise.html#cb250-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab=</span>xlab,<span class="at">ylab=</span>ylab)</span>
+<span id="cb250-21"><a href="module-3-exercise.html#cb250-21" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Explore missingness:</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb121-1"><a href="module-3-exercise.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotMissMat</span>(bc)</span>
-<span id="cb121-2"><a href="module-3-exercise.html#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(bc))</span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb251-1"><a href="module-3-exercise.html#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotMissMat</span>(bc)</span>
+<span id="cb251-2"><a href="module-3-exercise.html#cb251-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(bc))</span></code></pre></div>
 <p>Plot relationship between variables</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb122-1"><a href="module-3-exercise.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ggplot2)</span>
-<span id="cb122-2"><a href="module-3-exercise.html#cb122-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb122-3"><a href="module-3-exercise.html#cb122-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bc,<span class="fu">aes</span>(Cell.size,Normal.nucleoli)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
-<span id="cb122-4"><a href="module-3-exercise.html#cb122-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bc) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="fu">factor</span>(Class), Normal.nucleoli))</span>
-<span id="cb122-5"><a href="module-3-exercise.html#cb122-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bc) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="fu">factor</span>(Class), Cl.thickness))</span>
-<span id="cb122-6"><a href="module-3-exercise.html#cb122-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bc) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="fu">factor</span>(Class), Bare.nuclei))</span></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb252-1"><a href="module-3-exercise.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ggplot2)</span>
+<span id="cb252-2"><a href="module-3-exercise.html#cb252-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb252-3"><a href="module-3-exercise.html#cb252-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bc,<span class="fu">aes</span>(Cell.size,Normal.nucleoli)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
+<span id="cb252-4"><a href="module-3-exercise.html#cb252-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bc) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="fu">factor</span>(Class), Normal.nucleoli))</span>
+<span id="cb252-5"><a href="module-3-exercise.html#cb252-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bc) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="fu">factor</span>(Class), Cl.thickness))</span>
+<span id="cb252-6"><a href="module-3-exercise.html#cb252-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bc) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="fu">factor</span>(Class), Bare.nuclei))</span></code></pre></div>
 <p>Fit a binary outcome model:</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb123-1"><a href="module-3-exercise.html#cb123-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
-<span id="cb123-2"><a href="module-3-exercise.html#cb123-2" aria-hidden="true" tabindex="-1"></a>    Class <span class="sc">~</span> Cl.thickness <span class="sc">+</span> Bare.nuclei <span class="sc">+</span> Normal.nucleoli <span class="sc">+</span> Mitoses <span class="sc">+</span> Bl.cromatin, </span>
-<span id="cb123-3"><a href="module-3-exercise.html#cb123-3" aria-hidden="true" tabindex="-1"></a>    bc,</span>
-<span id="cb123-4"><a href="module-3-exercise.html#cb123-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">family=</span><span class="st">&quot;binomial&quot;</span>)</span>
-<span id="cb123-5"><a href="module-3-exercise.html#cb123-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod)</span></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb253-1"><a href="module-3-exercise.html#cb253-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb253-2"><a href="module-3-exercise.html#cb253-2" aria-hidden="true" tabindex="-1"></a>    Class <span class="sc">~</span> Cl.thickness <span class="sc">+</span> Bare.nuclei <span class="sc">+</span> Normal.nucleoli <span class="sc">+</span> Mitoses <span class="sc">+</span> Bl.cromatin, </span>
+<span id="cb253-3"><a href="module-3-exercise.html#cb253-3" aria-hidden="true" tabindex="-1"></a>    bc,</span>
+<span id="cb253-4"><a href="module-3-exercise.html#cb253-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">family=</span><span class="st">&quot;binomial&quot;</span>)</span>
+<span id="cb253-5"><a href="module-3-exercise.html#cb253-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod)</span></code></pre></div>
 
 </div>
             </section>
