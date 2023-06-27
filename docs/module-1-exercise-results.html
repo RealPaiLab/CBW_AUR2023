@@ -216,11 +216,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="module-1-exercise-results" class="section level1 unnumbered">
 <h1>Module 1 Exercise Results</h1>
 <p>Load packages and data, subset needed columns:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb41-1"><a href="module-1-exercise-results.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb41-2"><a href="module-1-exercise-results.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(crabs)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb42-1"><a href="module-1-exercise-results.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb42-2"><a href="module-1-exercise-results.html#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(crabs)</span></code></pre></div>
 <p>Learn more about the data:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb42-1"><a href="module-1-exercise-results.html#cb42-1" aria-hidden="true" tabindex="-1"></a>?crabs</span>
-<span id="cb42-2"><a href="module-1-exercise-results.html#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(crabs)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb43-1"><a href="module-1-exercise-results.html#cb43-1" aria-hidden="true" tabindex="-1"></a>?crabs</span>
+<span id="cb43-2"><a href="module-1-exercise-results.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(crabs)</span></code></pre></div>
 <pre><code>##   sp sex index   FL  RW   CL   CW  BD
 ## 1  B   M     1  8.1 6.7 16.1 19.0 7.0
 ## 2  B   M     2  8.8 7.7 18.1 20.8 7.4
@@ -229,32 +229,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5  B   M     5  9.8 8.0 20.3 23.0 8.2
 ## 6  B   M     6 10.8 9.0 23.0 26.5 9.8</code></pre>
 <p>Subset needed columns:</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb44-1"><a href="module-1-exercise-results.html#cb44-1" aria-hidden="true" tabindex="-1"></a>crabs_meas <span class="ot">&lt;-</span>  crabs[,<span class="fu">c</span>(<span class="st">&quot;FL&quot;</span>,<span class="st">&quot;RW&quot;</span>,<span class="st">&quot;CL&quot;</span>,<span class="st">&quot;CW&quot;</span>,<span class="st">&quot;BD&quot;</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb45-1"><a href="module-1-exercise-results.html#cb45-1" aria-hidden="true" tabindex="-1"></a>crabs_meas <span class="ot">&lt;-</span>  crabs[,<span class="fu">c</span>(<span class="st">&quot;FL&quot;</span>,<span class="st">&quot;RW&quot;</span>,<span class="st">&quot;CL&quot;</span>,<span class="st">&quot;CW&quot;</span>,<span class="st">&quot;BD&quot;</span>)]</span></code></pre></div>
 <p>Perform hierarchical clustering:</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb45-1"><a href="module-1-exercise-results.html#cb45-1" aria-hidden="true" tabindex="-1"></a>c_dist <span class="ot">&lt;-</span> <span class="fu">dist</span>(crabs_meas)</span>
-<span id="cb45-2"><a href="module-1-exercise-results.html#cb45-2" aria-hidden="true" tabindex="-1"></a>c_hclust <span class="ot">&lt;-</span> <span class="fu">hclust</span>(c_dist)</span>
-<span id="cb45-3"><a href="module-1-exercise-results.html#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(c_hclust)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb46-1"><a href="module-1-exercise-results.html#cb46-1" aria-hidden="true" tabindex="-1"></a>c_dist <span class="ot">&lt;-</span> <span class="fu">dist</span>(crabs_meas)</span>
+<span id="cb46-2"><a href="module-1-exercise-results.html#cb46-2" aria-hidden="true" tabindex="-1"></a>c_hclust <span class="ot">&lt;-</span> <span class="fu">hclust</span>(c_dist)</span>
+<span id="cb46-3"><a href="module-1-exercise-results.html#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(c_hclust)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p>Colour-code samples based on cluster assignment. Assume there are two clusters.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb46-1"><a href="module-1-exercise-results.html#cb46-1" aria-hidden="true" tabindex="-1"></a>c_clusters <span class="ot">=</span> <span class="fu">cutree</span>(c_hclust,<span class="at">k =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb47-1"><a href="module-1-exercise-results.html#cb47-1" aria-hidden="true" tabindex="-1"></a>c_clusters <span class="ot">=</span> <span class="fu">cutree</span>(c_hclust,<span class="at">k =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p>Now create a pairs plot, but colour-code by:
 1. by gene-expression based clusters
 2. by species
 3. by sex</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb47-1"><a href="module-1-exercise-results.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(</span>
-<span id="cb47-2"><a href="module-1-exercise-results.html#cb47-2" aria-hidden="true" tabindex="-1"></a>    crabs_meas, </span>
-<span id="cb47-3"><a href="module-1-exercise-results.html#cb47-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;orchid&quot;</span>,<span class="st">&quot;forestgreen&quot;</span>)[c_clusters]</span>
-<span id="cb47-4"><a href="module-1-exercise-results.html#cb47-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb48-1"><a href="module-1-exercise-results.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(</span>
 <span id="cb48-2"><a href="module-1-exercise-results.html#cb48-2" aria-hidden="true" tabindex="-1"></a>    crabs_meas, </span>
-<span id="cb48-3"><a href="module-1-exercise-results.html#cb48-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;orchid&quot;</span>,<span class="st">&quot;forestgreen&quot;</span>)[<span class="fu">factor</span>(crabs<span class="sc">$</span>sp)]</span>
+<span id="cb48-3"><a href="module-1-exercise-results.html#cb48-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;orchid&quot;</span>,<span class="st">&quot;forestgreen&quot;</span>)[c_clusters]</span>
 <span id="cb48-4"><a href="module-1-exercise-results.html#cb48-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-23-2.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb49-1"><a href="module-1-exercise-results.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(</span>
 <span id="cb49-2"><a href="module-1-exercise-results.html#cb49-2" aria-hidden="true" tabindex="-1"></a>    crabs_meas, </span>
-<span id="cb49-3"><a href="module-1-exercise-results.html#cb49-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;orchid&quot;</span>,<span class="st">&quot;forestgreen&quot;</span>)[<span class="fu">factor</span>(crabs<span class="sc">$</span>sex)]</span>
+<span id="cb49-3"><a href="module-1-exercise-results.html#cb49-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;orchid&quot;</span>,<span class="st">&quot;forestgreen&quot;</span>)[<span class="fu">factor</span>(crabs<span class="sc">$</span>sp)]</span>
 <span id="cb49-4"><a href="module-1-exercise-results.html#cb49-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-23-2.png" width="672" /></p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb50-1"><a href="module-1-exercise-results.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(</span>
+<span id="cb50-2"><a href="module-1-exercise-results.html#cb50-2" aria-hidden="true" tabindex="-1"></a>    crabs_meas, </span>
+<span id="cb50-3"><a href="module-1-exercise-results.html#cb50-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;orchid&quot;</span>,<span class="st">&quot;forestgreen&quot;</span>)[<span class="fu">factor</span>(crabs<span class="sc">$</span>sex)]</span>
+<span id="cb50-4"><a href="module-1-exercise-results.html#cb50-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-23-3.png" width="672" /></p>
 
 </div>
