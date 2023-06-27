@@ -3,6 +3,7 @@
 The goal of this lab is to learn how to reduce the dimension of your dataset.
 
 We will learn three different methods commonly used for dimension reduction:
+
 1. Principal Component Analysis
 2. UMAP
 3. tSNE
@@ -33,6 +34,7 @@ apply(mouse_exp, 2, var)
 As you can see, the means and variances for all the six variables are almost the same and on the same scale, which is great!
 
 However, keep in mind that, the variables need not always be on the same scale in other non-omics datasets. PCA is influenced by the magnitude of each variable. So, it is important to include a scaling step during data preparation. Ideally, it is great to have variables centered at zero for PCA because it makes comparing each principal component to the mean straightforward. Scaling can be done either using `scale()`. 
+
 Step 2. Apply PCA
 
 Since our variables are on the same scale, we can directly apply PCA using `prcomp()`.
@@ -54,6 +56,7 @@ pc_out$sdev
 ```
 
 `sddev` gives standard deviation (used for computing variance explained). We will see how in sections below.
+
 
 ```{r, class.source="codeblock",eval=TRUE}
 pc_out$rotation
@@ -103,14 +106,15 @@ Step 3. Visualisation of PCA results
 
 A. Scree plot
 
-We can visualize the percentage of explained variance per principal component by using what is called a scree plot. We will call the `fviz_eig()` function of the factoextra package for the application. You may need to install the package.
+We can visualize the percentage of explained variance per principal component by using what is called a scree plot. We will call the `fviz_eig()` function of the factoextra package for the application. You may need to install the package using `install.packages("factoextra")`.
 
 ```{r, class.source="codeblock",eval=TRUE}
 library(factoextra)
 fviz_eig(pc_out, 
          addlabels = TRUE)
 ```
-X-axis shows the PCs and y-axis shows the percentage of variance explained that we saw above. Percentages are listed on top of the bars. It’s common to see that the first few principal components explain the major amount of variance.
+
+The x-axis shows the PCs and the y-axis shows the percentage of variance explained that we saw above. Percentages are listed on top of the bars. It’s common to see that the first few principal components explain the major amount of variance.
 
 Scree plot can also be used to decide the number of components to keep for rest of your analysis. One of the ways is using the elbow rule. This method is about looking for the “elbow” shape on the curve and retaining all components before the point where the curve flattens out. Here, the elbow appears to occur at the second principal component. 
 
@@ -135,6 +139,7 @@ plot(x = PC$PC1,
      xlab="PC1",
      ylab="PC2")
 ```
+
 We see six points in two different groups. The points correspond to six samples. But, we don't know what group/condition they belong to.
 
 That can be done by adding sample-related information to the data.frame `PC` (such as cell type, treatment type, batch they were processed etc) as new variables. Here we will add the sample names and the cell types. 
@@ -164,6 +169,7 @@ legend("bottomright",
        pch = 19)
  
 ```
+
 Samples from each cell type are closer together on the scatter plot. If the batch information is available, it can also be used to colour the scatterplot. Ideally, samples from different conditions should cluster together, irrespective of the batch they were processed in.
 
 You can also plot other PCs such as PC2 vs PC3 by changing the x and y variables above. Another way to plot all PCs is using `pairs()`
@@ -204,7 +210,8 @@ plot(mouse_tsne,
 #         col = my_cols_vec,
 #         pch = 19)
 ```
-tsne function has a parameter called `perplexity` which determines how to balance attention to neighborhood vs global structure. Default value is 30 which was used above. Set perplexity to 10, 20, 50, 100 and rerun tsne. Then visualise each result.
+
+The `tsne` function has a parameter called `perplexity` which determines how to balance attention to neighborhood vs global structure. Default value is 30 which was used above. Set perplexity to 10, 20, 50, 100 and rerun tsne. Then visualise each result.
 
 ```{r, class.source="codeblock",eval=TRUE}
 mouse_tsne10 = tsne(mouse_exp,perplexity = 10)
@@ -237,6 +244,7 @@ plot(mouse_tsne100[,1],
      col = my_cols_vec,
      pch=16)
 ```
+
 Higher perplexity leads to higher spread in your data.
 
 METHOD 3 - Uniform Manifold Approximation and Projection (UMAP)
@@ -264,6 +272,7 @@ plot(mouse_umap$layout[,1],
 #         col = my_cols_vec,
 #         pch = 19)
 ```
+
 ## Exercise {-}
 
 For your exercise, try the following:

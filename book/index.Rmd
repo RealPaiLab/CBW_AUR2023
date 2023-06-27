@@ -37,8 +37,8 @@ Dr. Sarathy is a computational biologist with experience in software development
 
 
 ### Ian Cheong {.unlisted .unnumbered}
-<img src="images/IanCheong.jpg" ALIGN="right" hspace=25 width=200 height=200>
-MSc. candidate<br>
+<img src="images/IanCheong.jpg" ALIGN="right" hspace=25 width=200 height=200 style="object-fit: cover;">
+MSc. Candidate<br>
 University of Toronto
 
 
