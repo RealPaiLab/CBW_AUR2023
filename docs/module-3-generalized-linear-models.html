@@ -327,7 +327,7 @@ Let’s visualize the missing data more systematically.</p>
 <span id="cb155-23"><a href="module-3-generalized-linear-models.html#cb155-23" tabindex="-1"></a>}</span></code></pre></div>
 <p>Let’s look at the missingness in the Titanic dataset. Missing data is shown as a white cell, and non-missing data is shown in black.</p>
 <div class="sourceCode" id="cb156"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb156-1"><a href="module-3-generalized-linear-models.html#cb156-1" tabindex="-1"></a><span class="fu">plotMissMat</span>(dat)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
 <p>We can see a column with many missing values. This is probably the “age” data.
 Let’s count the number of missing values on a per-column level.</p>
 <p>For this we combine <code>is.na()</code>, which returns a TRUE/FALSE value for NA values, and <code>colSums()</code> which adds up the TRUE values down the columns.</p>
@@ -440,7 +440,7 @@ Let’s look at number of survivors, split by passenger class</p>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</code></pre>
 <pre><code>## Warning: Removed 5 rows containing non-finite values (`stat_smooth()`).</code></pre>
 <pre><code>## Warning: Removed 5 rows containing missing values (`geom_point()`).</code></pre>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
 <p>This is a situation where a logistic regression model would be an appropriate choice. We’re going to use <code>glm()</code> to fit a model to these data:</p>
 <div class="sourceCode" id="cb180"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb180-1"><a href="module-3-generalized-linear-models.html#cb180-1" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">factor</span>(diabetes)<span class="sc">~</span>glucose, </span>
 <span id="cb180-2"><a href="module-3-generalized-linear-models.html#cb180-2" tabindex="-1"></a>    dat,</span>

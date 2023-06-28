@@ -496,7 +496,7 @@ What tumour types do we have in this dataset?</p>
 <span id="cb227-8"><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html#cb227-8" tabindex="-1"></a>    <span class="fu">as.character</span>(<span class="fu">unique</span>(dge<span class="sc">$</span>samples<span class="sc">$</span>group)),</span>
 <span id="cb227-9"><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html#cb227-9" tabindex="-1"></a>    <span class="at">col=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">pch=</span><span class="dv">16</span></span>
 <span id="cb227-10"><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html#cb227-10" tabindex="-1"></a>    )</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
 <p>Let’s create a model design to identify genes with a <code>group</code> effect:</p>
 <div class="sourceCode" id="cb228"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb228-1"><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html#cb228-1" tabindex="-1"></a>group <span class="ot">&lt;-</span> dge<span class="sc">$</span>samples<span class="sc">$</span>group</span>
 <span id="cb228-2"><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html#cb228-2" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span>group)</span></code></pre></div>
@@ -570,7 +570,7 @@ or a full model (treatment effect is non-zero)</li>
 <span id="cb237-8"><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html#cb237-8" tabindex="-1"></a><span class="fu">plot</span>(tt<span class="sc">$</span>logFC,<span class="sc">-</span><span class="fu">log10</span>(tt<span class="sc">$</span>PValue),<span class="at">pch=</span><span class="dv">16</span>,</span>
 <span id="cb237-9"><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html#cb237-9" tabindex="-1"></a>    <span class="at">col=</span>cols)</span>
 <span id="cb237-10"><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html#cb237-10" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">0</span>,<span class="at">lty=</span><span class="dv">3</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
 <p>Finally we can write our differential expression results out to file:</p>
 <div class="sourceCode" id="cb238"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb238-1"><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html#cb238-1" tabindex="-1"></a><span class="fu">write.table</span>(tt,<span class="at">file=</span><span class="st">&quot;diffEx.results.txt&quot;</span>,</span>
 <span id="cb238-2"><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html#cb238-2" tabindex="-1"></a>    <span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,</span>

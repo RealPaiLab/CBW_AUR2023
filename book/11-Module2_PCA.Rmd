@@ -216,9 +216,9 @@ plot(iris_tsne,
      pch=16, 
      col=species_cols)
 legend("topright",
-        legend = levels(iris$Species),
-        col = species_cols,
-        pch = 19)
+       legend = levels(iris$Species),
+       col = my_cols_vec,
+       pch = 19)
 ```
 
 The `tsne` function has a parameter called `perplexity` which determines how to balance attention to neighborhood vs global structure. Default value is 30 which was used above. Set perplexity to 10, 20, 50, 100 and rerun tsne. Then visualise each result.

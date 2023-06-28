@@ -354,7 +354,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb67"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb67-1"><a href="module-2-dimensionality-reduction.html#cb67-1" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
 <span id="cb67-2"><a href="module-2-dimensionality-reduction.html#cb67-2" tabindex="-1"></a><span class="fu">fviz_eig</span>(pc_out, </span>
 <span id="cb67-3"><a href="module-2-dimensionality-reduction.html#cb67-3" tabindex="-1"></a>         <span class="at">addlabels =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <p>The x-axis shows the PCs and the y-axis shows the percentage of variance explained that we saw above. Percentages are listed on top of the bars. It’s common to see that the first few principal components explain the major amount of variance.</p>
 <p>Scree plot can also be used to decide the number of components to keep for rest of your analysis. One of the ways is using the elbow rule. This method is about looking for the “elbow” shape on the curve and retaining all components before the point where the curve flattens out. Here, the elbow appears to occur at the second principal component.</p>
 <p>Note that we will NOT remove any components for the current analysis since our goal is to understand how PCA can be used to identify batch effect in the data.</p>
@@ -368,7 +368,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb69-3"><a href="module-2-dimensionality-reduction.html#cb69-3" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">19</span>,</span>
 <span id="cb69-4"><a href="module-2-dimensionality-reduction.html#cb69-4" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;PC1&quot;</span>,</span>
 <span id="cb69-5"><a href="module-2-dimensionality-reduction.html#cb69-5" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;PC2&quot;</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
 <p>We see six points in two different groups. The points correspond to six samples. But, we don’t know what group/condition they belong to.</p>
 <p>That can be done by adding sample-related information to the data.frame <code>PC</code> (such as cell type, treatment type, batch they were processed etc) as new variables. Here we will add the sample names and the cell types.</p>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb70-1"><a href="module-2-dimensionality-reduction.html#cb70-1" tabindex="-1"></a>PC<span class="sc">$</span>sample <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rownames</span>(PC))</span>
@@ -389,17 +389,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb71-13"><a href="module-2-dimensionality-reduction.html#cb71-13" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">levels</span>(PC<span class="sc">$</span>cells), </span>
 <span id="cb71-14"><a href="module-2-dimensionality-reduction.html#cb71-14" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">seq_along</span>(<span class="fu">levels</span>(PC<span class="sc">$</span>cells)), </span>
 <span id="cb71-15"><a href="module-2-dimensionality-reduction.html#cb71-15" tabindex="-1"></a>       <span class="at">pch =</span> <span class="dv">19</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
 <p>Samples from each cell type are closer together on the scatter plot. If the batch information is available, it can also be used to colour the scatterplot. Ideally, samples from different conditions should cluster together, irrespective of the batch they were processed in.</p>
 <p>You can also plot other PCs such as PC2 vs PC3 by changing the x and y variables above. Another way to plot all PCs is using <code>pairs()</code></p>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb72-1"><a href="module-2-dimensionality-reduction.html#cb72-1" tabindex="-1"></a><span class="fu">pairs</span>(PC[,<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>], </span>
 <span id="cb72-2"><a href="module-2-dimensionality-reduction.html#cb72-2" tabindex="-1"></a>      <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;black&quot;</span>,<span class="st">&quot;red&quot;</span>)[PC<span class="sc">$</span>cells], </span>
 <span id="cb72-3"><a href="module-2-dimensionality-reduction.html#cb72-3" tabindex="-1"></a>      <span class="at">pch=</span><span class="dv">16</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
 <p><strong>C. Biplot</strong></p>
 <p>Another useful plots to understand the results are biplots. We will use the <code>fviz_pca_biplot()</code> function of the factoextra package. We will set label=“var” argument to label the variables.</p>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb73-1"><a href="module-2-dimensionality-reduction.html#cb73-1" tabindex="-1"></a><span class="fu">fviz_pca_biplot</span>(pc_out, <span class="at">label =</span> <span class="st">&quot;var&quot;</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
 <p>The axes show the principal component scores, and the vectors are the loading vectors, whose components are in the magnitudes of the loadings. Vectors indicate that samples from each cell type are closer together.</p>
 </div>
 </div>
@@ -421,73 +421,73 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb74-12"><a href="module-2-dimensionality-reduction.html#cb74-12" tabindex="-1"></a><span class="co"># run t-SNE</span></span>
 <span id="cb74-13"><a href="module-2-dimensionality-reduction.html#cb74-13" tabindex="-1"></a>iris_tsne <span class="ot">=</span> <span class="fu">tsne</span>(iris_data)</span></code></pre></div>
 <pre><code>## sigma summary: Min. : 0.486505661043274 |1st Qu. : 0.587913800179832 |Median : 0.614872437640536 |Mean : 0.623051089344394 |3rd Qu. : 0.654914112723525 |Max. : 0.796707932771489 |</code></pre>
-<pre><code>## Epoch: Iteration #100 error is: 12.5325241708957</code></pre>
-<pre><code>## Epoch: Iteration #200 error is: 0.202683721377738</code></pre>
-<pre><code>## Epoch: Iteration #300 error is: 0.201076038595759</code></pre>
-<pre><code>## Epoch: Iteration #400 error is: 0.201026456781626</code></pre>
-<pre><code>## Epoch: Iteration #500 error is: 0.201025782030457</code></pre>
-<pre><code>## Epoch: Iteration #600 error is: 0.201025771986716</code></pre>
-<pre><code>## Epoch: Iteration #700 error is: 0.201025771798929</code></pre>
-<pre><code>## Epoch: Iteration #800 error is: 0.201025771795355</code></pre>
-<pre><code>## Epoch: Iteration #900 error is: 0.201025771795298</code></pre>
-<pre><code>## Epoch: Iteration #1000 error is: 0.201025771795297</code></pre>
+<pre><code>## Epoch: Iteration #100 error is: 12.4995237028475</code></pre>
+<pre><code>## Epoch: Iteration #200 error is: 0.241503699522796</code></pre>
+<pre><code>## Epoch: Iteration #300 error is: 0.239120349358968</code></pre>
+<pre><code>## Epoch: Iteration #400 error is: 0.239056843220885</code></pre>
+<pre><code>## Epoch: Iteration #500 error is: 0.239054257769613</code></pre>
+<pre><code>## Epoch: Iteration #600 error is: 0.239054158625652</code></pre>
+<pre><code>## Epoch: Iteration #700 error is: 0.239054154796485</code></pre>
+<pre><code>## Epoch: Iteration #800 error is: 0.239054154652511</code></pre>
+<pre><code>## Epoch: Iteration #900 error is: 0.239054154646742</code></pre>
+<pre><code>## Epoch: Iteration #1000 error is: 0.239054154646512</code></pre>
 <div class="sourceCode" id="cb86"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb86-1"><a href="module-2-dimensionality-reduction.html#cb86-1" tabindex="-1"></a><span class="fu">plot</span>(iris_tsne,</span>
 <span id="cb86-2"><a href="module-2-dimensionality-reduction.html#cb86-2" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">16</span>, </span>
 <span id="cb86-3"><a href="module-2-dimensionality-reduction.html#cb86-3" tabindex="-1"></a>     <span class="at">col=</span>species_cols)</span>
 <span id="cb86-4"><a href="module-2-dimensionality-reduction.html#cb86-4" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>,</span>
-<span id="cb86-5"><a href="module-2-dimensionality-reduction.html#cb86-5" tabindex="-1"></a>        <span class="at">legend =</span> <span class="fu">levels</span>(iris<span class="sc">$</span>Species),</span>
-<span id="cb86-6"><a href="module-2-dimensionality-reduction.html#cb86-6" tabindex="-1"></a>        <span class="at">col =</span> species_cols,</span>
-<span id="cb86-7"><a href="module-2-dimensionality-reduction.html#cb86-7" tabindex="-1"></a>        <span class="at">pch =</span> <span class="dv">19</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<span id="cb86-5"><a href="module-2-dimensionality-reduction.html#cb86-5" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">levels</span>(iris<span class="sc">$</span>Species),</span>
+<span id="cb86-6"><a href="module-2-dimensionality-reduction.html#cb86-6" tabindex="-1"></a>       <span class="at">col =</span> my_cols_vec,</span>
+<span id="cb86-7"><a href="module-2-dimensionality-reduction.html#cb86-7" tabindex="-1"></a>       <span class="at">pch =</span> <span class="dv">19</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
 <p>The <code>tsne</code> function has a parameter called <code>perplexity</code> which determines how to balance attention to neighborhood vs global structure. Default value is 30 which was used above. Set perplexity to 10, 20, 50, 100 and rerun tsne. Then visualise each result.</p>
 <div class="sourceCode" id="cb87"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb87-1"><a href="module-2-dimensionality-reduction.html#cb87-1" tabindex="-1"></a>iris_tsne10 <span class="ot">=</span> <span class="fu">tsne</span>(iris_data,<span class="at">perplexity =</span> <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## sigma summary: Min. : 0.310480302725598 |1st Qu. : 0.434991399098757 |Median : 0.46366395344447 |Mean : 0.475404572165371 |3rd Qu. : 0.508931723050902 |Max. : 0.694616846992079 |</code></pre>
-<pre><code>## Epoch: Iteration #100 error is: 14.270357030925</code></pre>
-<pre><code>## Epoch: Iteration #200 error is: 0.346188977377139</code></pre>
-<pre><code>## Epoch: Iteration #300 error is: 0.325979670142021</code></pre>
-<pre><code>## Epoch: Iteration #400 error is: 0.317121544027011</code></pre>
-<pre><code>## Epoch: Iteration #500 error is: 0.313839741499468</code></pre>
-<pre><code>## Epoch: Iteration #600 error is: 0.310991742689012</code></pre>
-<pre><code>## Epoch: Iteration #700 error is: 0.309822024908704</code></pre>
-<pre><code>## Epoch: Iteration #800 error is: 0.308009411992581</code></pre>
-<pre><code>## Epoch: Iteration #900 error is: 0.307358328474219</code></pre>
-<pre><code>## Epoch: Iteration #1000 error is: 0.307943745151655</code></pre>
+<pre><code>## Epoch: Iteration #100 error is: 14.2815003898775</code></pre>
+<pre><code>## Epoch: Iteration #200 error is: 0.336963295292498</code></pre>
+<pre><code>## Epoch: Iteration #300 error is: 0.325836494322565</code></pre>
+<pre><code>## Epoch: Iteration #400 error is: 0.316707251296532</code></pre>
+<pre><code>## Epoch: Iteration #500 error is: 0.313027353048471</code></pre>
+<pre><code>## Epoch: Iteration #600 error is: 0.311787457800404</code></pre>
+<pre><code>## Epoch: Iteration #700 error is: 0.316700354498018</code></pre>
+<pre><code>## Epoch: Iteration #800 error is: 0.391965469664528</code></pre>
+<pre><code>## Epoch: Iteration #900 error is: 0.761722870383247</code></pre>
+<pre><code>## Epoch: Iteration #1000 error is: 1.14761610432992</code></pre>
 <div class="sourceCode" id="cb99"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb99-1"><a href="module-2-dimensionality-reduction.html#cb99-1" tabindex="-1"></a>iris_tsne20 <span class="ot">=</span> <span class="fu">tsne</span>(iris_data,<span class="at">perplexity =</span> <span class="dv">20</span>)</span></code></pre></div>
 <pre><code>## sigma summary: Min. : 0.42864778740551 |1st Qu. : 0.523593962475894 |Median : 0.553545139847788 |Mean : 0.563823813379956 |3rd Qu. : 0.596877396756174 |Max. : 0.752227354673175 |</code></pre>
-<pre><code>## Epoch: Iteration #100 error is: 13.7027902020058</code></pre>
-<pre><code>## Epoch: Iteration #200 error is: 0.280938307013147</code></pre>
-<pre><code>## Epoch: Iteration #300 error is: 0.274383646285915</code></pre>
-<pre><code>## Epoch: Iteration #400 error is: 0.272754490233401</code></pre>
-<pre><code>## Epoch: Iteration #500 error is: 0.27230163528744</code></pre>
-<pre><code>## Epoch: Iteration #600 error is: 0.272077865986173</code></pre>
-<pre><code>## Epoch: Iteration #700 error is: 0.271953280351782</code></pre>
-<pre><code>## Epoch: Iteration #800 error is: 0.271882136021931</code></pre>
-<pre><code>## Epoch: Iteration #900 error is: 0.271836030027641</code></pre>
-<pre><code>## Epoch: Iteration #1000 error is: 0.271804280500321</code></pre>
+<pre><code>## Epoch: Iteration #100 error is: 13.3935942646939</code></pre>
+<pre><code>## Epoch: Iteration #200 error is: 0.30316479007614</code></pre>
+<pre><code>## Epoch: Iteration #300 error is: 0.287389641167057</code></pre>
+<pre><code>## Epoch: Iteration #400 error is: 0.285059700720993</code></pre>
+<pre><code>## Epoch: Iteration #500 error is: 0.284709730841473</code></pre>
+<pre><code>## Epoch: Iteration #600 error is: 0.284553358293748</code></pre>
+<pre><code>## Epoch: Iteration #700 error is: 0.284478200404243</code></pre>
+<pre><code>## Epoch: Iteration #800 error is: 0.284435606861431</code></pre>
+<pre><code>## Epoch: Iteration #900 error is: 0.284411999122706</code></pre>
+<pre><code>## Epoch: Iteration #1000 error is: 0.284397311844507</code></pre>
 <div class="sourceCode" id="cb111"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb111-1"><a href="module-2-dimensionality-reduction.html#cb111-1" tabindex="-1"></a>iris_tsne50 <span class="ot">=</span> <span class="fu">tsne</span>(iris_data,<span class="at">perplexity =</span> <span class="dv">50</span>)</span></code></pre></div>
 <pre><code>## sigma summary: Min. : 0.565012665854053 |1st Qu. : 0.681985646004023 |Median : 0.713004330336136 |Mean : 0.716213420895748 |3rd Qu. : 0.74581655363904 |Max. : 0.874979764925049 |</code></pre>
-<pre><code>## Epoch: Iteration #100 error is: 12.1754858012041</code></pre>
-<pre><code>## Epoch: Iteration #200 error is: 0.163416518744644</code></pre>
-<pre><code>## Epoch: Iteration #300 error is: 0.163411669145421</code></pre>
-<pre><code>## Epoch: Iteration #400 error is: 0.163411669056633</code></pre>
-<pre><code>## Epoch: Iteration #500 error is: 0.16341166905663</code></pre>
-<pre><code>## Epoch: Iteration #600 error is: 0.16341166905663</code></pre>
-<pre><code>## Epoch: Iteration #700 error is: 0.16341166905663</code></pre>
-<pre><code>## Epoch: Iteration #800 error is: 0.16341166905663</code></pre>
-<pre><code>## Epoch: Iteration #900 error is: 0.16341166905663</code></pre>
-<pre><code>## Epoch: Iteration #1000 error is: 0.16341166905663</code></pre>
+<pre><code>## Epoch: Iteration #100 error is: 12.2828904196455</code></pre>
+<pre><code>## Epoch: Iteration #200 error is: 0.220907501267046</code></pre>
+<pre><code>## Epoch: Iteration #300 error is: 0.219574165839748</code></pre>
+<pre><code>## Epoch: Iteration #400 error is: 0.212992918810661</code></pre>
+<pre><code>## Epoch: Iteration #500 error is: 0.212963783082448</code></pre>
+<pre><code>## Epoch: Iteration #600 error is: 0.212963778892791</code></pre>
+<pre><code>## Epoch: Iteration #700 error is: 0.212963778890894</code></pre>
+<pre><code>## Epoch: Iteration #800 error is: 0.212963778890893</code></pre>
+<pre><code>## Epoch: Iteration #900 error is: 0.212963778890893</code></pre>
+<pre><code>## Epoch: Iteration #1000 error is: 0.212963778890893</code></pre>
 <div class="sourceCode" id="cb123"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb123-1"><a href="module-2-dimensionality-reduction.html#cb123-1" tabindex="-1"></a>iris_tsne100 <span class="ot">=</span> <span class="fu">tsne</span>(iris_data,<span class="at">perplexity =</span> <span class="dv">100</span>)</span></code></pre></div>
 <pre><code>## sigma summary: Min. : 0.776385211439336 |1st Qu. : 0.927141154386403 |Median : 0.971370883716192 |Mean : 0.961326081014028 |3rd Qu. : 0.99555893656996 |Max. : 1.09859103718956 |</code></pre>
-<pre><code>## Epoch: Iteration #100 error is: 9.96502418498477</code></pre>
-<pre><code>## Epoch: Iteration #200 error is: 0.130141423088978</code></pre>
-<pre><code>## Epoch: Iteration #300 error is: 0.130141423067735</code></pre>
-<pre><code>## Epoch: Iteration #400 error is: 0.130141423067735</code></pre>
-<pre><code>## Epoch: Iteration #500 error is: 0.130141423067735</code></pre>
-<pre><code>## Epoch: Iteration #600 error is: 0.130141423067735</code></pre>
-<pre><code>## Epoch: Iteration #700 error is: 0.130141423067735</code></pre>
-<pre><code>## Epoch: Iteration #800 error is: 0.130141423067735</code></pre>
-<pre><code>## Epoch: Iteration #900 error is: 0.130141423067735</code></pre>
-<pre><code>## Epoch: Iteration #1000 error is: 0.130141423067735</code></pre>
+<pre><code>## Epoch: Iteration #100 error is: 10.1837029827503</code></pre>
+<pre><code>## Epoch: Iteration #200 error is: 0.118668705053423</code></pre>
+<pre><code>## Epoch: Iteration #300 error is: 0.118668704910488</code></pre>
+<pre><code>## Epoch: Iteration #400 error is: 0.118668704910488</code></pre>
+<pre><code>## Epoch: Iteration #500 error is: 0.118668704910488</code></pre>
+<pre><code>## Epoch: Iteration #600 error is: 0.118668704910488</code></pre>
+<pre><code>## Epoch: Iteration #700 error is: 0.118668704910488</code></pre>
+<pre><code>## Epoch: Iteration #800 error is: 0.118668704910488</code></pre>
+<pre><code>## Epoch: Iteration #900 error is: 0.118668704910488</code></pre>
+<pre><code>## Epoch: Iteration #1000 error is: 0.118668704910488</code></pre>
 <div class="sourceCode" id="cb135"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb135-1"><a href="module-2-dimensionality-reduction.html#cb135-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
 <span id="cb135-2"><a href="module-2-dimensionality-reduction.html#cb135-2" tabindex="-1"></a></span>
 <span id="cb135-3"><a href="module-2-dimensionality-reduction.html#cb135-3" tabindex="-1"></a><span class="fu">plot</span>(iris_tsne10[,<span class="dv">1</span>],</span>
@@ -513,7 +513,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb135-23"><a href="module-2-dimensionality-reduction.html#cb135-23" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Perplexity = 100&quot;</span>,</span>
 <span id="cb135-24"><a href="module-2-dimensionality-reduction.html#cb135-24" tabindex="-1"></a>     <span class="at">col =</span> species_cols,</span>
 <span id="cb135-25"><a href="module-2-dimensionality-reduction.html#cb135-25" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">16</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
 <p>Higher perplexity leads to higher spread in your data.</p>
 </div>
 <div id="uniform-manifold-approximation-and-projection-umap" class="section level2 unnumbered hasAnchor">
@@ -526,7 +526,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb136-4"><a href="module-2-dimensionality-reduction.html#cb136-4" tabindex="-1"></a>iris_umap <span class="ot">=</span> <span class="fu">umap</span>(iris_data)</span>
 <span id="cb136-5"><a href="module-2-dimensionality-reduction.html#cb136-5" tabindex="-1"></a><span class="fu">str</span>(iris_umap)</span></code></pre></div>
 <pre><code>## List of 4
-##  $ layout: num [1:150, 1:2] 10.9 13 12.7 13 11 ...
+##  $ layout: num [1:150, 1:2] 14.2 14.2 13.7 13.8 13.9 ...
 ##  $ data  : num [1:150, 1:4] 5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
 ##   ..- attr(*, &quot;dimnames&quot;)=List of 2
 ##   .. ..$ : NULL
@@ -552,7 +552,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   ..$ a                   : num 1.58
 ##   ..$ b                   : num 0.895
 ##   ..$ spread              : num 1
-##   ..$ random_state        : int 428347459
+##   ..$ random_state        : int 20989474
 ##   ..$ transform_state     : int NA
 ##   ..$ knn                 : logi NA
 ##   ..$ knn_repeats         : num 1
@@ -566,7 +566,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb138-2"><a href="module-2-dimensionality-reduction.html#cb138-2" tabindex="-1"></a><span class="fu">plot</span>(iris_umap<span class="sc">$</span>layout[,<span class="dv">1</span>],</span>
 <span id="cb138-3"><a href="module-2-dimensionality-reduction.html#cb138-3" tabindex="-1"></a>     iris_umap<span class="sc">$</span>layout[,<span class="dv">2</span>],</span>
 <span id="cb138-4"><a href="module-2-dimensionality-reduction.html#cb138-4" tabindex="-1"></a>     <span class="at">col =</span> species_cols, <span class="at">pch =</span> <span class="dv">19</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
 <div class="sourceCode" id="cb139"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb139-1"><a href="module-2-dimensionality-reduction.html#cb139-1" tabindex="-1"></a><span class="co"># legend(&quot;topright&quot;,</span></span>
 <span id="cb139-2"><a href="module-2-dimensionality-reduction.html#cb139-2" tabindex="-1"></a><span class="co">#         legend = levels(mouse$FC),</span></span>
 <span id="cb139-3"><a href="module-2-dimensionality-reduction.html#cb139-3" tabindex="-1"></a><span class="co">#         col = species_cols,</span></span>
