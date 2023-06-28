@@ -196,7 +196,7 @@ This next line is a bit complex so let's unpack it:
 ```{r dge-libsize, class.source="codeblock",eval=TRUE}
 dim(dge) #before 
 tokeep <- rowSums(cpm(dge)>100) >= 2
-dge <- dge[tokeep,,keep.lib.sizes = FALSE]
+dge <- dge[tokeep,keep.lib.sizes = FALSE]
 dim(dge) #after
 ```
 
