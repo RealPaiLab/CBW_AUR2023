@@ -18,7 +18,8 @@ Data: We will use the dataset that we used for exploratory analysis in Module 1.
 ```{r, class.source="codeblock",eval=TRUE}
 library(clValid)
 data("mouse")
-mouse_exp = mouse[,c("M1","M2","M3","NC1","NC2","NC3")]
+mouse_exp <- mouse[,c("M1","M2","M3","NC1","NC2","NC3")]
+head(mouse_exp)
 ```
 
 
@@ -40,7 +41,7 @@ However, keep in mind that, the variables need not always be on the same scale i
 Since our variables are on the same scale, we can directly apply PCA using `prcomp()`.
 
 ```{r, class.source="codeblock",eval=TRUE}
-pc_out <- prcomp(mouse_exp)
+pc_out <- prcomp(t(mouse_exp))
 ```
 
 The output of `prcomp()` is a list. Examine the internal structure of `pc_out`.
@@ -59,7 +60,7 @@ pc_out$sdev
 
 
 ```{r, class.source="codeblock",eval=TRUE}
-pc_out$rotation
+head(pc_out$rotation)
 ```
 
 After PCA, the observations are expressed in new axes and the loadings are provided in `pc_out$rotation`. Each column of `pc_out$rotation` contains the corresponding principal component loading vector.
@@ -127,7 +128,7 @@ After a PCA, the observations are expressed in principal component scores (as we
 This can be achieved by drawing a scatterplot. To do so, first, we need to extract and the principal component scores in `pc_out$rotation`, and then we will store them in a data frame called PC.
 
 ```{r, class.source="codeblock",eval=TRUE}
-PC <- as.data.frame(pc_out$rotation)
+PC <- as.data.frame(pc_out$x)
 ```
 
 Plot the first two principal components as follows:
@@ -160,7 +161,7 @@ plot(x = PC$PC1,
      ylab="PC2")
 
 text(x= PC$PC1,
-     y = PC$PC2-0.02,
+     y = PC$PC2-0.15,
      labels = PC$sample)
 
 legend("bottomright", 
@@ -194,52 +195,65 @@ The axes show the principal component scores, and the vectors are the loading ve
 
 t-SNE is a technique for dimensionality reduction that is particularly well suited for the visualization of high-dimensional datasets.
 
-There are several packages that have implemented t-SNE. Here we are going to use  the package `tsne` and the function `tsne`. Let’s run the t-SNE algorithm on the mouse and generate a t-SNE plot.
+There are several packages that have implemented t-SNE. Here we are going to use  the package `tsne` and the function `tsne`. Let’s run the t-SNE algorithm on the iris dataset and generate a t-SNE plot.
 
 ```{r, class.source="codeblock",eval=TRUE}
 library(tsne)
-mouse_tsne = tsne(mouse_exp)
-
 library(RColorBrewer)
-my_cols_vec = brewer.pal("Set3",n = 9)
-plot(mouse_tsne,
+
+### load the input data
+data(iris)
+iris_data = iris[,c('Sepal.Length','Sepal.Width', 'Petal.Length','Petal.Width')]
+
+# set colours of the plot
+my_cols_vec = brewer.pal("Set1",n = length(levels(iris$Species)))
+species_cols = my_cols_vec[factor(iris$Species)]
+
+# run t-SNE
+iris_tsne = tsne(iris_data)
+
+plot(iris_tsne,
      pch=16, 
-     col=my_cols_vec)
-# legend("topright",
-#         legend = levels(mouse$FC),
-#         col = my_cols_vec,
-#         pch = 19)
+     col=species_cols)
+legend("topright",
+        legend = levels(iris$Species),
+        col = my_cols_vec,
+        pch = 19)
 ```
 
 The `tsne` function has a parameter called `perplexity` which determines how to balance attention to neighborhood vs global structure. Default value is 30 which was used above. Set perplexity to 10, 20, 50, 100 and rerun tsne. Then visualise each result.
 
 ```{r, class.source="codeblock",eval=TRUE}
-mouse_tsne10 = tsne(mouse_exp,perplexity = 10)
-mouse_tsne20 = tsne(mouse_exp,perplexity = 20)
-mouse_tsne50 = tsne(mouse_exp,perplexity = 50)
-mouse_tsne100 = tsne(mouse_exp,perplexity = 100)
+iris_tsne10 = tsne(iris_data,perplexity = 10)
+iris_tsne20 = tsne(iris_data,perplexity = 20)
+iris_tsne50 = tsne(iris_data,perplexity = 50)
+iris_tsne100 = tsne(iris_data,perplexity = 100)
 ```
 
 
 ```{r, fig.width=7, fig.height=7, class.source="codeblock",eval=TRUE}
 par(mfrow=c(2,2))
-plot(mouse_tsne10[,1],
-     mouse_tsne10[,2],
+
+plot(iris_tsne10[,1],
+     iris_tsne10[,2],
      main = "Perplexity = 10",
      col = my_cols_vec,
      pch=16)
-plot(mouse_tsne20[,1],
-     mouse_tsne20[,2],
+
+plot(iris_tsne20[,1],
+     iris_tsne20[,2],
      main = "Perplexity = 20",
      col = my_cols_vec,
      pch=16)
-plot(mouse_tsne50[,1],
-     mouse_tsne50[,2],
+
+plot(iris_tsne50[,1],
+     iris_tsne50[,2],
      main = "Perplexity = 50",
      col = my_cols_vec,
      pch=16)
-plot(mouse_tsne100[,1],
-     mouse_tsne100[,2],
+
+plot(iris_tsne100[,1],
+     iris_tsne100[,2],
      main = "Perplexity = 100",
      col = my_cols_vec,
      pch=16)
@@ -251,21 +265,21 @@ Higher perplexity leads to higher spread in your data.
 
 UMAP is another dimension reduction method and it uses similar neighborhood approach as t-SNE except uses Riemannian geometry.
 
-Here we are going to use  the package `umap` and the function `umap`. Let’s apply UMAP on the mouse and generate a UMAP plot.
+Here we are going to use  the package `umap` and the function `umap`. Let’s apply UMAP on the iris dataset and generate a UMAP plot.
 
 ```{r, class.source="codeblock",eval=TRUE}
 ## umap
 library(umap)
 
-mouse_umap = umap(mouse_exp)
-str(mouse_umap)
+iris_umap = umap(iris_data)
+str(iris_umap)
 ```
 
 
 ```{r, class.source="codeblock",eval=TRUE}
 par(mfrow=c(1,1))
-plot(mouse_umap$layout[,1],
-     mouse_umap$layout[,2],
+plot(iris_umap$layout[,1],
+     iris_umap$layout[,2],
      col = my_cols_vec, pch = 19)
 # legend("topright",
 #         legend = levels(mouse$FC),
