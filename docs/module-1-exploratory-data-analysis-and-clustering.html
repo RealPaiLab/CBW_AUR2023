@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Module 1: Exploratory Data Analysis and Clustering | Analysis Using R</title>
   <meta name="description" content="Principles of exploratory data analysis, RNAseq differential expression, and generalized linear models" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Module 1: Exploratory Data Analysis and Clustering | Analysis Using R" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Principles of exploratory data analysis, RNAseq differential expression, and generalized linear models" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
@@ -32,7 +31,6 @@
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="lecture-slides.html"/>
 <link rel="next" href="module-2-dimensionality-reduction.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -50,8 +48,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -92,7 +91,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +104,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -119,6 +118,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -149,12 +152,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="lecture-slides.html"><a href="lecture-slides.html"><i class="fa fa-check"></i>Lecture slides</a></li>
 <li class="chapter" data-level="" data-path="module-1-exploratory-data-analysis-and-clustering.html"><a href="module-1-exploratory-data-analysis-and-clustering.html"><i class="fa fa-check"></i>Module 1: Exploratory Data Analysis and Clustering</a>
 <ul>
-<li><a href="module-1-exploratory-data-analysis-and-clustering.html#load-mouse-data">Load <code>mouse</code> data</a></li>
-<li><a href="module-1-exploratory-data-analysis-and-clustering.html#rcolorbrewer-for-colour-palettes"><code>RColorBrewer</code> for colour palettes</a></li>
+<li class="chapter" data-level="" data-path="module-1-exploratory-data-analysis-and-clustering.html"><a href="module-1-exploratory-data-analysis-and-clustering.html#load-mouse-data"><i class="fa fa-check"></i>Load <code>mouse</code> data</a></li>
+<li class="chapter" data-level="" data-path="module-1-exploratory-data-analysis-and-clustering.html"><a href="module-1-exploratory-data-analysis-and-clustering.html#rcolorbrewer-for-colour-palettes"><i class="fa fa-check"></i><code>RColorBrewer</code> for colour palettes</a></li>
 <li class="chapter" data-level="" data-path="module-1-exploratory-data-analysis-and-clustering.html"><a href="module-1-exploratory-data-analysis-and-clustering.html#correlations-distances-and-clustering"><i class="fa fa-check"></i>Correlations, distances, and clustering</a></li>
 <li class="chapter" data-level="" data-path="module-1-exploratory-data-analysis-and-clustering.html"><a href="module-1-exploratory-data-analysis-and-clustering.html#hierarchical-clustering"><i class="fa fa-check"></i>Hierarchical clustering</a></li>
 <li class="chapter" data-level="" data-path="module-1-exploratory-data-analysis-and-clustering.html"><a href="module-1-exploratory-data-analysis-and-clustering.html#k-means-clustering"><i class="fa fa-check"></i>K-means clustering</a></li>
-<li><a href="module-1-exploratory-data-analysis-and-clustering.html#using-clvalid-to-determine-number-of-clusters">Using <code>clValid</code> to determine number of clusters</a></li>
+<li class="chapter" data-level="" data-path="module-1-exploratory-data-analysis-and-clustering.html"><a href="module-1-exploratory-data-analysis-and-clustering.html#using-clvalid-to-determine-number-of-clusters"><i class="fa fa-check"></i>Using <code>clValid</code> to determine number of clusters</a></li>
 <li class="chapter" data-level="" data-path="module-1-exploratory-data-analysis-and-clustering.html"><a href="module-1-exploratory-data-analysis-and-clustering.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="module-2-dimensionality-reduction.html"><a href="module-2-dimensionality-reduction.html"><i class="fa fa-check"></i>Module 2: Dimensionality reduction</a>
@@ -169,24 +172,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="module-2-dimensionality-reduction.html"><a href="module-2-dimensionality-reduction.html#uniform-manifold-approximation-and-projection-umap"><i class="fa fa-check"></i>Uniform Manifold Approximation and Projection (UMAP)</a></li>
 <li class="chapter" data-level="" data-path="module-2-dimensionality-reduction.html"><a href="module-2-dimensionality-reduction.html#exercise-1"><i class="fa fa-check"></i>Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-2-exercise.html"><a href="module-2-exercise.html"><i class="fa fa-check"></i>Module 2 exercise</a></li>
 <li class="chapter" data-level="" data-path="module-3-generalized-linear-models.html"><a href="module-3-generalized-linear-models.html"><i class="fa fa-check"></i>Module 3: Generalized Linear Models</a>
 <ul>
 <li class="chapter" data-level="" data-path="module-3-generalized-linear-models.html"><a href="module-3-generalized-linear-models.html#essential-r-read-tables-from-files-and-merge"><i class="fa fa-check"></i>Essential R: Read tables from files and merge</a></li>
 <li class="chapter" data-level="" data-path="module-3-generalized-linear-models.html"><a href="module-3-generalized-linear-models.html#read-data-from-files-and-explore-variable-distribution"><i class="fa fa-check"></i>Read data from files and explore variable distribution</a></li>
 <li class="chapter" data-level="" data-path="module-3-generalized-linear-models.html"><a href="module-3-generalized-linear-models.html#explore-missing-data"><i class="fa fa-check"></i>Explore missing data</a></li>
-<li><a href="module-3-generalized-linear-models.html#create-plots-with-ggplot2-to-explore-variable-relationships">Create plots with <code>ggplot2</code> to explore variable relationships</a></li>
-<li><a href="module-3-generalized-linear-models.html#fit-binary-response-variable-using-glm-and-logistic-regression">Fit binary response variable using <code>glm()</code> and logistic regression</a></li>
+<li class="chapter" data-level="" data-path="module-3-generalized-linear-models.html"><a href="module-3-generalized-linear-models.html#create-plots-with-ggplot2-to-explore-variable-relationships"><i class="fa fa-check"></i>Create plots with <code>ggplot2</code> to explore variable relationships</a></li>
+<li class="chapter" data-level="" data-path="module-3-generalized-linear-models.html"><a href="module-3-generalized-linear-models.html#fit-binary-response-variable-using-glm-and-logistic-regression"><i class="fa fa-check"></i>Fit binary response variable using <code>glm()</code> and logistic regression</a></li>
 <li class="chapter" data-level="" data-path="module-3-generalized-linear-models.html"><a href="module-3-generalized-linear-models.html#exercise-2"><i class="fa fa-check"></i>Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="module-4-finding-differentially-expressed-genes-with-rna-seq.html"><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html"><i class="fa fa-check"></i>Module 4: Finding differentially expressed genes with RNA-seq</a>
 <ul>
 <li class="chapter" data-level="" data-path="module-4-finding-differentially-expressed-genes-with-rna-seq.html"><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html#mini-introduction-to-bioconductor"><i class="fa fa-check"></i>Mini introduction to BioConductor</a></li>
-<li><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html#fetch-breast-cancer-data-using-curatedtcgadata">Fetch breast cancer data using <code>curatedTCGAData</code></a>
+<li class="chapter" data-level="" data-path="module-4-finding-differentially-expressed-genes-with-rna-seq.html"><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html#fetch-breast-cancer-data-using-curatedtcgadata"><i class="fa fa-check"></i>Fetch breast cancer data using <code>curatedTCGAData</code></a>
 <ul>
 <li class="chapter" data-level="" data-path="module-4-finding-differentially-expressed-genes-with-rna-seq.html"><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html#prepare-data-for-differential-expression-analysis"><i class="fa fa-check"></i>Prepare data for differential expression analysis</a></li>
 </ul></li>
-<li><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html#differential-expression-analysis-with-edger">Differential expression analysis with <code>edgeR</code></a></li>
+<li class="chapter" data-level="" data-path="module-4-finding-differentially-expressed-genes-with-rna-seq.html"><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html#differential-expression-analysis-with-edger"><i class="fa fa-check"></i>Differential expression analysis with <code>edgeR</code></a></li>
 <li class="chapter" data-level="" data-path="module-4-finding-differentially-expressed-genes-with-rna-seq.html"><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html#exercise-3"><i class="fa fa-check"></i>Exercise</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -209,8 +211,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="module-1-exploratory-data-analysis-and-clustering" class="section level1 unnumbered">
-<h1>Module 1: Exploratory Data Analysis and Clustering</h1>
+<div id="module-1-exploratory-data-analysis-and-clustering" class="section level1 unnumbered hasAnchor">
+<h1>Module 1: Exploratory Data Analysis and Clustering<a href="module-1-exploratory-data-analysis-and-clustering.html#module-1-exploratory-data-analysis-and-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>The goal of this lab is to examine correlation structure in a sample transcriptomic dataset using clustering.</p>
 <p>Specifically, we will:</p>
 <ul>
@@ -220,16 +222,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Use <code>clValid</code> to find out what cluster number best separates groups</li>
 </ul>
 <p>We will explore missing data in detail in Module 3.</p>
-<div id="load-mouse-data" class="section level2 unnumbered">
-<h2>Load <code>mouse</code> data</h2>
+<div id="load-mouse-data" class="section level2 unnumbered hasAnchor">
+<h2>Load <code>mouse</code> data<a href="module-1-exploratory-data-analysis-and-clustering.html#load-mouse-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>For this exercise we are going to load a dataset built into the <code>clValid</code> package.
 This dataset measures 147 genes and expressed sequence tags in two developing mouse lineages: the neural crest cells and mesoderm-derived cells.
 There are three samples per group.</p>
 <p>Let’s load the data.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb15-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(clValid))</span>
-<span id="cb15-2"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mouse)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb15-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb15-1" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(clValid))</span>
+<span id="cb15-2"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb15-2" tabindex="-1"></a><span class="fu">data</span>(mouse)</span></code></pre></div>
 <p>Use <code>str()</code> to see what types of data the columns have:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb16-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(mouse)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb16-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb16-1" tabindex="-1"></a><span class="fu">str</span>(mouse)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    147 obs. of  8 variables:
 ##  $ ID : Factor w/ 147 levels &quot;1415787_at&quot;,&quot;1415904_at&quot;,..: 111 88 93 74 138 103 46 114 112 24 ...
 ##  $ M1 : num  4.71 3.87 2.88 5.33 5.37 ...
@@ -240,7 +242,7 @@ There are three samples per group.</p>
 ##  $ NC3: num  7.35 5.18 4.85 6.62 6.2 ...
 ##  $ FC : Factor w/ 9 levels &quot;ECM/Receptors&quot;,..: 3 8 6 6 1 3 1 6 5 6 ...</code></pre>
 <p>Another command is <code>head()</code>:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb18-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mouse)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb18-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb18-1" tabindex="-1"></a><span class="fu">head</span>(mouse)</span></code></pre></div>
 <pre><code>##             ID       M1       M2       M3      NC1      NC2      NC3
 ## 1   1448995_at 4.706812 4.528291 4.325836 5.568435 6.915079 7.353144
 ## 2 1436392_s_at 3.867962 4.052354 3.474651 4.995836 5.056199 5.183585
@@ -256,33 +258,25 @@ There are three samples per group.</p>
 ## 5          ECM/Receptors
 ## 6 Growth/Differentiation</code></pre>
 <p>Summary provides useful information about the distribution of variables. Note that <code>FC</code> has categorical variables:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb20-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mouse)</span></code></pre></div>
-<pre><code>##           ID            M1              M2              M3       
-##  1415787_at:  1   Min.   :2.352   Min.   :2.139   Min.   :2.500  
-##  1415904_at:  1   1st Qu.:4.188   1st Qu.:4.151   1st Qu.:4.207  
-##  1415993_at:  1   Median :4.994   Median :5.043   Median :5.054  
-##  1416164_at:  1   Mean   :5.166   Mean   :5.140   Mean   :5.231  
-##  1416181_at:  1   3rd Qu.:6.147   3rd Qu.:6.015   3rd Qu.:6.129  
-##  1416221_at:  1   Max.   :9.282   Max.   :9.273   Max.   :9.228  
-##  (Other)   :141                                                  
-##       NC1             NC2             NC3       
-##  Min.   :2.100   Min.   :1.996   Min.   :2.125  
-##  1st Qu.:4.174   1st Qu.:4.136   1st Qu.:4.293  
-##  Median :4.996   Median :5.056   Median :4.974  
-##  Mean   :5.120   Mean   :5.134   Mean   :5.118  
-##  3rd Qu.:5.860   3rd Qu.:5.920   3rd Qu.:5.826  
-##  Max.   :8.905   Max.   :8.954   Max.   :9.251  
-##                                                 
-##                       FC    
-##  EST                   :31  
-##  Transcription factor  :28  
-##  Miscellaneous         :25  
-##  ECM/Receptors         :16  
-##  Growth/Differentiation:16  
-##  Unknown               :10  
-##  (Other)               :21</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb20-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb20-1" tabindex="-1"></a><span class="fu">summary</span>(mouse)</span></code></pre></div>
+<pre><code>##           ID            M1              M2              M3             NC1       
+##  1415787_at:  1   Min.   :2.352   Min.   :2.139   Min.   :2.500   Min.   :2.100  
+##  1415904_at:  1   1st Qu.:4.188   1st Qu.:4.151   1st Qu.:4.207   1st Qu.:4.174  
+##  1415993_at:  1   Median :4.994   Median :5.043   Median :5.054   Median :4.996  
+##  1416164_at:  1   Mean   :5.166   Mean   :5.140   Mean   :5.231   Mean   :5.120  
+##  1416181_at:  1   3rd Qu.:6.147   3rd Qu.:6.015   3rd Qu.:6.129   3rd Qu.:5.860  
+##  1416221_at:  1   Max.   :9.282   Max.   :9.273   Max.   :9.228   Max.   :8.905  
+##  (Other)   :141                                                                  
+##       NC2             NC3                             FC    
+##  Min.   :1.996   Min.   :2.125   EST                   :31  
+##  1st Qu.:4.136   1st Qu.:4.293   Transcription factor  :28  
+##  Median :5.056   Median :4.974   Miscellaneous         :25  
+##  Mean   :5.134   Mean   :5.118   ECM/Receptors         :16  
+##  3rd Qu.:5.920   3rd Qu.:5.826   Growth/Differentiation:16  
+##  Max.   :8.954   Max.   :9.251   Unknown               :10  
+##                                  (Other)               :21</code></pre>
 <p>What are the values in <code>FC</code>?</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb22-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(mouse<span class="sc">$</span>FC)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb22-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb22-1" tabindex="-1"></a><span class="fu">table</span>(mouse<span class="sc">$</span>FC)</span></code></pre></div>
 <pre><code>## 
 ##          ECM/Receptors                    EST Growth/Differentiation 
 ##                     16                     31                     16 
@@ -291,29 +285,29 @@ There are three samples per group.</p>
 ##         Stress-induced   Transcription factor                Unknown 
 ##                      6                     28                     10</code></pre>
 <p>Let’s use <code>pairs()</code> to look at pairwise scatterplots of the expression data in a single plot. We need to subset the columns with the expression data first:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb24-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb24-1" aria-hidden="true" tabindex="-1"></a>mouse_exp <span class="ot">=</span> mouse[,<span class="fu">c</span>(<span class="st">&quot;M1&quot;</span>,<span class="st">&quot;M2&quot;</span>,<span class="st">&quot;M3&quot;</span>,<span class="st">&quot;NC1&quot;</span>,<span class="st">&quot;NC2&quot;</span>,<span class="st">&quot;NC3&quot;</span>)]</span>
-<span id="cb24-2"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(mouse_exp)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb24-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb24-1" tabindex="-1"></a>mouse_exp <span class="ot">=</span> mouse[,<span class="fu">c</span>(<span class="st">&quot;M1&quot;</span>,<span class="st">&quot;M2&quot;</span>,<span class="st">&quot;M3&quot;</span>,<span class="st">&quot;NC1&quot;</span>,<span class="st">&quot;NC2&quot;</span>,<span class="st">&quot;NC3&quot;</span>)]</span>
+<span id="cb24-2"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb24-2" tabindex="-1"></a><span class="fu">pairs</span>(mouse_exp)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 </div>
-<div id="rcolorbrewer-for-colour-palettes" class="section level2 unnumbered">
-<h2><code>RColorBrewer</code> for colour palettes</h2>
+<div id="rcolorbrewer-for-colour-palettes" class="section level2 unnumbered hasAnchor">
+<h2><code>RColorBrewer</code> for colour palettes<a href="module-1-exploratory-data-analysis-and-clustering.html#rcolorbrewer-for-colour-palettes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Visualization often requires assigning colours to categories of interest (e.g., two different tissue types, eight levels of doses).
 <code>RColorBrewer</code> is a good package to pick a colour scheme for your project, as palettes are derived using colour science:
 Let’s look at all the palettes available.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb25-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
-<span id="cb25-2"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">display.brewer.all</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb25-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb25-1" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb25-2"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb25-2" tabindex="-1"></a><span class="fu">display.brewer.all</span>()</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>We’re going to use <code>RColorBrewer</code> to assign colours to our heatmap below.</p>
 </div>
-<div id="correlations-distances-and-clustering" class="section level2 unnumbered">
-<h2>Correlations, distances, and clustering</h2>
+<div id="correlations-distances-and-clustering" class="section level2 unnumbered hasAnchor">
+<h2>Correlations, distances, and clustering<a href="module-1-exploratory-data-analysis-and-clustering.html#correlations-distances-and-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s look at sample correlation matrix. This should be a square matrix, equal to the number of samples.
 We have six samples, so the correlation matrix should be <code>6x6</code>.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb26-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
-<span id="cb26-2"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb26-2" aria-hidden="true" tabindex="-1"></a>mouse_cor <span class="ot">&lt;-</span> <span class="fu">cor</span>(mouse_exp)</span>
-<span id="cb26-3"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(mouse_cor)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb26-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb26-1" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb26-2"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb26-2" tabindex="-1"></a>mouse_cor <span class="ot">&lt;-</span> <span class="fu">cor</span>(mouse_exp)</span>
+<span id="cb26-3"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb26-3" tabindex="-1"></a><span class="fu">dim</span>(mouse_cor)</span></code></pre></div>
 <pre><code>## [1] 6 6</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb28-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(mouse_cor,<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb28-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb28-1" tabindex="-1"></a><span class="fu">round</span>(mouse_cor,<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##       M1   M2   M3  NC1  NC2  NC3
 ## M1  1.00 0.98 0.98 0.84 0.81 0.78
 ## M2  0.98 1.00 0.95 0.84 0.81 0.79
@@ -321,119 +315,114 @@ We have six samples, so the correlation matrix should be <code>6x6</code>.</p>
 ## NC1 0.84 0.84 0.82 1.00 0.97 0.95
 ## NC2 0.81 0.81 0.78 0.97 1.00 0.99
 ## NC3 0.78 0.79 0.75 0.95 0.99 1.00</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb30-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(mouse_cor, <span class="at">method=</span><span class="st">&quot;color&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb30-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb30-1" tabindex="-1"></a><span class="fu">corrplot</span>(mouse_cor, <span class="at">method=</span><span class="st">&quot;color&quot;</span>)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <ul>
 <li>Which samples appear to be best correlated with each other?</li>
 <li>Which samples don’t appear to be as well correlated with each other?</li>
 </ul>
 </div>
-<div id="hierarchical-clustering" class="section level2 unnumbered">
-<h2>Hierarchical clustering</h2>
+<div id="hierarchical-clustering" class="section level2 unnumbered hasAnchor">
+<h2>Hierarchical clustering<a href="module-1-exploratory-data-analysis-and-clustering.html#hierarchical-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Hierarchical clustering requires distances between samples. Let’s use <code>dist()</code> to compute these distances, and <code>hclust()</code> to generate the hierarchical clustering object.</p>
 <p>Different values for <code>method</code> can produce different results. In our experience <code>complete</code> or <code>ward.D2</code> produce stable results.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb31-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb31-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">dist</span>(<span class="fu">log</span>(mouse_exp))</span>
-<span id="cb31-2"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb31-2" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">hclust</span>(d,<span class="at">method=</span><span class="st">&quot;ward.D2&quot;</span>)</span>
-<span id="cb31-3"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(h)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb31-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb31-1" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">dist</span>(<span class="fu">log</span>(mouse_exp))</span>
+<span id="cb31-2"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb31-2" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">hclust</span>(d,<span class="at">method=</span><span class="st">&quot;ward.D2&quot;</span>)</span>
+<span id="cb31-3"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb31-3" tabindex="-1"></a><span class="fu">plot</span>(h)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>Can you guess how many clusters could best fit the data?</p>
 <p>Now let’s add a heatmap to this dendrogram, so we can see the values of genes in each cluster. For this we will use the <code>heatmap()</code> function, which requires assigned cluster labels to each sample, and a dendrogram-generating function.</p>
 <p>So let’s create these.</p>
 <p>First we get cluster assignments by “cutting” the dendrogram for two clusters (something we expect from our experimental design). We use <code>cutree()</code> for this. Then assign colours based on cluster assignment.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb32-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb32-1" aria-hidden="true" tabindex="-1"></a>h2 <span class="ot">&lt;-</span> <span class="fu">cutree</span>(h, <span class="at">k =</span> <span class="dv">2</span>)</span>
-<span id="cb32-2"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb32-2" aria-hidden="true" tabindex="-1"></a>h2cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;orangered&quot;</span>,<span class="st">&quot;blue&quot;</span>)[h2]</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb32-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb32-1" tabindex="-1"></a>h2 <span class="ot">&lt;-</span> <span class="fu">cutree</span>(h, <span class="at">k =</span> <span class="dv">2</span>)</span>
+<span id="cb32-2"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb32-2" tabindex="-1"></a>h2cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;orangered&quot;</span>,<span class="st">&quot;blue&quot;</span>)[h2]</span></code></pre></div>
 <p>Now define a hierarchical clustering function:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb33-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb33-1" aria-hidden="true" tabindex="-1"></a>hclust_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb33-2"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb33-2" aria-hidden="true" tabindex="-1"></a>    f <span class="ot">&lt;-</span> <span class="fu">hclust</span>(x, <span class="at">method =</span> <span class="st">&quot;ward.D2&quot;</span>);</span>
-<span id="cb33-3"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(f)</span>
-<span id="cb33-4"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb33-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb33-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb33-1" tabindex="-1"></a>hclust_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb33-2"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb33-2" tabindex="-1"></a>    f <span class="ot">&lt;-</span> <span class="fu">hclust</span>(x, <span class="at">method =</span> <span class="st">&quot;ward.D2&quot;</span>);</span>
+<span id="cb33-3"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb33-3" tabindex="-1"></a>    <span class="fu">return</span>(f)</span>
+<span id="cb33-4"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb33-4" tabindex="-1"></a>}</span></code></pre></div>
 <p>And finally supply the two to the <code>heatmap()</code> function:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb34-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">heatmap</span>(</span>
-<span id="cb34-2"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.matrix</span>(mouse_exp),</span>
-<span id="cb34-3"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb34-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="fu">brewer.pal</span>(<span class="st">&quot;Blues&quot;</span>,<span class="at">n=</span><span class="dv">8</span>),</span>
-<span id="cb34-4"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">hclustfun =</span> hclust_fun,</span>
-<span id="cb34-5"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb34-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">RowSideColors =</span> h2cols, <span class="co"># use colours from cutree call above</span></span>
-<span id="cb34-6"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">ColSideColors =</span> <span class="fu">c</span>(</span>
-<span id="cb34-7"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb34-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">rep</span>(<span class="st">&quot;darkgreen&quot;</span>,<span class="dv">3</span>),</span>
-<span id="cb34-8"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb34-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">rep</span>(<span class="st">&quot;deeppink2&quot;</span>,<span class="dv">3</span>)</span>
-<span id="cb34-9"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb34-9" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb34-10"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb34-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb34-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb34-1" tabindex="-1"></a><span class="fu">heatmap</span>(</span>
+<span id="cb34-2"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb34-2" tabindex="-1"></a>    <span class="fu">as.matrix</span>(mouse_exp),</span>
+<span id="cb34-3"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb34-3" tabindex="-1"></a>    <span class="at">col =</span> <span class="fu">brewer.pal</span>(<span class="st">&quot;Blues&quot;</span>,<span class="at">n=</span><span class="dv">8</span>),</span>
+<span id="cb34-4"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb34-4" tabindex="-1"></a>    <span class="at">hclustfun =</span> hclust_fun,</span>
+<span id="cb34-5"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb34-5" tabindex="-1"></a>    <span class="at">RowSideColors =</span> h2cols, <span class="co"># use colours from cutree call above</span></span>
+<span id="cb34-6"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb34-6" tabindex="-1"></a>    <span class="at">ColSideColors =</span> <span class="fu">c</span>(</span>
+<span id="cb34-7"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb34-7" tabindex="-1"></a>        <span class="fu">rep</span>(<span class="st">&quot;darkgreen&quot;</span>,<span class="dv">3</span>),</span>
+<span id="cb34-8"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb34-8" tabindex="-1"></a>        <span class="fu">rep</span>(<span class="st">&quot;deeppink2&quot;</span>,<span class="dv">3</span>)</span>
+<span id="cb34-9"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb34-9" tabindex="-1"></a>    )</span>
+<span id="cb34-10"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb34-10" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>Note that the two colours are completely divided (i.e., there is no interspersed red and blue). This is a good sign that the clustering function used the identical clustering method, here, <code>ward.D2</code>, to cluster the samples.</p>
 <p>Compare this result to what happens if we try the same function call without clustering:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb35-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">heatmap</span>(</span>
-<span id="cb35-2"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb35-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.matrix</span>(mouse_exp),</span>
-<span id="cb35-3"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="fu">brewer.pal</span>(<span class="st">&quot;Blues&quot;</span>,<span class="at">n=</span><span class="dv">8</span>),</span>
-<span id="cb35-4"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">RowSideColors =</span> h2cols, <span class="co"># use colours from cutree call above</span></span>
-<span id="cb35-5"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb35-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ColSideColors =</span> <span class="fu">c</span>(</span>
-<span id="cb35-6"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb35-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">rep</span>(<span class="st">&quot;darkgreen&quot;</span>,<span class="dv">3</span>),</span>
-<span id="cb35-7"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb35-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">rep</span>(<span class="st">&quot;deeppink2&quot;</span>,<span class="dv">3</span>)</span>
-<span id="cb35-8"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb35-8" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb35-9"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb35-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb35-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb35-1" tabindex="-1"></a><span class="fu">heatmap</span>(</span>
+<span id="cb35-2"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb35-2" tabindex="-1"></a>    <span class="fu">as.matrix</span>(mouse_exp),</span>
+<span id="cb35-3"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb35-3" tabindex="-1"></a>    <span class="at">col =</span> <span class="fu">brewer.pal</span>(<span class="st">&quot;Blues&quot;</span>,<span class="at">n=</span><span class="dv">8</span>),</span>
+<span id="cb35-4"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb35-4" tabindex="-1"></a>    <span class="at">RowSideColors =</span> h2cols, <span class="co"># use colours from cutree call above</span></span>
+<span id="cb35-5"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb35-5" tabindex="-1"></a>    <span class="at">ColSideColors =</span> <span class="fu">c</span>(</span>
+<span id="cb35-6"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb35-6" tabindex="-1"></a>        <span class="fu">rep</span>(<span class="st">&quot;darkgreen&quot;</span>,<span class="dv">3</span>),</span>
+<span id="cb35-7"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb35-7" tabindex="-1"></a>        <span class="fu">rep</span>(<span class="st">&quot;deeppink2&quot;</span>,<span class="dv">3</span>)</span>
+<span id="cb35-8"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb35-8" tabindex="-1"></a>    )</span>
+<span id="cb35-9"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb35-9" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 </div>
-<div id="k-means-clustering" class="section level2 unnumbered">
-<h2>K-means clustering</h2>
+<div id="k-means-clustering" class="section level2 unnumbered hasAnchor">
+<h2>K-means clustering<a href="module-1-exploratory-data-analysis-and-clustering.html#k-means-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s try using k-means clustering, asking for three clusters:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb36-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb36-1" aria-hidden="true" tabindex="-1"></a>kclust <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(</span>
-<span id="cb36-2"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb36-2" aria-hidden="true" tabindex="-1"></a>    mouse_exp, </span>
-<span id="cb36-3"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">centers =</span> <span class="dv">3</span></span>
-<span id="cb36-4"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb36-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb36-5"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb36-5" aria-hidden="true" tabindex="-1"></a>kclust</span></code></pre></div>
-<pre><code>## K-means clustering with 3 clusters of sizes 22, 64, 61
+<div class="sourceCode" id="cb36"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb36-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb36-1" tabindex="-1"></a>kclust <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(</span>
+<span id="cb36-2"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb36-2" tabindex="-1"></a>    mouse_exp, </span>
+<span id="cb36-3"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb36-3" tabindex="-1"></a>    <span class="at">centers =</span> <span class="dv">3</span></span>
+<span id="cb36-4"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb36-4" tabindex="-1"></a>)</span>
+<span id="cb36-5"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb36-5" tabindex="-1"></a>kclust</span></code></pre></div>
+<pre><code>## K-means clustering with 3 clusters of sizes 64, 61, 22
 ## 
 ## Cluster means:
 ##         M1       M2       M3      NC1      NC2      NC3
-## 1 7.416536 7.406216 7.414799 7.548674 7.534414 7.520608
-## 2 5.553148 5.499583 5.642404 5.426931 5.435363 5.353342
-## 3 3.947440 3.946048 4.012209 3.922949 3.950984 4.004362
+## 1 5.553148 5.499583 5.642404 5.426931 5.435363 5.353342
+## 2 3.947440 3.946048 4.012209 3.922949 3.950984 4.004362
+## 3 7.416536 7.406216 7.414799 7.548674 7.534414 7.520608
 ## 
 ## Clustering vector:
-##   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17 
-##   2   3   3   2   2   3   2   2   2   3   1   3   2   1   3   2   1 
-##  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34 
-##   1   3   2   2   2   3   3   3   3   1   2   3   2   2   1   3   2 
-##  35  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51 
-##   2   3   3   3   2   3   2   1   1   3   3   1   3   3   3   3   2 
-##  52  53  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68 
-##   3   1   1   2   2   3   3   2   3   3   1   2   3   2   3   2   1 
-##  69  70  71  72  73  74  75  76  77  78  79  80  81  82  83  84  85 
-##   2   3   2   2   2   2   2   1   3   3   2   1   2   1   3   2   2 
-##  86  87  88  89  90  91  92  93  94  95  96  97  98  99 100 101 102 
-##   3   1   2   3   2   3   3   3   3   3   3   3   2   3   2   3   2 
-## 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 
-##   3   3   3   3   1   2   3   2   2   3   2   2   2   2   1   1   3 
-## 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 
-##   2   2   2   1   3   2   2   2   3   2   2   2   2   2   3   3   3 
-## 137 138 139 140 141 142 143 144 145 146 147 
-##   3   3   3   2   2   3   2   1   2   2   2 
+##   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21 
+##   1   2   2   1   1   2   1   1   1   2   3   2   1   3   2   1   3   3   2   1   1 
+##  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40  41  42 
+##   1   2   2   2   2   3   1   2   1   1   3   2   1   1   2   2   2   1   2   1   3 
+##  43  44  45  46  47  48  49  50  51  52  53  54  55  56  57  58  59  60  61  62  63 
+##   3   2   2   3   2   2   2   2   1   2   3   3   1   1   2   2   1   2   2   3   1 
+##  64  65  66  67  68  69  70  71  72  73  74  75  76  77  78  79  80  81  82  83  84 
+##   2   1   2   1   3   1   2   1   1   1   1   1   3   2   2   1   3   1   3   2   1 
+##  85  86  87  88  89  90  91  92  93  94  95  96  97  98  99 100 101 102 103 104 105 
+##   1   2   3   1   2   1   2   2   2   2   2   2   2   1   2   1   2   1   2   2   2 
+## 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 
+##   2   3   1   2   1   1   2   1   1   1   1   3   3   2   1   1   1   3   2   1   1 
+## 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 
+##   1   2   1   1   1   1   1   2   2   2   2   2   2   1   1   2   1   3   1   1   1 
 ## 
 ## Within cluster sum of squares by cluster:
-## [1]  81.44264 166.24343 193.59229
+## [1] 166.24343 193.59229  81.44264
 ##  (between_SS / total_SS =  74.3 %)
 ## 
 ## Available components:
 ## 
-## [1] &quot;cluster&quot;      &quot;centers&quot;      &quot;totss&quot;        &quot;withinss&quot;    
-## [5] &quot;tot.withinss&quot; &quot;betweenss&quot;    &quot;size&quot;         &quot;iter&quot;        
-## [9] &quot;ifault&quot;</code></pre>
+## [1] &quot;cluster&quot;      &quot;centers&quot;      &quot;totss&quot;        &quot;withinss&quot;     &quot;tot.withinss&quot;
+## [6] &quot;betweenss&quot;    &quot;size&quot;         &quot;iter&quot;         &quot;ifault&quot;</code></pre>
 </div>
-<div id="using-clvalid-to-determine-number-of-clusters" class="section level2 unnumbered">
-<h2>Using <code>clValid</code> to determine number of clusters</h2>
+<div id="using-clvalid-to-determine-number-of-clusters" class="section level2 unnumbered hasAnchor">
+<h2>Using <code>clValid</code> to determine number of clusters<a href="module-1-exploratory-data-analysis-and-clustering.html#using-clvalid-to-determine-number-of-clusters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Use the <code>clValid()</code> function to validate clusters using the:</p>
 <ul>
 <li>Dunn index,</li>
 <li>silhouette scores, and</li>
 <li>connectivity</li>
 </ul>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb38-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb38-1" aria-hidden="true" tabindex="-1"></a>validation_data <span class="ot">&lt;-</span> <span class="fu">clValid</span>(</span>
-<span id="cb38-2"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb38-2" aria-hidden="true" tabindex="-1"></a>    mouse_exp,</span>
-<span id="cb38-3"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>, <span class="co"># num. clusters to evaluate</span></span>
-<span id="cb38-4"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">clMethods =</span> <span class="fu">c</span>(<span class="st">&quot;hier&quot;</span>,<span class="st">&quot;kmeans&quot;</span>), <span class="co"># methods to eval.</span></span>
-<span id="cb38-5"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb38-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">validation =</span> <span class="st">&quot;internal&quot;</span></span>
-<span id="cb38-6"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb38-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb38-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb38-1" tabindex="-1"></a>validation_data <span class="ot">&lt;-</span> <span class="fu">clValid</span>(</span>
+<span id="cb38-2"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb38-2" tabindex="-1"></a>    mouse_exp,</span>
+<span id="cb38-3"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb38-3" tabindex="-1"></a>    <span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>, <span class="co"># num. clusters to evaluate</span></span>
+<span id="cb38-4"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb38-4" tabindex="-1"></a>    <span class="at">clMethods =</span> <span class="fu">c</span>(<span class="st">&quot;hier&quot;</span>,<span class="st">&quot;kmeans&quot;</span>), <span class="co"># methods to eval.</span></span>
+<span id="cb38-5"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb38-5" tabindex="-1"></a>    <span class="at">validation =</span> <span class="st">&quot;internal&quot;</span></span>
+<span id="cb38-6"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb38-6" tabindex="-1"></a>)</span></code></pre></div>
 <p>Let’s look at the results:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb39-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(validation_data)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb39-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb39-1" tabindex="-1"></a><span class="fu">summary</span>(validation_data)</span></code></pre></div>
 <pre><code>## 
 ## Clustering Methods:
 ##  hierarchical kmeans 
@@ -459,25 +448,25 @@ We have six samples, so the correlation matrix should be <code>6x6</code>.</p>
 ## Silhouette   0.5133 hierarchical 2</code></pre>
 <p>All measures of clustering consistently indicate that <strong>two</strong> clusters best fit the data.</p>
 <p>Now let’s cluster:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb41-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">dist</span>(<span class="fu">log</span>(mouse_exp))</span>
-<span id="cb41-2"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-2" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">hclust</span>(d,<span class="at">method=</span><span class="st">&quot;ward.D2&quot;</span>)</span>
-<span id="cb41-3"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-3" aria-hidden="true" tabindex="-1"></a>cluster_ids <span class="ot">&lt;-</span> <span class="fu">cutree</span>(h, <span class="at">k =</span> <span class="dv">2</span>)</span>
-<span id="cb41-4"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-4" aria-hidden="true" tabindex="-1"></a>clust_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;dodgerblue&quot;</span>,<span class="st">&quot;orangered&quot;</span>)[cluster_ids]</span>
-<span id="cb41-5"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-6"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="fu">heatmap</span>(</span>
-<span id="cb41-7"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.matrix</span>(mouse_exp),</span>
-<span id="cb41-8"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="fu">brewer.pal</span>(<span class="st">&quot;Blues&quot;</span>,<span class="at">n=</span><span class="dv">8</span>),</span>
-<span id="cb41-9"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">hclustfun =</span> hclust_fun,</span>
-<span id="cb41-10"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">RowSideColors =</span> clust_colors, <span class="co"># kmeans labels</span></span>
-<span id="cb41-11"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">ColSideColors =</span> <span class="fu">c</span>(</span>
-<span id="cb41-12"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">rep</span>(<span class="st">&quot;darkgreen&quot;</span>,<span class="dv">3</span>),</span>
-<span id="cb41-13"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">rep</span>(<span class="st">&quot;deeppink2&quot;</span>,<span class="dv">3</span>)</span>
-<span id="cb41-14"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-14" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb41-15"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb41-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-1" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">dist</span>(<span class="fu">log</span>(mouse_exp))</span>
+<span id="cb41-2"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-2" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">hclust</span>(d,<span class="at">method=</span><span class="st">&quot;ward.D2&quot;</span>)</span>
+<span id="cb41-3"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-3" tabindex="-1"></a>cluster_ids <span class="ot">&lt;-</span> <span class="fu">cutree</span>(h, <span class="at">k =</span> <span class="dv">2</span>)</span>
+<span id="cb41-4"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-4" tabindex="-1"></a>clust_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;dodgerblue&quot;</span>,<span class="st">&quot;orangered&quot;</span>)[cluster_ids]</span>
+<span id="cb41-5"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-5" tabindex="-1"></a></span>
+<span id="cb41-6"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-6" tabindex="-1"></a><span class="fu">heatmap</span>(</span>
+<span id="cb41-7"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-7" tabindex="-1"></a>    <span class="fu">as.matrix</span>(mouse_exp),</span>
+<span id="cb41-8"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-8" tabindex="-1"></a>    <span class="at">col =</span> <span class="fu">brewer.pal</span>(<span class="st">&quot;Blues&quot;</span>,<span class="at">n=</span><span class="dv">8</span>),</span>
+<span id="cb41-9"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-9" tabindex="-1"></a>    <span class="at">hclustfun =</span> hclust_fun,</span>
+<span id="cb41-10"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-10" tabindex="-1"></a>    <span class="at">RowSideColors =</span> clust_colors, <span class="co"># kmeans labels</span></span>
+<span id="cb41-11"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-11" tabindex="-1"></a>    <span class="at">ColSideColors =</span> <span class="fu">c</span>(</span>
+<span id="cb41-12"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-12" tabindex="-1"></a>        <span class="fu">rep</span>(<span class="st">&quot;darkgreen&quot;</span>,<span class="dv">3</span>),</span>
+<span id="cb41-13"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-13" tabindex="-1"></a>        <span class="fu">rep</span>(<span class="st">&quot;deeppink2&quot;</span>,<span class="dv">3</span>)</span>
+<span id="cb41-14"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-14" tabindex="-1"></a>    )</span>
+<span id="cb41-15"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-15" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 </div>
-<div id="exercise" class="section level2 unnumbered">
-<h2>Exercise</h2>
+<div id="exercise" class="section level2 unnumbered hasAnchor">
+<h2>Exercise<a href="module-1-exploratory-data-analysis-and-clustering.html#exercise" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>For your exercise, try the following:</p>
 <ul>
 <li>Load the MASS package using: <code>library(MASS)</code></li>
