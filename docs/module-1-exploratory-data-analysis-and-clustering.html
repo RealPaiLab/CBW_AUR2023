@@ -30,7 +30,7 @@
   
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="lecture-slides.html"/>
-<link rel="next" href="module-2-dimensionality-reduction.html"/>
+<link rel="next" href="module-1-exercise-results.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -160,6 +160,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="module-1-exploratory-data-analysis-and-clustering.html"><a href="module-1-exploratory-data-analysis-and-clustering.html#using-clvalid-to-determine-number-of-clusters"><i class="fa fa-check"></i>Using <code>clValid</code> to determine number of clusters</a></li>
 <li class="chapter" data-level="" data-path="module-1-exploratory-data-analysis-and-clustering.html"><a href="module-1-exploratory-data-analysis-and-clustering.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="module-1-exercise-results.html"><a href="module-1-exercise-results.html"><i class="fa fa-check"></i>Module 1 Exercise Results</a></li>
 <li class="chapter" data-level="" data-path="module-2-dimensionality-reduction.html"><a href="module-2-dimensionality-reduction.html"><i class="fa fa-check"></i>Module 2: Dimensionality reduction</a>
 <ul>
 <li class="chapter" data-level="" data-path="module-2-dimensionality-reduction.html"><a href="module-2-dimensionality-reduction.html#principal-component-analysis"><i class="fa fa-check"></i>Principal Component Analysis</a>
@@ -287,7 +288,7 @@ There are three samples per group.</p>
 <p>Let’s use <code>pairs()</code> to look at pairwise scatterplots of the expression data in a single plot. We need to subset the columns with the expression data first:</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb24-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb24-1" tabindex="-1"></a>mouse_exp <span class="ot">=</span> mouse[,<span class="fu">c</span>(<span class="st">&quot;M1&quot;</span>,<span class="st">&quot;M2&quot;</span>,<span class="st">&quot;M3&quot;</span>,<span class="st">&quot;NC1&quot;</span>,<span class="st">&quot;NC2&quot;</span>,<span class="st">&quot;NC3&quot;</span>)]</span>
 <span id="cb24-2"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb24-2" tabindex="-1"></a><span class="fu">pairs</span>(mouse_exp)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 </div>
 <div id="rcolorbrewer-for-colour-palettes" class="section level2 unnumbered hasAnchor">
 <h2><code>RColorBrewer</code> for colour palettes<a href="module-1-exploratory-data-analysis-and-clustering.html#rcolorbrewer-for-colour-palettes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -296,7 +297,7 @@ There are three samples per group.</p>
 Let’s look at all the palettes available.</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb25-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb25-1" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
 <span id="cb25-2"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb25-2" tabindex="-1"></a><span class="fu">display.brewer.all</span>()</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>We’re going to use <code>RColorBrewer</code> to assign colours to our heatmap below.</p>
 </div>
 <div id="correlations-distances-and-clustering" class="section level2 unnumbered hasAnchor">
@@ -316,7 +317,7 @@ We have six samples, so the correlation matrix should be <code>6x6</code>.</p>
 ## NC2 0.81 0.81 0.78 0.97 1.00 0.99
 ## NC3 0.78 0.79 0.75 0.95 0.99 1.00</code></pre>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb30-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb30-1" tabindex="-1"></a><span class="fu">corrplot</span>(mouse_cor, <span class="at">method=</span><span class="st">&quot;color&quot;</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <ul>
 <li>Which samples appear to be best correlated with each other?</li>
 <li>Which samples don’t appear to be as well correlated with each other?</li>
@@ -329,7 +330,7 @@ We have six samples, so the correlation matrix should be <code>6x6</code>.</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb31-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb31-1" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">dist</span>(<span class="fu">log</span>(mouse_exp))</span>
 <span id="cb31-2"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb31-2" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">hclust</span>(d,<span class="at">method=</span><span class="st">&quot;ward.D2&quot;</span>)</span>
 <span id="cb31-3"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb31-3" tabindex="-1"></a><span class="fu">plot</span>(h)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>Can you guess how many clusters could best fit the data?</p>
 <p>Now let’s add a heatmap to this dendrogram, so we can see the values of genes in each cluster. For this we will use the <code>heatmap()</code> function, which requires assigned cluster labels to each sample, and a dendrogram-generating function.</p>
 <p>So let’s create these.</p>
@@ -352,7 +353,7 @@ We have six samples, so the correlation matrix should be <code>6x6</code>.</p>
 <span id="cb34-8"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb34-8" tabindex="-1"></a>        <span class="fu">rep</span>(<span class="st">&quot;deeppink2&quot;</span>,<span class="dv">3</span>)</span>
 <span id="cb34-9"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb34-9" tabindex="-1"></a>    )</span>
 <span id="cb34-10"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb34-10" tabindex="-1"></a>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>Note that the two colours are completely divided (i.e., there is no interspersed red and blue). This is a good sign that the clustering function used the identical clustering method, here, <code>ward.D2</code>, to cluster the samples.</p>
 <p>Compare this result to what happens if we try the same function call without clustering:</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r codeblock"><code class="sourceCode r"><span id="cb35-1"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb35-1" tabindex="-1"></a><span class="fu">heatmap</span>(</span>
@@ -364,7 +365,7 @@ We have six samples, so the correlation matrix should be <code>6x6</code>.</p>
 <span id="cb35-7"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb35-7" tabindex="-1"></a>        <span class="fu">rep</span>(<span class="st">&quot;deeppink2&quot;</span>,<span class="dv">3</span>)</span>
 <span id="cb35-8"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb35-8" tabindex="-1"></a>    )</span>
 <span id="cb35-9"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb35-9" tabindex="-1"></a>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 </div>
 <div id="k-means-clustering" class="section level2 unnumbered hasAnchor">
 <h2>K-means clustering<a href="module-1-exploratory-data-analysis-and-clustering.html#k-means-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -374,32 +375,32 @@ We have six samples, so the correlation matrix should be <code>6x6</code>.</p>
 <span id="cb36-3"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb36-3" tabindex="-1"></a>    <span class="at">centers =</span> <span class="dv">3</span></span>
 <span id="cb36-4"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb36-4" tabindex="-1"></a>)</span>
 <span id="cb36-5"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb36-5" tabindex="-1"></a>kclust</span></code></pre></div>
-<pre><code>## K-means clustering with 3 clusters of sizes 64, 22, 61
+<pre><code>## K-means clustering with 3 clusters of sizes 61, 22, 64
 ## 
 ## Cluster means:
 ##         M1       M2       M3      NC1      NC2      NC3
-## 1 5.553148 5.499583 5.642404 5.426931 5.435363 5.353342
+## 1 3.947440 3.946048 4.012209 3.922949 3.950984 4.004362
 ## 2 7.416536 7.406216 7.414799 7.548674 7.534414 7.520608
-## 3 3.947440 3.946048 4.012209 3.922949 3.950984 4.004362
+## 3 5.553148 5.499583 5.642404 5.426931 5.435363 5.353342
 ## 
 ## Clustering vector:
 ##   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21 
-##   1   3   3   1   1   3   1   1   1   3   2   3   1   2   3   1   2   2   3   1   1 
+##   3   1   1   3   3   1   3   3   3   1   2   1   3   2   1   3   2   2   1   3   3 
 ##  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40  41  42 
-##   1   3   3   3   3   2   1   3   1   1   2   3   1   1   3   3   3   1   3   1   2 
+##   3   1   1   1   1   2   3   1   3   3   2   1   3   3   1   1   1   3   1   3   2 
 ##  43  44  45  46  47  48  49  50  51  52  53  54  55  56  57  58  59  60  61  62  63 
-##   2   3   3   2   3   3   3   3   1   3   2   2   1   1   3   3   1   3   3   2   1 
+##   2   1   1   2   1   1   1   1   3   1   2   2   3   3   1   1   3   1   1   2   3 
 ##  64  65  66  67  68  69  70  71  72  73  74  75  76  77  78  79  80  81  82  83  84 
-##   3   1   3   1   2   1   3   1   1   1   1   1   2   3   3   1   2   1   2   3   1 
+##   1   3   1   3   2   3   1   3   3   3   3   3   2   1   1   3   2   3   2   1   3 
 ##  85  86  87  88  89  90  91  92  93  94  95  96  97  98  99 100 101 102 103 104 105 
-##   1   3   2   1   3   1   3   3   3   3   3   3   3   1   3   1   3   1   3   3   3 
+##   3   1   2   3   1   3   1   1   1   1   1   1   1   3   1   3   1   3   1   1   1 
 ## 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 
-##   3   2   1   3   1   1   3   1   1   1   1   2   2   3   1   1   1   2   3   1   1 
+##   1   2   3   1   3   3   1   3   3   3   3   2   2   1   3   3   3   2   1   3   3 
 ## 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 
-##   1   3   1   1   1   1   1   3   3   3   3   3   3   1   1   3   1   2   1   1   1 
+##   3   1   3   3   3   3   3   1   1   1   1   1   1   3   3   1   3   2   3   3   3 
 ## 
 ## Within cluster sum of squares by cluster:
-## [1] 166.24343  81.44264 193.59229
+## [1] 193.59229  81.44264 166.24343
 ##  (between_SS / total_SS =  74.3 %)
 ## 
 ## Available components:
@@ -463,7 +464,7 @@ We have six samples, so the correlation matrix should be <code>6x6</code>.</p>
 <span id="cb41-13"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-13" tabindex="-1"></a>        <span class="fu">rep</span>(<span class="st">&quot;deeppink2&quot;</span>,<span class="dv">3</span>)</span>
 <span id="cb41-14"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-14" tabindex="-1"></a>    )</span>
 <span id="cb41-15"><a href="module-1-exploratory-data-analysis-and-clustering.html#cb41-15" tabindex="-1"></a>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 </div>
 <div id="exercise" class="section level2 unnumbered hasAnchor">
 <h2>Exercise<a href="module-1-exploratory-data-analysis-and-clustering.html#exercise" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -486,7 +487,7 @@ We have six samples, so the correlation matrix should be <code>6x6</code>.</p>
         </div>
       </div>
 <a href="lecture-slides.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="module-2-dimensionality-reduction.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="module-1-exercise-results.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
