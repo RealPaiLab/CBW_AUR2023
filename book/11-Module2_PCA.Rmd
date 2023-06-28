@@ -217,7 +217,7 @@ plot(iris_tsne,
      col=species_cols)
 legend("topright",
         legend = levels(iris$Species),
-        col = my_cols_vec,
+        col = species_cols,
         pch = 19)
 ```
 
@@ -237,25 +237,25 @@ par(mfrow=c(2,2))
 plot(iris_tsne10[,1],
      iris_tsne10[,2],
      main = "Perplexity = 10",
-     col = my_cols_vec,
+     col = species_cols,
      pch=16)
 
 plot(iris_tsne20[,1],
      iris_tsne20[,2],
      main = "Perplexity = 20",
-     col = my_cols_vec,
+     col = species_cols,
      pch=16)
 
 plot(iris_tsne50[,1],
      iris_tsne50[,2],
      main = "Perplexity = 50",
-     col = my_cols_vec,
+     col = species_cols,
      pch=16)
 
 plot(iris_tsne100[,1],
      iris_tsne100[,2],
      main = "Perplexity = 100",
-     col = my_cols_vec,
+     col = species_cols,
      pch=16)
 ```
 
@@ -280,10 +280,10 @@ str(iris_umap)
 par(mfrow=c(1,1))
 plot(iris_umap$layout[,1],
      iris_umap$layout[,2],
-     col = my_cols_vec, pch = 19)
+     col = species_cols, pch = 19)
 # legend("topright",
 #         legend = levels(mouse$FC),
-#         col = my_cols_vec,
+#         col = species_cols,
 #         pch = 19)
 ```
 
