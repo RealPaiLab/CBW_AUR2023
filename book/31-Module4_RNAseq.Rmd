@@ -322,13 +322,12 @@ write.table(tt,file="diffEx.results.txt",
 * Install the `yeastRNASeq` package from Bioconductor and `library` it into your environment
 * Import the geneLevelData using: `data("geneLevelData")`
 * Learn about this data and then put it through the same workflow we just did for the breast cancer: 
-1. Filter genes with CPM > 25 in at least two samples
-2. Create a new expression set object with your filtered genes
+1. Create a new `DGEList` object with your filtered genes
+2. Filter genes with CPM > 25 in at least two samples
 3. Normalize and plot your data
-4. Create a model matrix for analysis
-5. Fit your model 
-6. How many significantly up-regulated genes are there at the 5% FDR level? How many significantly down-regulated genes? How many in total
-7. Create a volcano plot
-8. Bonus: Create a histogram of p-values. Is there a signal?
+4. Perform differential gene expression analysis on wild-type vs. mutant yeast samples
+5. How many significantly up-regulated genes are there at the 5% FDR level? How many significantly down-regulated genes? How many in total?
+6. Create a volcano plot
+7. Bonus: Create a histogram of p-values. Is there a signal?
 
 Is there anything about the data that might make you question the results?
