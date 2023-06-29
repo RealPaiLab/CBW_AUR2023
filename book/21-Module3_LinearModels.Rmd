@@ -117,7 +117,7 @@ Now let's explore the data using plots.
 
 ## Create plots with `ggplot2` to explore variable relationships {-}
 
-`ggplot2` is a popular plotting package that uses an additive paradigm to build plots.  The [ggplot2 website]() is a wealth of reference information, so here we just touch on the basics to get you started. 
+`ggplot2` is a popular plotting package that uses an additive paradigm to build plots. The [ggplot2 website](https://ggplot2.tidyverse.org/) is a wealth of reference information, so here we just touch on the basics to get you started. 
 
 Anytime you need to generate a specific kind of plot, the website will most likely have documentation for how to achieve it.
 
@@ -273,4 +273,4 @@ For your exercise, answer the following questions:
 * Is there missing data?
 * Which columns are 
 * Use plots to explore the relationship between explanatory variables.
-* Fit a logistic model to identify which factors explain cell size.
+* Fit a logistic model to identify which factors explain class (benign vs. malignant).

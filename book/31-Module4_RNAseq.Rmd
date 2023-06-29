@@ -320,9 +320,9 @@ write.table(tt,file="diffEx.results.txt",
 ## Exercise {-}
 
 * Install the `yeastRNASeq` package from Bioconductor and `library` it into your environment
-* Import the geneLevelData using: `data(yeastRNASeq)`
+* Import the geneLevelData using: `data("geneLevelData")`
 * Learn about this data and then put it through the same workflow we just did for the breast cancer: 
-1. Filter genes with < 2 mean expression across all samples
+1. Filter genes with CPM > 25 in at least two samples
 2. Create a new expression set object with your filtered genes
 3. Normalize and plot your data
 4. Create a model matrix for analysis

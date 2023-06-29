@@ -584,11 +584,11 @@ or a full model (treatment effect is non-zero)</li>
 <h2>Exercise<a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html#exercise-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Install the <code>yeastRNASeq</code> package from Bioconductor and <code>library</code> it into your environment</li>
-<li>Import the geneLevelData using: <code>data(yeastRNASeq)</code></li>
+<li>Import the geneLevelData using: <code>data("geneLevelData")</code></li>
 <li>Learn about this data and then put it through the same workflow we just did for the breast cancer:</li>
 </ul>
 <ol style="list-style-type: decimal">
-<li>Filter genes with &lt; 2 mean expression across all samples</li>
+<li>Filter genes with CPM &gt; 25 in at least two samples</li>
 <li>Create a new expression set object with your filtered genes</li>
 <li>Normalize and plot your data</li>
 <li>Create a model matrix for analysis</li>
