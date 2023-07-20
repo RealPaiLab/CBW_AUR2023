@@ -6,10 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Lecture slides | Analysis Using R</title>
   <meta name="description" content="Principles of exploratory data analysis, RNAseq differential expression, and generalized linear models" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Lecture slides | Analysis Using R" />
   <meta property="og:type" content="book" />
+  
   
   <meta property="og:description" content="Principles of exploratory data analysis, RNAseq differential expression, and generalized linear models" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
@@ -31,6 +32,7 @@
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="index.html"/>
 <link rel="next" href="module-1-exploratory-data-analysis-and-clustering.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -48,9 +50,8 @@
 
 
 
-<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
-<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -91,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
+code span.bu { } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -104,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.im { } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -118,10 +119,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<style type="text/css">
-  
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -152,15 +149,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="lecture-slides.html"><a href="lecture-slides.html"><i class="fa fa-check"></i>Lecture slides</a></li>
 <li class="chapter" data-level="" data-path="module-1-exploratory-data-analysis-and-clustering.html"><a href="module-1-exploratory-data-analysis-and-clustering.html"><i class="fa fa-check"></i>Module 1: Exploratory Data Analysis and Clustering</a>
 <ul>
-<li class="chapter" data-level="" data-path="module-1-exploratory-data-analysis-and-clustering.html"><a href="module-1-exploratory-data-analysis-and-clustering.html#load-mouse-data"><i class="fa fa-check"></i>Load <code>mouse</code> data</a></li>
-<li class="chapter" data-level="" data-path="module-1-exploratory-data-analysis-and-clustering.html"><a href="module-1-exploratory-data-analysis-and-clustering.html#rcolorbrewer-for-colour-palettes"><i class="fa fa-check"></i><code>RColorBrewer</code> for colour palettes</a></li>
+<li><a href="module-1-exploratory-data-analysis-and-clustering.html#load-mouse-data">Load <code>mouse</code> data</a></li>
+<li><a href="module-1-exploratory-data-analysis-and-clustering.html#rcolorbrewer-for-colour-palettes"><code>RColorBrewer</code> for colour palettes</a></li>
 <li class="chapter" data-level="" data-path="module-1-exploratory-data-analysis-and-clustering.html"><a href="module-1-exploratory-data-analysis-and-clustering.html#correlations-distances-and-clustering"><i class="fa fa-check"></i>Correlations, distances, and clustering</a></li>
 <li class="chapter" data-level="" data-path="module-1-exploratory-data-analysis-and-clustering.html"><a href="module-1-exploratory-data-analysis-and-clustering.html#hierarchical-clustering"><i class="fa fa-check"></i>Hierarchical clustering</a></li>
 <li class="chapter" data-level="" data-path="module-1-exploratory-data-analysis-and-clustering.html"><a href="module-1-exploratory-data-analysis-and-clustering.html#k-means-clustering"><i class="fa fa-check"></i>K-means clustering</a></li>
-<li class="chapter" data-level="" data-path="module-1-exploratory-data-analysis-and-clustering.html"><a href="module-1-exploratory-data-analysis-and-clustering.html#using-clvalid-to-determine-number-of-clusters"><i class="fa fa-check"></i>Using <code>clValid</code> to determine number of clusters</a></li>
+<li><a href="module-1-exploratory-data-analysis-and-clustering.html#using-clvalid-to-determine-number-of-clusters">Using <code>clValid</code> to determine number of clusters</a></li>
 <li class="chapter" data-level="" data-path="module-1-exploratory-data-analysis-and-clustering.html"><a href="module-1-exploratory-data-analysis-and-clustering.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-1-exercise-results.html"><a href="module-1-exercise-results.html"><i class="fa fa-check"></i>Module 1 Exercise Results</a></li>
+<li class="chapter" data-level="" data-path="module-1-exercise-results.html"><a href="module-1-exercise-results.html"><i class="fa fa-check"></i>Module 1: Exercise Results</a></li>
 <li class="chapter" data-level="" data-path="module-2-dimensionality-reduction.html"><a href="module-2-dimensionality-reduction.html"><i class="fa fa-check"></i>Module 2: Dimensionality reduction</a>
 <ul>
 <li class="chapter" data-level="" data-path="module-2-dimensionality-reduction.html"><a href="module-2-dimensionality-reduction.html#principal-component-analysis"><i class="fa fa-check"></i>Principal Component Analysis</a>
@@ -173,25 +170,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="module-2-dimensionality-reduction.html"><a href="module-2-dimensionality-reduction.html#uniform-manifold-approximation-and-projection-umap"><i class="fa fa-check"></i>Uniform Manifold Approximation and Projection (UMAP)</a></li>
 <li class="chapter" data-level="" data-path="module-2-dimensionality-reduction.html"><a href="module-2-dimensionality-reduction.html#exercise-1"><i class="fa fa-check"></i>Exercise</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="module-2-exercise-results.html"><a href="module-2-exercise-results.html"><i class="fa fa-check"></i>Module 2: Exercise Results</a></li>
 <li class="chapter" data-level="" data-path="module-3-generalized-linear-models.html"><a href="module-3-generalized-linear-models.html"><i class="fa fa-check"></i>Module 3: Generalized Linear Models</a>
 <ul>
 <li class="chapter" data-level="" data-path="module-3-generalized-linear-models.html"><a href="module-3-generalized-linear-models.html#essential-r-read-tables-from-files-and-merge"><i class="fa fa-check"></i>Essential R: Read tables from files and merge</a></li>
 <li class="chapter" data-level="" data-path="module-3-generalized-linear-models.html"><a href="module-3-generalized-linear-models.html#read-data-from-files-and-explore-variable-distribution"><i class="fa fa-check"></i>Read data from files and explore variable distribution</a></li>
 <li class="chapter" data-level="" data-path="module-3-generalized-linear-models.html"><a href="module-3-generalized-linear-models.html#explore-missing-data"><i class="fa fa-check"></i>Explore missing data</a></li>
-<li class="chapter" data-level="" data-path="module-3-generalized-linear-models.html"><a href="module-3-generalized-linear-models.html#create-plots-with-ggplot2-to-explore-variable-relationships"><i class="fa fa-check"></i>Create plots with <code>ggplot2</code> to explore variable relationships</a></li>
-<li class="chapter" data-level="" data-path="module-3-generalized-linear-models.html"><a href="module-3-generalized-linear-models.html#fit-binary-response-variable-using-glm-and-logistic-regression"><i class="fa fa-check"></i>Fit binary response variable using <code>glm()</code> and logistic regression</a></li>
+<li><a href="module-3-generalized-linear-models.html#create-plots-with-ggplot2-to-explore-variable-relationships">Create plots with <code>ggplot2</code> to explore variable relationships</a></li>
+<li><a href="module-3-generalized-linear-models.html#fit-binary-response-variable-using-glm-and-logistic-regression">Fit binary response variable using <code>glm()</code> and logistic regression</a></li>
 <li class="chapter" data-level="" data-path="module-3-generalized-linear-models.html"><a href="module-3-generalized-linear-models.html#exercise-2"><i class="fa fa-check"></i>Exercise</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="module-3-exercise-results.html"><a href="module-3-exercise-results.html"><i class="fa fa-check"></i>Module 3: Exercise Results</a></li>
 <li class="chapter" data-level="" data-path="module-4-finding-differentially-expressed-genes-with-rna-seq.html"><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html"><i class="fa fa-check"></i>Module 4: Finding differentially expressed genes with RNA-seq</a>
 <ul>
 <li class="chapter" data-level="" data-path="module-4-finding-differentially-expressed-genes-with-rna-seq.html"><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html#mini-introduction-to-bioconductor"><i class="fa fa-check"></i>Mini introduction to BioConductor</a></li>
-<li class="chapter" data-level="" data-path="module-4-finding-differentially-expressed-genes-with-rna-seq.html"><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html#fetch-breast-cancer-data-using-curatedtcgadata"><i class="fa fa-check"></i>Fetch breast cancer data using <code>curatedTCGAData</code></a>
+<li><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html#fetch-breast-cancer-data-using-curatedtcgadata">Fetch breast cancer data using <code>curatedTCGAData</code></a>
 <ul>
 <li class="chapter" data-level="" data-path="module-4-finding-differentially-expressed-genes-with-rna-seq.html"><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html#prepare-data-for-differential-expression-analysis"><i class="fa fa-check"></i>Prepare data for differential expression analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-4-finding-differentially-expressed-genes-with-rna-seq.html"><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html#differential-expression-analysis-with-edger"><i class="fa fa-check"></i>Differential expression analysis with <code>edgeR</code></a></li>
+<li><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html#differential-expression-analysis-with-edger">Differential expression analysis with <code>edgeR</code></a></li>
 <li class="chapter" data-level="" data-path="module-4-finding-differentially-expressed-genes-with-rna-seq.html"><a href="module-4-finding-differentially-expressed-genes-with-rna-seq.html#exercise-3"><i class="fa fa-check"></i>Exercise</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="module-4-exercise-results.html"><a href="module-4-exercise-results.html"><i class="fa fa-check"></i>Module 4: Exercise Results</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -212,8 +212,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="lecture-slides" class="section level1 unnumbered hasAnchor">
-<h1>Lecture slides<a href="lecture-slides.html#lecture-slides" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="lecture-slides" class="section level1 unnumbered">
+<h1>Lecture slides</h1>
 <ul>
 <li><a href="https://github.com/RealPaiLab/CBW_AUR2023/blob/main/book/lectures/AUR_2023_Module1_EDA.pdf">Module 1: Exploratory Data Analysis and Clustering</a></li>
 <li><a href="https://github.com/RealPaiLab/CBW_AUR2023/blob/main/book/lectures/AUR_2023_Module2_DimensionReduction.pdf">Module 2: Dimensionality reduction for visualization and analysis</a></li>

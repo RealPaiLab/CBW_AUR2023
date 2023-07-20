@@ -1,4 +1,4 @@
-# Module 1 Exercise Results {-}
+# Module 1: Exercise Results {-}
 
 Load packages and data, subset needed columns:
 ```{r, class.source="codeblock",eval=TRUE}
